@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: ['./recipes/*.html'],
+  content: ["index.html", "./recipes/*.html"],
   theme: {
     extend: {},
   },
