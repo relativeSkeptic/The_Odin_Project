@@ -6,44 +6,23 @@
     <link href="output.css" rel="stylesheet">
     <title>Odin Recipes</title>
 </head>
-<body class="flex flex-col h-screen">
-    <div id="header" class="bg-neutral-600 flex h-1/4 items-center justify-center">
-        <p id="project-name" class="text-9xl text-white">
-            Odin Recipes
-        </p>
+<body class="grid grid-rows-12 min-h-screen max-h-screen">
+    <div id="header" class="row-span-2">
+        header
     </div>
-    <div id="hero" class="flex h-full">
-        <div id="container-one" class="border-2 border-black flex flex-col m-20 rounded-lg w-full">
-            <div id="container-one-header" class="border-b-2 border-black h-1/6">
-                <p>
-                    Spaghetti
-                </p>
-            </div>
-            <div id="container-one-picture" class="border-black h-4/6">
-                <p>
-                    Recipe Picture
-                </p>
-            </div>
-            <div id="container-one-summary" class="border-t-2 border-black h-1/6">
-                <p>
-                    Spaghetti is a long, thin pasta originating from Italy, traditionally made from durum wheat semolina and water. 
-                    It is a staple of Italian cuisine, often served with a variety of sauces such as marinara, meatballs, or pesto. 
-                    Known for its versatility, spaghetti can be paired with both simple and complex dishes, making it a global favorite. 
-                    It is typically cooked al dente, maintaining a firm texture.
-                </p>
-            </div>
-        </div>
-        <div id="container-two" class="border-2 border-black flex m-20 rounded-lg w-full">
-            
-        </div>
-        <div id="container-three" class="border-2 border-black flex m-20 rounded-lg w-full">
-            
-        </div>
+    <div id="hero" class="row-span-9">
+        hero
     </div>
-    <div id="footer" class="bg-neutral-600 flex h-1/8 items-end justify-center">
-        <p id="author" class="text-5xl p-3 text-white">
-            By Dakota Stroud @ 2024
-        </p>
+    <div id="footer" class="grid grid-cols-12 row-span-1">
+        <div id="author" class="flex items-center pl-4 col-span-10">
+            <p class="text-2xl">By Dakota Stroud @ 2024</p>
+        </div>
+        <div id="linkedin" class="flex justify-center items-center">
+            <img src="../global_data/icons/linkedin.svg" class="max-h-4">
+        </div>
+        <div id="github" class="flex justify-center items-center">
+            <img src="../global_data/icons/github.svg" class="max-h-4">
+        </div>
     </div>
 </body>
 </html>
