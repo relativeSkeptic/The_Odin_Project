@@ -6,81 +6,184 @@
     <link href="../output.css" rel="stylesheet">
     <title>Odin Recipes</title>
 </head>
-<body class="grid grid-rows-12 min-h-screen">
-    <div id="header" class="row-span-1 flex justify-center items-center bg-neutral-300 shadow-md">
+<body class="flex flex-col min-h-screen">
+    <div id="header" class="flex justify-center items-center bg-neutral-300 shadow-md p-5">
         <p class="text-5xl">Odin Recipes: Spaghetti</p>
     </div>
-    <div id="hero" class="grid grid-cols-3 grid-rows-4 row-span-11 gap-10 p-5">
-        <div class="border-2 border-black col-start-1 col-end-1 row-start-1 row-end-2 rounded-lg relative">
-            <img src="../images/spaghetti/meatballs.jpg" class="absolute w-full h-full rounded-lg">
+    <div id="hero" class="grid grid-cols-3 gap-10">
+        <div class="grid gap-5 pl-14 pr-14">
+            <div class="border-2 border-black rounded-lg h-min mt-auto">
+                <p>
+                    Meatballs are a classic accompaniment to spaghetti, creating the popular Italian-American
+                    dish "spaghetti and meatballs." The meatballs, typically made from a blend of ground meat, 
+                    breadcrumbs, and seasonings, are simmered in marinara or tomato sauce to absorb flavor. 
+                    They are then served on top of or mixed into a plate of cooked spaghetti, offering a hearty 
+                    and satisfying combination of flavors and textures.
+                </p>
+            </div>
+            <div>
+                <img src="../images/spaghetti/meatballs.jpg" class="border-2 border-black w-full rounded-lg mb-10">
+            </div>
+            <div class="border-2 border-black rounded-lg h-min mt-auto">
+                <p>
+                    Carbonara is a classic Italian pasta dish made with a rich sauce of eggs, 
+                    cheese (usually Pecorino Romano), pancetta or guanciale (cured pork), and black pepper. 
+                    The sauce is created by tossing the hot pasta with the egg mixture, which thickens into 
+                    a creamy texture without the use of cream. This dish is known for its simple ingredients 
+                    but rich, comforting flavor.
+                </p>
+            </div>
+            <div>
+                <img src="../images/spaghetti/carbonarra.jpg" class="border-2 border-black w-full rounded-lg">
+            </div>
         </div>
-        <div class="border-2 border-black col-start-1 col-end-1 row-start-4 row-end-5 rounded-lg relative">
-            <img src="../images/spaghetti/carbonarra.jpg" class="absolute w-full h-full rounded-lg">
-        </div>
-        <div class="border-2 border-black col-start-2 col-end-2 row-start-1 row-end-3 rounded-lg">
-            Content
-        </div>
-        <div class="border-2 border-black col-start-2 col-end-2 row-start-3 row-end-5 rounded-lg">
-            Ingredients:
-
-    Spaghetti pasta: 200 grams (about 7 ounces) for 2 servings
-    Water: 4-5 liters (for boiling pasta)
-    Salt: 1-2 tablespoons (for seasoning the pasta water)
-    Olive oil: 1 tablespoon (optional, for the sauce or to toss pasta)
-    Spaghetti sauce: 2 cups (store-bought or homemade, see below for a simple homemade sauce recipe)
+        <div class="grid gap-5 h-min">
+            <div>
+                <p>Ingredients</p>
+                <ul class="list-disc pl-4">
+                    <li>
+                        Spaghetti pasta: 200 grams (about 7 ounces) for 2 servings
+                    </li>
+                    <li>
+                        Water: 4-5 liters (for boiling pasta)
+                    </li>
+                    <li>
+                        Salt: 1-2 tablespoons (for seasoning the pasta water)
+                    </li>
+                    <li>
+                        Olive oil: 1 tablespoon (optional, for the sauce or to toss pasta)
+                    </li>
+                    <li>
+                        Spaghetti sauce: 2 cups (store-bought or homemade, see below for a simple homemade sauce recipe)
+                    </li>
+                </ul>
+            </div>
+            <ol class="list-decimal">
+                <li class="mb-4">
+                    <p>
+                        Boil the Pasta:
+                    </p>
     
-            Instructions:
-1. Boil the Pasta:
+                    <p>
+                        Fill a large pot with water and bring it to a rolling boil over high heat.
+                        Once boiling, add 1-2 tablespoons of salt to the water. This helps season the pasta.
+                        Add the spaghetti to the boiling water and stir occasionally to prevent the noodles from sticking together.
+                        Cook according to the package instructions (usually around 8-10 minutes) or until the pasta is "al dente" (firm to the bite).
+                        Once cooked, drain the pasta in a colander. You can save a cup of pasta water if you plan to mix it into the sauce.
+                    </p>
+                </li>
+                <li class="mb-4">
+                    <p>
+                        Prepare the Sauce (Optional: If using store-bought sauce, skip this step):
+                    </p>
+                    <p class="pl-5">
+                        Ingredients for Homemade Sauce:
+                    </p>
+                    <ul class="list-disc pl-12 mb-2">
+                        <li>
+                            2 tablespoons olive oil
+                        </li>
+                        <li>
+                             1 small onion, chopped
+                        </li>
+                        <li>
+                            2-3 garlic cloves, minced
+                       </li>
+                       <li>
+                            2-3 garlic cloves, minced
+                        </li>
+                        <li>
+                            1 teaspoon dried basil (or fresh)
+                        </li>
+                        <li>
+                            1 teaspoon dried oregano
+                        </li>
+                        <li>
+                            Salt and pepper to taste
+                        </li>
+                        <li>
+                            1 teaspoon sugar (optional, to balance acidity)
+                        </li>
+                    </ul>
+                    <p>
+                        Instructions for Sauce:
+                    </p>
+                    <ol class="list-decimal pl-6">
+                        <li>
+                            Heat olive oil in a pan over medium heat.
+                        </li>
+                        <li>
+                            Add the chopped onion and cook until softened (about 5 minutes).
+                        </li>
+                        <li>
+                            Add the minced garlic and cook for another 1-2 minutes, until fragrant.
+                        </li>
+                        <li>
+                            Add the crushed tomatoes, basil, oregano, salt, pepper, and sugar (if using).
+                        </li>
+                        <li>
+                            Let the sauce simmer for about 15-20 minutes to allow the flavors to meld together, stirring occasionally.
+                        </li>
+                        <li>
+                            Taste and adjust seasonings as needed.
+                        </li>
+                    </ol>
+                </li>
+                <li class="mb-4">
+                    <p>
+                        Combine the Pasta and Sauce:
+                    </p>
+                    <p>
+                        Add the drained spaghetti into the sauce (or toss it in a separate bowl with the sauce).
+                        If the sauce is too thick, add a little of the reserved pasta water to thin it to your desired consistency.
+                        Stir to coat the pasta evenly with the sauce.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Serve:
+                    </p>
+                    <p>
+                        Plate the spaghetti, and top with freshly grated Parmesan cheese or herbs if desired.
+                        Optionally, drizzle a little olive oil over the top and garnish with fresh basil or parsley.  
+                    </p>
+                </li>
+            </ol>
+            <div>
+                Tips:
+    
+                You can customize the sauce by adding vegetables, meatballs, or even ground meat like beef or turkey for a more hearty meal.
+                For extra flavor, you can toast garlic or add a pinch of red pepper flakes for a spicy kick.
+                Pair your spaghetti with a side salad and some crusty bread for a complete meal! 
 
-    Fill a large pot with water and bring it to a rolling boil over high heat.
-    Once boiling, add 1-2 tablespoons of salt to the water. This helps season the pasta.
-    Add the spaghetti to the boiling water and stir occasionally to prevent the noodles from sticking together.
-    Cook according to the package instructions (usually around 8-10 minutes) or until the pasta is "al dente" (firm to the bite).
-    Once cooked, drain the pasta in a colander. You can save a cup of pasta water if you plan to mix it into the sauce.
-
-2. Prepare the Sauce (Optional: If using store-bought sauce, skip this step):
-
-    Ingredients for Homemade Sauce:
-        2 tablespoons olive oil
-        1 small onion, chopped
-        2-3 garlic cloves, minced
-        1 can (14 oz) crushed tomatoes
-        1 teaspoon dried basil (or fresh)
-        1 teaspoon dried oregano
-        Salt and pepper to taste
-        1 teaspoon sugar (optional, to balance acidity)
-    Instructions for Sauce:
-        Heat olive oil in a pan over medium heat.
-        Add the chopped onion and cook until softened (about 5 minutes).
-        Add the minced garlic and cook for another 1-2 minutes, until fragrant.
-        Add the crushed tomatoes, basil, oregano, salt, pepper, and sugar (if using).
-        Let the sauce simmer for about 15-20 minutes to allow the flavors to meld together, stirring occasionally.
-        Taste and adjust seasonings as needed.
-
-3. Combine the Pasta and Sauce:
-
-    Add the drained spaghetti into the sauce (or toss it in a separate bowl with the sauce).
-    If the sauce is too thick, add a little of the reserved pasta water to thin it to your desired consistency.
-    Stir to coat the pasta evenly with the sauce.
-
-4. Serve:
-
-    Plate the spaghetti, and top with freshly grated Parmesan cheese or herbs if desired.
-    Optionally, drizzle a little olive oil over the top and garnish with fresh basil or parsley.
-
-Tips:
-
-    You can customize the sauce by adding vegetables, meatballs, or even ground meat like beef or turkey for a more hearty meal.
-    For extra flavor, you can toast garlic or add a pinch of red pepper flakes for a spicy kick.
-    Pair your spaghetti with a side salad and some crusty bread for a complete meal!
-
-Enjoy your delicious homemade spaghetti!
+                Enjoy your delicious homemade spaghetti!
+            </div>
         </div>
-        <div class="border-2 border-black col-start-3 col-end-3 row-start-1 row-end-2 rounded-lg relative">
-            <img src="../images/spaghetti/tomato-sauce.jpg" class="absolute w-full h-full rounded-lg">
-        </div>
-        <div class="border-2 border-black col-start-3 col-end-3 row-start-4 row-end-5 rounded-lg relative">
-            <img src="../images/spaghetti/pasta.jpg" class="absolute w-full h-full rounded-lg">
+        <div class="grid gap-5 pl-14 pr-14">
+            <div class="border-2 border-black rounded-lg h-min mt-auto">
+                <p>
+                    Pasta noodles are a staple in Italian cuisine, typically made from durum wheat 
+                    flour and water, and sometimes egg, resulting in a variety of shapes and sizes. 
+                    These noodles are boiled in water and served with a wide range of sauces, such as marinara, 
+                    pesto, or Alfredo, and can also be used in soups or baked dishes. Pasta noodles are versatile, 
+                    offering endless possibilities for flavor combinations and textures in meals.
+                </p>
+            </div>
+            <div>
+                <img src="../images/spaghetti/pasta.jpg" class="border-2 border-black w-full rounded-lg">
+            </div>
+            <div class="border-2 border-black rounded-lg h-min mt-auto">
+                <p>
+                    Tomato sauce is a savory sauce made primarily from cooked tomatoes, often seasoned 
+                    with ingredients like garlic, onions, herbs (such as basil and oregano), and olive oil.
+                    It is commonly used as a base for pasta dishes, pizzas, and stews, providing a rich, tangy flavor. 
+                    Tomato sauce can vary in consistency, from smooth and thick to chunky, depending on the recipe 
+                    and intended use.
+                </p>
+            </div>
+            <div>
+                <img src="../images/spaghetti/tomato-sauce.jpg" class="border-2 border-black w-full rounded-lg">
+            </div>
         </div>
     </div>
     <div id="footer" class="grid grid-cols-2 bg-neutral-300 p-1">
