@@ -3,9 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odin Recipe: Quesadilla</title>
+    <link href="../output.css" rel="stylesheet">
+    <title>Odin Recipes</title>
 </head>
-<body>
-    <h1>Quesadilla</h1>
+<body class="flex flex-col min-h-screen">
+    <div id="header" class="grid grid-cols-3 relative bg-yellow-300 p-3">
+        <a href="http://127.0.0.1:5500/odin-recipes/index.html" class="col-span-1 flex items-center">
+            <img src="../../global_data/icons/home.svg" class="absolute h-full hover:cursor-pointer">
+        </a>
+        <div class="flex justify-center">
+            <p class="text-5xl col-span-1 text-nowrap">
+                Odin Recipes: Quesadilla
+            </p>
+        </div>
+    </div>
+    <div id="hero" class="grid grid-cols-3">
+        <div class="grid gap-5 p-24 bg-yellow-100">
+            <div class="border-2 rounded-lg h-min mt-auto">
+                <p class="bg-white rounded-lg p-1">
+                    Meatballs are a classic accompaniment to spaghetti, creating the popular Italian-American
+                    dish "spaghetti and meatballs." The meatballs, typically made from a blend of ground meat, 
+                    breadcrumbs, and seasonings, are simmered in marinara or tomato sauce to absorb flavor. 
+                    They are then served on top of or mixed into a plate of cooked spaghetti, offering a hearty 
+                    and satisfying combination of flavors and textures.
+                </p>
+            </div>
+            <div>
+                <img src="../images/quesadilla/black-beans.jpg" class="border-2 w-full rounded-lg mb-10">
+            </div>
+            <div class="border-2 rounded-lg h-min mt-auto">
+                <p class="bg-white rounded-lg p-1">
+                    Carbonara is a classic Italian pasta dish made with a rich sauce of eggs, 
+                    cheese (usually Pecorino Romano), pancetta or guanciale (cured pork), and black pepper. 
+                    The sauce is created by tossing the hot pasta with the egg mixture, which thickens into 
+                    a creamy texture without the use of cream. This dish is known for its simple ingredients 
+                    but rich, comforting flavor.
+                </p>
+            </div>
+            <div>
+                <img src="../images/quesadilla/chicken.jpg" class="border-2 w-full rounded-lg">
+            </div>
+        </div>
+        <div class="flex flex-col p-14 justify-around bg-yellow-200 shadow-xl">
+            <div class="flex flex-col pt-20">
+                <p class="font-bold">Ingredients</p>
+                <ul class="list-disc pl-4">
+                    <li>
+                        Spaghetti pasta: 200 grams (about 7 ounces) for 2 servings
+                    </li>
+                    <li>
+                        Water: 4-5 liters (for boiling pasta)
+                    </li>
+                    <li>
+                        Salt: 1-2 tablespoons (for seasoning the pasta water)
+                    </li>
+                    <li>
+                        Olive oil: 1 tablespoon (optional, for the sauce or to toss pasta)
+                    </li>
+                    <li>
+                        Spaghetti sauce: 2 cups (store-bought or homemade, see below for a simple homemade sauce recipe)
+                    </li>
+                </ul>
+            </div>
+            <ol class="list-decimal h-min">
+                <li class="mb-4">
+                    <p class="font-bold">
+                        Boil the Pasta:
+                    </p>
+    
+                    <p>
+                        Fill a large pot with water and bring it to a rolling boil over high heat.
+                        Once boiling, add 1-2 tablespoons of salt to the water. This helps season the pasta.
+                        Add the spaghetti to the boiling water and stir occasionally to prevent the noodles from sticking together.
+                        Cook according to the package instructions (usually around 8-10 minutes) or until the pasta is "al dente" (firm to the bite).
+                        Once cooked, drain the pasta in a colander. You can save a cup of pasta water if you plan to mix it into the sauce.
+                    </p>
+                </li>
+                <li class="mb-4">
+                    <p class="font-bold">
+                        Prepare the Sauce (Optional: If using store-bought sauce, skip this step):
+                    </p>
+                    <p class="pl-5">
+                        Ingredients for Homemade Sauce:
+                    </p>
+                    <ul class="list-disc pl-12 mb-2">
+                        <li>
+                            2 tablespoons olive oil
+                        </li>
+                        <li>
+                             1 small onion, chopped
+                        </li>
+                        <li>
+                            2-3 garlic cloves, minced
+                       </li>
+                       <li>
+                            2-3 garlic cloves, minced
+                        </li>
+                        <li>
+                            1 teaspoon dried basil (or fresh)
+                        </li>
+                        <li>
+                            1 teaspoon dried oregano
+                        </li>
+                        <li>
+                            Salt and pepper to taste
+                        </li>
+                        <li>
+                            1 teaspoon sugar (optional, to balance acidity)
+                        </li>
+                    </ul>
+                    <p class="font-bold">
+                        Instructions for Sauce:
+                    </p>
+                    <ol class="list-decimal pl-6">
+                        <li>
+                            Heat olive oil in a pan over medium heat.
+                        </li>
+                        <li>
+                            Add the chopped onion and cook until softened (about 5 minutes).
+                        </li>
+                        <li>
+                            Add the minced garlic and cook for another 1-2 minutes, until fragrant.
+                        </li>
+                        <li>
+                            Add the crushed tomatoes, basil, oregano, salt, pepper, and sugar (if using).
+                        </li>
+                        <li>
+                            Let the sauce simmer for about 15-20 minutes to allow the flavors to meld together, stirring occasionally.
+                        </li>
+                        <li>
+                            Taste and adjust seasonings as needed.
+                        </li>
+                    </ol>
+                </li>
+                <li class="mb-4">
+                    <p class="font-bold">
+                        Combine the Pasta and Sauce:
+                    </p>
+                    <p>
+                        Add the drained spaghetti into the sauce (or toss it in a separate bowl with the sauce).
+                        If the sauce is too thick, add a little of the reserved pasta water to thin it to your desired consistency.
+                        Stir to coat the pasta evenly with the sauce.
+                    </p>
+                </li>
+                <li>
+                    <p class="font-bold">
+                        Serve:
+                    </p>
+                    <p>
+                        Plate the spaghetti, and top with freshly grated Parmesan cheese or herbs if desired.
+                        Optionally, drizzle a little olive oil over the top and garnish with fresh basil or parsley.  
+                    </p>
+                </li>
+            </ol>
+            <div class="flex flex-col pb-20">
+                <p class="font-bold">Tips:</p>
+                <p>
+                    You can customize the sauce by adding vegetables, meatballs, or even ground meat like beef or turkey for a more hearty meal.
+                    For extra flavor, you can toast garlic or add a pinch of red pepper flakes for a spicy kick.
+                    Pair your spaghetti with a side salad and some crusty bread for a complete meal! 
+    
+                    Enjoy your delicious homemade spaghetti!
+                </p>
+            </div>
+        </div>
+        <div class="grid gap-5 p-24 bg-yellow-100">
+            <div class="border-2 rounded-lg h-min mt-auto">
+                <p class="bg-white rounded-lg p-1">
+                    Tomato sauce is a savory sauce made primarily from cooked tomatoes, often seasoned 
+                    with ingredients like garlic, onions, herbs (such as basil and oregano), and olive oil.
+                    It is commonly used as a base for pasta dishes, pizzas, and stews, providing a rich, tangy flavor. 
+                    Tomato sauce can vary in consistency, from smooth and thick to chunky, depending on the recipe 
+                    and intended use.
+                </p>
+            </div>
+            <div>
+                <img src="../images/quesadilla/shreeded-cheese.jpg" class="border-2 w-full rounded-lg">
+            </div>
+            <div class="border-2 rounded-lg h-min mt-auto">
+                <p class="bg-white rounded-lg p-1">
+                    Pasta noodles are a staple in Italian cuisine, typically made from durum wheat 
+                    flour and water, and sometimes egg, resulting in a variety of shapes and sizes. 
+                    These noodles are boiled in water and served with a wide range of sauces, such as marinara, 
+                    pesto, or Alfredo, and can also be used in soups or baked dishes. Pasta noodles are versatile, 
+                    offering endless possibilities for flavor combinations and textures in meals.
+                </p>
+            </div>
+            <div>
+                <img src="../images/quesadilla/tortilla.jpg" class="border-2 w-full rounded-lg">
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="grid grid-cols-2 bg-yellow-300 p-1">
+        <div id="author" class="flex items-center pl-4">
+            <p class="text-2xl">By Dakota Stroud @ 2024</p>
+        </div>
+        <div class="relative flex gap-24 justify-end pr-16">
+            <a href="https://www.linkedin.com/in/strdak97">
+                <img src="../../global_data/icons/linkedin.svg" class="absolute h-full hover:cursor-pointer">
+            </a>
+            <a href="https://github.com/relativeSkeptic">
+                <img src="../../global_data/icons/github.svg" class="absolute h-full hover:cursor-pointer">
+            </a>
+        </div>
+    </div>
 </body>
 </html>
