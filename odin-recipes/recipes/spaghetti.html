@@ -7,8 +7,15 @@
     <title>Odin Recipes</title>
 </head>
 <body class="flex flex-col min-h-screen">
-    <div id="header" class="flex justify-center items-center bg-neutral-300 shadow-md p-5">
-        <p class="text-5xl">Odin Recipes: Spaghetti</p>
+    <div id="header" class="grid grid-cols-3 relative bg-blue-300 p-3">
+        <a href="http://127.0.0.1:5500/odin-recipes/index.html" class="col-span-1 flex items-center">
+            <img src="../../global_data/icons/home.svg" class="absolute h-full hover:cursor-pointer">
+        </a>
+        <div class="flex justify-center">
+            <p class="text-5xl col-span-1">
+                Odin Recipes: Spaghetti
+            </p>
+        </div>
     </div>
     <div id="hero" class="grid grid-cols-3">
         <div class="grid gap-5 p-24 bg-blue-100">
@@ -187,7 +194,7 @@
             </div>
         </div>
     </div>
-    <div id="footer" class="grid grid-cols-2 bg-neutral-300 p-1">
+    <div id="footer" class="grid grid-cols-2 bg-blue-300 p-1">
         <div id="author" class="flex items-center pl-4">
             <p class="text-2xl">By Dakota Stroud @ 2024</p>
         </div>
