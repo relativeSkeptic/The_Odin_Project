@@ -9,5 +9,9 @@ function addBook() {
 }
 
 function removeBook() {
+
+}
+
+function displayBook() {
     
 }
