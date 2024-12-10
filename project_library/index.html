@@ -12,16 +12,16 @@
     </div>
     <div id="hero" class="flex flex-col gap-4 justify-center items-center flex-1">
         <div class="grid grid-cols-3">
-            <div class="col-start-1 col-end-1 grid justify-center items-center">
+            <div class="col-start-1 col-span-1 flex justify-end items-center">
                 <img id="left-arrow" src="./icons/arrow.png" class="hover:cursor-pointer h-1/2">
             </div>
-            <div class="col-start-2 col-end-2 flex justify-center text-wrap text-center bg-center bg-cover border-2 border-black" style="background-image: url('./icons/book.png')">
-                <p >Book Name: </p>
-                <p id="book-name">Harry Potter and the Prisoner of Azcaban</p>
-                <p >Author Name: </p>
-                <p id="author-name">test</p>
+            <div class="col-start-2 col-end-2 flex flex-col justify-center items-center pb-56 gap-4" style="background-image: url('./icons/book.png');">
+                <p id="book-text"></p>
+                <p id="book-name"></p>
+                <p id="author-text"></p>
+                <p id="author-name"></p>
             </div>
-            <div class="col-start-3 col-span-3 grid justify-center items-center">
+            <div class="col-start-3 col-span-3 flex items-center">
                 <img id="right-arrow" src="./icons/arrow.png" class="transform rotate-180 hover:cursor-pointer h-1/2">
             </div>
         </div>
