@@ -20,15 +20,39 @@ function Book(bookName, authorName) {
 }
 
 function addBook() {
-
+    let book = "ERROR";
+    let author = "ERROR";
+    do {
+        book = prompt("What is the name of the book?");
+    } while (book > MAX_CHARS);
+    do {
+        author = prompt("What is the name of the author?");
+    } while (author > MAX_CHARS);
+    const newBook = new Book(book, author);
+    myLibrary.push(newBook);
+    increment = myLibrary.length - 1;
+    updateOutput();
 }
 
 function removeBook() {
-
+    myLibrary.splice(increment, 1);
+    increment = 0;
+    if (myLibrary.length === 0) {
+        book_text.textContent = "";
+        book_element.textContent = "The Library is empty :(";
+        author_element.textContent = "";
+        author_text.textContent = "";
+    }
+    else {
+        updateOutput();
+    }
 }
 
 function updateOutput() {
-
+    book_text.textContent = "Book Name:";
+    book_element.textContent = myLibrary[increment].name;
+    author_text.textContent = "Author Name:";
+    author_element.textContent = myLibrary[increment].author;
 }
 
 function isEmpty() {
@@ -45,10 +69,13 @@ left.addEventListener("click", function () {
         book_element.textContent = "The library is currently empty :("
     }
     else {
-        book_text.textContent = "Book Name:";
-        book_element.textContent = myLibrary[increment].bookName;
-        author_text = "Author Name:";
-        author_element = myLibrary[increment].authorName;
+        if (increment === 0) {
+            increment = myLibrary.length - 1;
+        }
+        else {
+            increment -= 1;
+        }
+        updateOutput();
     }
 })
 
@@ -57,22 +84,20 @@ right.addEventListener("click", function () {
         book_element.textContent = "The library is currently empty :("
     }
     else {
-        book_text.textContent = "Book Name:";
-        book_element.textContent = myLibrary[increment].bookName;
-        author_text = "Author Name:";
-        author_element = myLibrary[increment].authorName;
+        if (increment === myLibrary.length - 1) {
+            increment = 0;
+        }
+        else {
+            increment += 1;
+        }
+        updateOutput();
     }
 })
 
 add.addEventListener("click", function () {
-    let bookName = prompt("What is the name of the book?");
-    let author = prompt("What is the name of the author?");
-    const newBook = new Book(bookName, author);
-    myLibrary.push(newBook);
+    addBook();
 })
 
 remove.addEventListener("click", function () {
-    myLibrary.pop()
-    increment -= 1;
-    updateOutput();
+    removeBook();
 })
