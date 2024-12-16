@@ -3,25 +3,44 @@
 const MAX_SQUARES = 9;
 
 class GameBoard {
-    constructor(gameLogic) {
+    constructor() {
         const container = document.getElementById("box");
-        this.logic = gameLogic;
         for (let i = 0; i < MAX_SQUARES; i++) {
             let boardSquare = document.createElement('div');
             boardSquare.id = `${i}`;
             boardSquare.style.backgroundColor = "white";
             container.appendChild(boardSquare);
             boardSquare.addEventListener("click", function() {
-                update();
+                gameBoard.update(i);
             });
         }
+        const clearBoard = document.getElementById("reset-board");
+        clearBoard.addEventListener("click", function() {
+            gameBoard.clearGameBoard();
+            gameLogic.updateWhoIsX = "h";
+            gameLogic.updateWhoIsO = "c";
+            gameLogic.updateWhosTurn = "h";
+        })
+        const clearStats = document.getElementById("reset-stats");
+        clearStats.addEventListener("click", function() {
+            gameLogic.updatePlayerWins(0);
+            gameLogic.updateComputerWins(0);
+            gameBoard.clearGameBoard();
+            gameLogic.updateWhoIsX = "h";
+            gameLogic.updateWhoIsO = "c";
+            gameLogic.updateWhosTurn = "h";
+        })
     }
 
-    update() {
-        if(gameLogic.whosTurn === "h" && gameBoard.isEmpty(boardSquare.id) === true) {
-            gameBoard.updateGameBoard(boardSquare.id, gameLogic.whatIsHuman)
-            gameBoard.logic.updateWhosTurn = "c";
+    update(iteration) {
+        if(gameLogic.whosTurn === "h" && gameBoard.isEmpty(iteration) === true) {
+            gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman)
+            gameLogic.updateWhosTurn = "c";
             computer.computerTurn();
+        }
+        if(gameLogic.checkForTie() === true) {
+            alert("Game is a tie.");
+            gameBoard.clearGameBoard();
         }
     }
 
@@ -54,10 +73,8 @@ class GameBoard {
     // clears game board for new game
     clearGameBoard() {
         for(let i = 0; i < MAX_SQUARES; i++) {
-            const boardElement = document.getElementById(`${square}`);
-            while(boardElement.firstChild === true) {
-                boardElement.removeChild(boardElement.firstChild);
-            }
+            const boardElement = document.getElementById(`${i}`);
+            boardElement.textContent = "";
         }
     }
 
@@ -69,7 +86,7 @@ class GameBoard {
             update.style.display = "flex";
             update.style.justifyContent = "center";
             update.style.alignItems = "center";
-            update.style.fontSize = "8rem";
+            update.style.fontSize = "6rem";
             //0 represents player X
             if(player === "x") {
                 update.textContent = "X";
@@ -80,15 +97,22 @@ class GameBoard {
             }
         }
     }
+
+    // returns the current status of the board as an array
+    get getBoard() {
+        let boardArray = [];
+        for(let i = 0; i < MAX_SQUARES; i++) {
+            boardArray.push(document.getElementById(`${i}`).textContent)
+        }
+        return boardArray;
+    }
 }
 
 class Computer {
-    constructor(gameLogic, gameBoard) {
-        this.logic = gameLogic;
-        this.board = gameBoard;
-        if(this.logic.whosTurn === "c") {
-            this.board.updateGameBoard(this.selectSquare(), this.logic.whatIsComputer);
-            this.logic.updateWhosTurn = "h";
+    constructor() {
+        if(gameLogic.whosTurn === "c") {
+            gameBoard.updateGameBoard(this.selectSquare(), gameLogic.whatIsComputer);
+            gameLogic.updateWhosTurn = "h";
         }
     }
 
@@ -98,14 +122,14 @@ class Computer {
     selectSquare() {
         // start by checking if the board has already been filled
         // if its not full find a square and place your piece
-        if(this.board.isFull() === false) {
+        if(gameBoard.isFull() === false) {
             // infinite loop probably a better way to do this
             while(true) {
                 // there should be logic here to ensure we don't check
                 // duplicate numbers but I am lazy and it is only
                 // nine numbers
                 let randomSquare = Math.floor(Math.random() * 8);
-                if(this.board.isEmpty(randomSquare) === true) {
+                if(gameBoard.isEmpty(randomSquare) === true) {
                     return randomSquare;
                 }
             }
@@ -113,10 +137,8 @@ class Computer {
     }
 
     computerTurn() {
-        this.board.updateGameBoard(this.selectSquare(), this.logic.whatIsComputer);
-        this.logic.updateWhosTurn = "h";
-        gameLogic.checkForWinner();
-        gameLogic.checkForTie();
+        gameBoard.updateGameBoard(this.selectSquare(), gameLogic.whatIsComputer);
+        gameLogic.updateWhosTurn = "h";
     }
 }
 
@@ -137,6 +159,21 @@ class GameLogic {
         this.playerWins = 0;
         this.computerWins = 0;
         this.turn = this.playerX;
+        const playAsX = document.getElementById("play-x");
+        playAsX.addEventListener("click", function() {
+            gameBoard.clearGameBoard();
+            gameLogic.updateWhoIsX = "h";
+            gameLogic.updateWhoIsO = "c";
+            gameLogic.updateWhosTurn = "h";
+        })
+        const playAsY = document.getElementById("play-y");
+        playAsY.addEventListener("click", function() {
+            gameBoard.clearGameBoard();
+            gameLogic.updateWhoIsX = "c";
+            gameLogic.updateWhoIsO = "h";
+            gameLogic.updateWhosTurn = "c";
+            computer.computerTurn();
+        })
     }
 
     // uses random math lib to determine who is the starting player
@@ -152,13 +189,20 @@ class GameLogic {
     // after every turn checks the board to
     // see if there is a winner
     checkForWinner() {
-
+        let board = gameBoard.getBoard;
+        
     }
 
     // after every turn check to see if there
     // is a tie
     checkForTie() {
-
+        if(gameBoard.isFull() === true) {
+            return true;
+        }
+        else {
+            gameLogic.checkForWinner();
+            return false; 
+        }
     }
 
     // returns the player in which who's turn it is
@@ -210,7 +254,7 @@ class GameLogic {
     }
 
     // updates which player is O
-    set whoIsO(player) {
+    set updateWhoIsO(player) {
         this.playerO = player;
     }
 
@@ -237,6 +281,5 @@ class GameLogic {
 }
 
 const gameLogic = new GameLogic();
-const gameBoard = new GameBoard(gameLogic);
-const computer = new Computer(gameLogic, gameBoard);
-const player = new Player(gameLogic, gameBoard);
+const gameBoard = new GameBoard();
+const computer = new Computer();
