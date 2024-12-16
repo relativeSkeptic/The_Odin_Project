@@ -3,19 +3,31 @@
 const MAX_SQUARES = 9;
 
 class GameBoard {
-    constructor() {
+    constructor(gameLogic) {
         const container = document.getElementById("box");
+        this.logic = gameLogic;
         for (let i = 0; i < MAX_SQUARES; i++) {
             let boardSquare = document.createElement('div');
             boardSquare.id = `${i}`;
             boardSquare.style.backgroundColor = "white";
             container.appendChild(boardSquare);
+            boardSquare.addEventListener("click", function() {
+                update();
+            });
+        }
+    }
+
+    update() {
+        if(gameLogic.whosTurn === "h" && gameBoard.isEmpty(boardSquare.id) === true) {
+            gameBoard.updateGameBoard(boardSquare.id, gameLogic.whatIsHuman)
+            gameBoard.logic.updateWhosTurn = "c";
+            computer.computerTurn();
         }
     }
 
     // checks to see if a particular board square is empty
     isEmpty(square) {
-        if (document.getElementById(`${square}`).querySelector('svg') === true) {
+        if (document.getElementById(`${square}`).textContent.length > 0) {
             return false;
         }
         else {
@@ -52,14 +64,19 @@ class GameBoard {
     // updates particular game squares based 
     // off player or computer input
     updateGameBoard(square, player) {
+        let update = document.getElementById(`${square}`);
         if(this.isEmpty(square) === true) {
+            update.style.display = "flex";
+            update.style.justifyContent = "center";
+            update.style.alignItems = "center";
+            update.style.fontSize = "8rem";
             //0 represents player X
-            if(player === 0) {
-                document.getElementById(`${square}`).textContent = "X";
+            if(player === "x") {
+                update.textContent = "X";
             }
             // 1 represents player O
             else {
-                document.getElementById(`${square}`).textContent = "O";
+                update.textContent = "O";
             }
         }
     }
@@ -69,6 +86,10 @@ class Computer {
     constructor(gameLogic, gameBoard) {
         this.logic = gameLogic;
         this.board = gameBoard;
+        if(this.logic.whosTurn === "c") {
+            this.board.updateGameBoard(this.selectSquare(), this.logic.whatIsComputer);
+            this.logic.updateWhosTurn = "h";
+        }
     }
 
     // current computer logic is fairly simply
@@ -83,18 +104,20 @@ class Computer {
                 // there should be logic here to ensure we don't check
                 // duplicate numbers but I am lazy and it is only
                 // nine numbers
-                let randomSquare = Math.floor(Math.random() * 10);
+                let randomSquare = Math.floor(Math.random() * 8);
                 if(this.board.isEmpty(randomSquare) === true) {
-                    this.logic.updateWhosTurn = "h";
                     return randomSquare;
                 }
             }
         }
     }
-}
 
-class Player {
-
+    computerTurn() {
+        this.board.updateGameBoard(this.selectSquare(), this.logic.whatIsComputer);
+        this.logic.updateWhosTurn = "h";
+        gameLogic.checkForWinner();
+        gameLogic.checkForTie();
+    }
 }
 
 // used to store game logic between user and computer
@@ -113,7 +136,7 @@ class GameLogic {
         }
         this.playerWins = 0;
         this.computerWins = 0;
-        this.turn = 0;
+        this.turn = this.playerX;
     }
 
     // uses random math lib to determine who is the starting player
@@ -124,6 +147,18 @@ class GameLogic {
         else {
             return "c";
         }
+    }
+
+    // after every turn checks the board to
+    // see if there is a winner
+    checkForWinner() {
+
+    }
+
+    // after every turn check to see if there
+    // is a tie
+    checkForTie() {
+
     }
 
     // returns the player in which who's turn it is
@@ -139,6 +174,24 @@ class GameLogic {
     // returns which player is O
     get whoIsO() {
         return this.playerO;
+    }
+
+    get whatIsHuman() {
+        if(this.whoIsX === "h") {
+            return "x";
+        }
+        else {
+            return "o";
+        }
+    }
+
+    get whatIsComputer() {
+        if(this.whoIsX === "c") {
+            return "x";
+        }
+        else {
+            return "o";
+        }
     }
 
     // returns which player wins
@@ -183,7 +236,7 @@ class GameLogic {
     }
 }
 
-const gameBoard = new GameBoard();
 const gameLogic = new GameLogic();
+const gameBoard = new GameBoard(gameLogic);
 const computer = new Computer(gameLogic, gameBoard);
 const player = new Player(gameLogic, gameBoard);
