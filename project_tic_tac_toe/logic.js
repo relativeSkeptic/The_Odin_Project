@@ -39,11 +39,13 @@ class GameBoard {
             computer.computerTurn();
         }
         if(gameLogic.checkForTie() === true) {
-            gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman);
             setTimeout(function() {
                 alert("Game is a tie");
                 gameBoard.clearGameBoard();
               }, 0)
+        }
+        else {
+            gameLogic.checkForWinner();
         }
     }
 
@@ -193,7 +195,47 @@ class GameLogic {
     // see if there is a winner
     checkForWinner() {
         let board = gameBoard.getBoard;
-        
+        board = this.convertTo2DArray(board, 3);
+
+        // Checking rows
+        for (let i = 0; i < 3; i++) {
+            const a = board[i][0];
+            const b = board[i][1];
+            const c = board[i][2];
+
+            if (a != '' && a === b && b === c) {
+                alert("win")
+            }
+        }
+
+        // Checking columns
+        for (let i = 0; i < 3; i++) {
+            const a = board[0][i];
+            const b = board[1][i];
+            const c = board[2][i];
+
+            if (a != '' && a === b && b === c) {
+                alert("win");
+            }
+        }
+
+            // Left Top to Bottom right diagonal
+            const a = board[0][0];
+            const b = board[1][1];
+            const c = board[2][2];
+
+            if (a != '' && a === b && b === c) {
+                alert("win");
+            }
+
+            // Right Top to Left bottom diagonal
+            const d = board[0][2];
+            const e = board[1][1];
+            const f = board[2][0];
+
+            if (d != '' && d === e && e === f) {
+                alert("win");
+            }
     }
 
     // after every turn check to see if there
@@ -203,7 +245,6 @@ class GameLogic {
             return true;
         }
         else {
-            gameLogic.checkForWinner();
             return false; 
         }
     }
@@ -280,6 +321,14 @@ class GameLogic {
     resetStats() {
         this.updatePlayerWins(0);
         this.updateComputerWins(0);
+    }
+
+    convertTo2DArray(arr, numCols) {
+        const result = [];
+        for (let i = 0; i < arr.length; i += numCols) {
+            result.push(arr.slice(i, i + numCols));
+        }
+        return result;
     }
 }
 
