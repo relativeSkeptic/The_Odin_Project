@@ -34,13 +34,16 @@ class GameBoard {
 
     update(iteration) {
         if(gameLogic.whosTurn === "h" && gameBoard.isEmpty(iteration) === true) {
-            gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman)
+            gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman);
             gameLogic.updateWhosTurn = "c";
             computer.computerTurn();
         }
         if(gameLogic.checkForTie() === true) {
-            alert("Game is a tie.");
-            gameBoard.clearGameBoard();
+            gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman);
+            setTimeout(function() {
+                alert("Game is a tie");
+                gameBoard.clearGameBoard();
+              }, 0)
         }
     }
 
