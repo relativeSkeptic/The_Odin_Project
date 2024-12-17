@@ -41,11 +41,11 @@ class GameBoard {
         if(gameLogic.checkForTie() === true) {
             setTimeout(function() {
                 alert("Game is a tie");
-                gameBoard.clearGameBoard();
+                gameLogic.newGame();
               }, 0)
         }
-        else {
-            gameLogic.checkForWinner();
+        else if(gameLogic.checkForWinner() === true) {
+
         }
     }
 
@@ -154,16 +154,13 @@ class Computer {
 // computer player is represented by c
 class GameLogic {
     constructor() {
-        this.playerX = this.randomizeStartingPlayer();
-        if(this.playerX === "h") {
-            this.playerO = "c";
-        }
-        else {
-            this.playerO = "h";
-        }
+        this.winner = null;
+        this.playerX = null;
+        this.playerO = null;
+        this.turn = null;
         this.playerWins = 0;
         this.computerWins = 0;
-        this.turn = this.playerX;
+        this.newGame();
         const playAsX = document.getElementById("play-x");
         playAsX.addEventListener("click", function() {
             gameBoard.clearGameBoard();
@@ -204,7 +201,13 @@ class GameLogic {
             const c = board[i][2];
 
             if (a != '' && a === b && b === c) {
-                alert("win")
+                if(a === "x") {
+                    this.setWinner = "x";
+                }
+                else {
+                    this.setWinner = "o";
+                }
+                return true;
             }
         }
 
@@ -215,7 +218,13 @@ class GameLogic {
             const c = board[2][i];
 
             if (a != '' && a === b && b === c) {
-                alert("win");
+                if(a === "x") {
+                    this.setWinner = "x";
+                }
+                else {
+                    this.setWinner = "o";
+                }
+                return true;
             }
         }
 
@@ -225,7 +234,13 @@ class GameLogic {
             const c = board[2][2];
 
             if (a != '' && a === b && b === c) {
-                alert("win");
+                if(a === "x") {
+                    this.setWinner = "x";
+                }
+                else {
+                    this.setWinner = "o";
+                }
+                return true;
             }
 
             // Right Top to Left bottom diagonal
@@ -234,8 +249,15 @@ class GameLogic {
             const f = board[2][0];
 
             if (d != '' && d === e && e === f) {
-                alert("win");
+                if(a === "x") {
+                    this.setWinner = "x";
+                }
+                else {
+                    this.setWinner = "o";
+                }
+                return true;
             }
+        return false;
     }
 
     // after every turn check to see if there
@@ -247,6 +269,19 @@ class GameLogic {
         else {
             return false; 
         }
+    }
+
+    //resets game and starting player
+    newGame() {
+        this.setWinner = null;
+        this.updateWhoIsX = this.randomizeStartingPlayer();
+        if(this.whoIsX === "h") {
+            this.updateWhoIsO = "c";
+        }
+        else {
+            this.updateWhoIsO = "h";
+        }
+        this.updateWhosTurn = this.whoIsX;
     }
 
     // returns the player in which who's turn it is
@@ -282,6 +317,10 @@ class GameLogic {
         }
     }
 
+    get getWinner() {
+        return this.winner;
+    }
+
     // returns which player wins
     get getPlayerWins() {
         return this.playerWins;
@@ -315,6 +354,10 @@ class GameLogic {
     // updates whos turn it currently is
     set updateWhosTurn(player) {
         this.turn = player;
+    }
+
+    set setWinner(winner) {
+        this.winner = winner;
     }
 
     //resets current game logic to prepare for a new game
