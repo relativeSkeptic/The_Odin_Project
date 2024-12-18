@@ -23,8 +23,8 @@ class GameBoard {
         })
         const clearStats = document.getElementById("reset-stats");
         clearStats.addEventListener("click", function() {
-            gameLogic.updatePlayerWins(0);
-            gameLogic.updateComputerWins(0);
+            gameLogic.updatePlayerWins = 0;
+            gameLogic.updateComputerWins = 0;
             gameBoard.clearGameBoard();
             gameLogic.updateWhoIsX = "h";
             gameLogic.updateWhoIsO = "c";
@@ -35,17 +35,31 @@ class GameBoard {
     update(iteration) {
         if(gameLogic.whosTurn === "h" && gameBoard.isEmpty(iteration) === true) {
             gameBoard.updateGameBoard(iteration, gameLogic.whatIsHuman);
-            gameLogic.updateWhosTurn = "c";
-            computer.computerTurn();
         }
-        if(gameLogic.checkForTie() === true) {
+        if(gameLogic.checkForWinner() === true) {
             setTimeout(function() {
-                alert("Game is a tie");
+                alert("Player wins!");
+                gameLogic.updatePlayerWins = gameLogic.getPlayerWins + 1;
+                gameBoard.clearGameBoard();
                 gameLogic.newGame();
+                if(gameLogic.whosTurn === "c") {
+                    computer.computerTurn();
+                }
               }, 0)
         }
-        else if(gameLogic.checkForWinner() === true) {
-
+        else if(gameLogic.checkForTie() === true) {
+            setTimeout(function() {
+                alert("Game is a tie");
+                gameBoard.clearGameBoard();
+                gameLogic.newGame();
+                if(gameLogic.whosTurn === "c") {
+                    computer.computerTurn();
+                }
+              }, 0)
+        }
+        else {
+            gameLogic.updateWhosTurn = "c";
+            computer.computerTurn();
         }
     }
 
@@ -133,7 +147,7 @@ class Computer {
                 // there should be logic here to ensure we don't check
                 // duplicate numbers but I am lazy and it is only
                 // nine numbers
-                let randomSquare = Math.floor(Math.random() * 8);
+                let randomSquare = Math.floor(Math.random() * 9);
                 if(gameBoard.isEmpty(randomSquare) === true) {
                     return randomSquare;
                 }
@@ -144,6 +158,27 @@ class Computer {
     computerTurn() {
         gameBoard.updateGameBoard(this.selectSquare(), gameLogic.whatIsComputer);
         gameLogic.updateWhosTurn = "h";
+        if(gameLogic.checkForWinner() === true) {
+            setTimeout(function() {
+                alert("Computer wins!");
+                gameLogic.updateComputerWins = gameLogic.getComputerWins + 1;
+                gameBoard.clearGameBoard();
+                gameLogic.newGame();
+                if(gameLogic.whosTurn === "c") {
+                    computer.computerTurn();
+                }
+              }, 0)
+        }
+        else if(gameLogic.checkForTie() === true) {
+            setTimeout(function() {
+                alert("Game is a tie");
+                gameBoard.clearGameBoard();
+                gameLogic.newGame();
+                if(gameLogic.whosTurn === "c") {
+                    computer.computerTurn();
+                }
+              }, 0)
+        }
     }
 }
 
@@ -344,11 +379,13 @@ class GameLogic {
     // updates player wins
     set updatePlayerWins(wins) {
         this.playerWins = wins;
+        document.getElementById('player-wins').textContent = this.getPlayerWins;
     }
 
     // updates computer wins
     set updateComputerWins(wins) {
         this.computerWins = wins;
+        document.getElementById('computer-wins').textContent = this.getComputerWins;
     }
 
     // updates whos turn it currently is
