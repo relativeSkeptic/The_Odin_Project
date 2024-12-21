@@ -8,7 +8,7 @@ module.exports = {
       'cowboy': ["Rye", "sans-serif"],
     },
     backgroundImage: {
-      'cowboy': "url(../img/cowboy.jpg)",
+      'cowboy': "url(../images/cowboy.jpg)",
     },
   },
   variants: {
