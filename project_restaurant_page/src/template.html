@@ -10,7 +10,7 @@
 </head>
 <body class="bg-cover bg-cowboy">
     <header>
-        <nav class="flex justify-center gap-8 text-2xl text-black font-bold backdrop-blur-xl p-4">
+        <nav class="flex justify-center gap-8 text-2xl text-white font-bold bg-yellow-800 p-4">
             <button>Home</button>
             <button>Menu</button>
             <button>About</button>
@@ -18,34 +18,40 @@
     </header>
     <div id="content" class="flex justify-center font-cowboy mt-6 mb-6">
         <div class="flex flex-col w-1/2 justify-center bg-white rounded-md">
-            <div id="name" class="flex text-center bg-purple-400 m-4 p-4">
+            <div id="name" class="flex text-center bg-yellow-800 m-4 p-4 rounded-xl">
                 <p class="text-8xl">
                     John Wayne's Western Saloon
                 </p>
             </div>
-            <div id="summary" class="flex flex-col gap-4 bg-red-500 m-4 p-4">
+            <div id="summary" class="flex flex-col gap-4 bg-yellow-600 m-4 p-4 rounded-xl">
                 <p class="text-6xl">
                     Summary:
                 </p>
-                <div class="flex">
-                    <p class="text-4xl">
-                        The John Wayne Saloon is a classic Western-themed restaurant that transports guests to the rugged, 
-                        adventurous days of the American frontier. Inspired by the iconic actor John Wayne, known for his 
-                        roles in Western films, the restaurant embraces the old saloon style with a rustic, cowboy charm. 
-                        The interior features warm wooden tables, leather booths, and vintage saloon decor, including brass chandeliers, 
-                        cowboy hats, and old-western wanted posters. The walls are adorned with photos and memorabilia of John Wayne, 
-                        celebrating his legendary status in Western cinema.
-    
-                        The menu is hearty and robust, offering traditional American fare like steaks, BBQ ribs, and chicken fried 
-                        steak, all prepared with a Western twist. For drinks, guests can enjoy classic saloon cocktails such as 
-                        whiskey sours, bourbon, and beer served in mason jars. The ambiance is lively with country music and 
-                        occasional live performances, creating an atmosphere where patrons feel like they're stepping back into 
-                        the Wild West. The John Wayne Saloon is not just a dining experience; it's an immersive journey into the 
-                        rugged spirit of the West, where guests can channel the spirit of John Wayne while enjoying a hearty meal.
-                    </p>
+                <div class="flex gap-4">
+                    <div class="flex flex-col gap-4">
+                        <p class="">
+                            The John Wayne Saloon is a classic Western-themed restaurant that transports guests to the rugged, 
+                            adventurous days of the American frontier. Inspired by the iconic actor John Wayne, known for his 
+                            roles in Western films, the restaurant embraces the old saloon style with a rustic, cowboy charm. 
+                            The interior features warm wooden tables, leather booths, and vintage saloon decor, including brass chandeliers, 
+                            cowboy hats, and old-western wanted posters. The walls are adorned with photos and memorabilia of John Wayne, 
+                            celebrating his legendary status in Western cinema.
+                        </p>
+                        <p class="">
+                            The menu is hearty and robust, offering traditional American fare like steaks, BBQ ribs, and chicken fried 
+                            steak, all prepared with a Western twist. For drinks, guests can enjoy classic saloon cocktails such as 
+                            whiskey sours, bourbon, and beer served in mason jars. The ambiance is lively with country music and 
+                            occasional live performances, creating an atmosphere where patrons feel like they're stepping back into 
+                            the Wild West. The John Wayne Saloon is not just a dining experience; it's an immersive journey into the 
+                            rugged spirit of the West, where guests can channel the spirit of John Wayne while enjoying a hearty meal.
+                        </p>
+                    </div>
+                    <div class="flex bg-yellow-800 p-2 rounded-lg">
+                        <img class="object-cover" src="../images/john-wayne-portrait.jpg">
+                    </div>
                 </div>
             </div>
-            <div id="hours" class="bg-green-500 m-4 p-4">
+            <div id="hours" class="bg-yellow-600 m-4 p-4 rounded-xl flex flex-col gap-4">
                 <p class="text-6xl">
                     Hours:
                 </p>
@@ -59,7 +65,7 @@
                     <p>Saturday: 8am-8pm</p>
                 </div>
             </div>
-            <div id="location" class="bg-yellow-400 m-4 p-4">
+            <div id="location" class="bg-yellow-600 m-4 p-4 rounded-xl flex gap-4 flex-col">
                 <p class="text-6xl">
                     Location: 
                 </p>
@@ -69,5 +75,22 @@
             </div>
         </div>
     </div>
+    <footer>
+        <div class="flex justify-between gap-8 text-2xl text-white font-bold bg-yellow-800 p-4">
+            <div class="">
+                <p class="">
+                    By Dakota Stroud @ 2024
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <p class="">
+                    Linkedin
+                </p>
+                <p class="">
+                    Github
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
