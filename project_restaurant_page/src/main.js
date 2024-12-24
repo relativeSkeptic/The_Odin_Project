@@ -1,9 +1,10 @@
 import './styles.css';
-import { home } from "./home.js";
+import { homePage } from "./home.js";
 import { about } from "./about.js";
 import { menu } from "./menu.js";
 
-console.log(home);
+let page = document.getElementById('content');
+page.appendChild(homePage);
 console.log(about);
 console.log(menu);
 console.log("Hello from Main");
