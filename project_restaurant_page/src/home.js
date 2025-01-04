@@ -1,3 +1,5 @@
+import image from "../images/john-wayne-portrait.jpg";
+
 let homePage = document.createElement('div');
 homePage.style.display = 'flex';
 homePage.style.flexDirection = 'column';
@@ -72,10 +74,96 @@ summaryContainer.appendChild(summaryImageContainer);
 
 let summaryImage = document.createElement('img');
 summaryImage.style.objectFit = 'cover';
-summaryImage.src = '../images/john-wayne-portrait.jpg'
+summaryImage.src = image;
 
 summaryImageContainer.appendChild(summaryImage);
 
 homePage.append(summary);
+
+let hours = document.createElement('div');
+hours.style.display = 'flex';
+hours.style.flexDirection = 'column';
+hours.style.gap = '1rem';
+hours.style.backgroundColor = `#854d0e`;
+hours.style.margin = '1rem';
+hours.style.padding = '1rem';
+hours.style.borderRadius = '0.75rem';
+
+let hoursHeader = document.createElement('p');
+hoursHeader.style.fontSize = '3.75rem';
+hoursHeader.textContent = "Hours:"
+
+hours.append(hoursHeader);
+
+let hoursBody = document.createElement('div');
+hoursBody.style.display = 'flex';
+hoursBody.style.flexDirection = 'column';
+hoursBody.style.fontSize = '2.25rem';
+hoursBody.style.lineHeight = '2.5rem';
+hoursBody.style.textAlign = 'center';
+
+let hoursText_1 = document.createElement('p');
+hoursText_1.textContent = "Sunday: 8am-8pm";
+
+hoursBody.append(hoursText_1);
+
+let hoursText_2 = document.createElement('p');
+hoursText_2.textContent = "Monday: 8am-8pm";
+
+hoursBody.append(hoursText_2);
+
+let hoursText_3 = document.createElement('p');
+hoursText_3.textContent = "Tuesday: 8am-8pm";
+
+hoursBody.append(hoursText_3);
+
+let hoursText_4 = document.createElement('p');
+hoursText_4.textContent = "Wednesday: 8am-8pm";
+
+hoursBody.append(hoursText_4);
+
+let hoursText_5 = document.createElement('p');
+hoursText_5.textContent = "Thursday: 8am-8pm";
+
+hoursBody.append(hoursText_5);
+
+let hoursText_6 = document.createElement('p');
+hoursText_6.textContent = "Friday: 8am-8pm";
+
+hoursBody.append(hoursText_6);
+
+let hoursText_7 = document.createElement('p');
+hoursText_7.textContent = "Saturday: 8am-8pm";
+
+hoursBody.append(hoursText_7);
+
+hours.append(hoursBody);
+
+homePage.append(hours);
+
+let location = document.createElement('div');
+location.style.display = 'flex';
+location.style.flexDirection = 'column';
+location.style.gap = '2rem';
+location.style.backgroundColor = `#ca8a04`;
+location.style.margin = '1rem';
+location.style.padding = '2rem';
+location.style.borderRadius = '0.75rem';
+
+let locationHeader = document.createElement('p');
+locationHeader.style.fontSize = '3.75rem';
+locationHeader.style.lineHeight = '1rem';
+locationHeader.textContent = "Location:";
+
+let locationBody = document.createElement('p');
+locationBody.style.fontSize = '2.25rem';
+locationBody.style.lineHeight = '2.5rem';
+locationBody.textContent = "2501 Rodeo Plaza, Fort Worth, TX 76164";
+
+location.append(locationHeader);
+
+location.append(locationBody);
+
+homePage.append(location);
 
 export { homePage };
