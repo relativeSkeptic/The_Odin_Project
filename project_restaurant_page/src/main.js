@@ -3,8 +3,8 @@ import { homePage } from "./home.js";
 import { aboutPage } from "./about.js";
 import { menuPage } from "./menu.js";
 
-//let content = document.getElementById('content');
-//content.appendChild(homePage);
+let content = document.getElementById('content');
+content.appendChild(homePage);
 
 const homeButton = document.getElementById('homeButton');
 const aboutButton = document.getElementById('aboutButton');
@@ -15,12 +15,12 @@ homeButton.addEventListener('click', () => {
     content.appendChild(homePage);
 });
 
-aboutButton.addEventListener('click', () => {
-    content.removeChild(content.firstChild);
-    content.appendChild(aboutPage);
-});
-
 menuButton.addEventListener('click', () => {
     content.removeChild(content.firstChild);
     content.appendChild(menuPage);
+});
+
+aboutButton.addEventListener('click', () => {
+    content.removeChild(content.firstChild);
+    content.appendChild(aboutPage);
 });

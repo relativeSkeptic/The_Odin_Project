@@ -1,3 +1,4 @@
-const aboutPage = "Hello from About";
+let aboutPage = document.createElement('div');
+aboutPage.textContent = "about";
 
 export { aboutPage };
