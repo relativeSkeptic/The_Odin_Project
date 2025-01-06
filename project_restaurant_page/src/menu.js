@@ -1,3 +1,4 @@
-const menu = "Hello from Menu";
+const menuPage = document.createElement('div');
+menuPage.textContent = "menu";
 
-export { menu };
+export { menuPage };

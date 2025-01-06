@@ -1,10 +1,26 @@
 import './styles.css';
 import { homePage } from "./home.js";
-import { about } from "./about.js";
-import { menu } from "./menu.js";
+import { aboutPage } from "./about.js";
+import { menuPage } from "./menu.js";
 
-let page = document.getElementById('content');
-page.appendChild(homePage);
-console.log(about);
-console.log(menu);
-console.log("Hello from Main");
+//let content = document.getElementById('content');
+//content.appendChild(homePage);
+
+const homeButton = document.getElementById('homeButton');
+const aboutButton = document.getElementById('aboutButton');
+const menuButton = document.getElementById('menuButton');
+
+homeButton.addEventListener('click', () => {
+    content.removeChild(content.firstChild);
+    content.appendChild(homePage);
+});
+
+aboutButton.addEventListener('click', () => {
+    content.removeChild(content.firstChild);
+    content.appendChild(aboutPage);
+});
+
+menuButton.addEventListener('click', () => {
+    content.removeChild(content.firstChild);
+    content.appendChild(menuPage);
+});

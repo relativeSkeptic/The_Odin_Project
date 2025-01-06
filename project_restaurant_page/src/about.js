@@ -1,3 +1,3 @@
-const about = "Hello from About";
+const aboutPage = "Hello from About";
 
-export { about };
+export { aboutPage };
