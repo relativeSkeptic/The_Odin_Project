@@ -2,13 +2,13 @@ import spaghetti from "../images/spaghetti.jpg";
 import casserole from "../images/casserole.jpg";
 import wings from "../images/wings.jpg";
 
-let menuHero = document.createElement('div');
-menuHero.style.display = 'flex';
-menuHero.style.flexDirection = 'column';
-menuHero.style.width = '50%';
-menuHero.style.justifyContent = 'center';
-menuHero.style.backgroundColor = '#D97706';
-menuHero.style.borderRadius = '0.375rem';
+let menuPage = document.createElement('div');
+menuPage.style.display = 'flex';
+menuPage.style.flexDirection = 'column';
+menuPage.style.width = '50%';
+menuPage.style.justifyContent = 'center';
+menuPage.style.backgroundColor = '#D97706';
+menuPage.style.borderRadius = '0.375rem';
 
 let menuText = document.createElement('div');
 menuText.style.display = 'flex';
@@ -18,7 +18,7 @@ menuText.style.margin = '1rem';
 menuText.style.padding = '1rem';
 menuText.style.borderRadius = '0.75rem';
 
-menuHero.appendChild(menuText);
+menuPage.appendChild(menuText);
 
 let menuPara = document.createElement('p');
 menuPara.style.fontSize = '6rem';
@@ -29,7 +29,7 @@ menuText.appendChild(menuPara);
 
 let menuItems = document.createElement('div');
 
-menuHero.appendChild(menuItems);
+menuPage.appendChild(menuItems);
 
 let itemOne = document.createElement('div');
 itemOne.style.display = 'flex';
@@ -65,7 +65,7 @@ itemOneSummaryText.style.padding = '1rem';
 itemOneSummaryText.style.borderRadius = '0.75rem';
 itemOneSummaryText.style.width = '50%';
 itemOneSummaryText.style.overflowWrap = 'break-word';
-itemOneSummaryText.textContent = "Summary of menu item";
+itemOneSummaryText.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id urna eu libero fermentum volutpat vel et diam. Nullam vitae eros diam. Sed nibh lacus, dapibus quis mi ac, porta placerat lectus. Cras sed porttitor orci. Sed placerat vel nunc varius ornare. Nullam sit amet lacinia nibh. Morbi suscipit eu augue id scelerisque. Suspendisse et vestibulum tellus. Nam lorem metus, varius quis dictum in, auctor in mauris. Pellentesque luctus tellus neque, et venenatis libero luctus eu. Suspendisse ut augue tristique, gravida odio faucibus, efficitur diam.";
 
 itemOneSummary.appendChild(itemOneSummaryText);
 
@@ -117,7 +117,7 @@ itemTwoSummaryText.style.padding = '1rem';
 itemTwoSummaryText.style.borderRadius = '0.75rem';
 itemTwoSummaryText.style.width = '50%';
 itemTwoSummaryText.style.overflowWrap = 'break-word';
-itemTwoSummaryText.textContent = "Summary of menu item";
+itemTwoSummaryText.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id urna eu libero fermentum volutpat vel et diam. Nullam vitae eros diam. Sed nibh lacus, dapibus quis mi ac, porta placerat lectus. Cras sed porttitor orci. Sed placerat vel nunc varius ornare. Nullam sit amet lacinia nibh. Morbi suscipit eu augue id scelerisque. Suspendisse et vestibulum tellus. Nam lorem metus, varius quis dictum in, auctor in mauris. Pellentesque luctus tellus neque, et venenatis libero luctus eu. Suspendisse ut augue tristique, gravida odio faucibus, efficitur diam.";
 
 itemTwoSummary.appendChild(itemTwoSummaryText);
 
@@ -169,7 +169,7 @@ itemThreeSummaryText.style.padding = '1rem';
 itemThreeSummaryText.style.borderRadius = '0.75rem';
 itemThreeSummaryText.style.width = '50%';
 itemThreeSummaryText.style.overflowWrap = 'break-word';
-itemThreeSummaryText.textContent = "Summary of menu item";
+itemThreeSummaryText.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id urna eu libero fermentum volutpat vel et diam. Nullam vitae eros diam. Sed nibh lacus, dapibus quis mi ac, porta placerat lectus. Cras sed porttitor orci. Sed placerat vel nunc varius ornare. Nullam sit amet lacinia nibh. Morbi suscipit eu augue id scelerisque. Suspendisse et vestibulum tellus. Nam lorem metus, varius quis dictum in, auctor in mauris. Pellentesque luctus tellus neque, et venenatis libero luctus eu. Suspendisse ut augue tristique, gravida odio faucibus, efficitur diam.";
 
 itemThreeSummary.appendChild(itemThreeSummaryText);
 
@@ -187,4 +187,4 @@ itemThreeImage.src = wings;
 
 itemThreeImageContainer.appendChild(itemThreeImage);
 
-export { menuHero };
+export { menuPage };

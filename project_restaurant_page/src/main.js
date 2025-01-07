@@ -1,7 +1,7 @@
 import './styles.css';
 import { homePage } from "./home.js";
 import { aboutPage } from "./about.js";
-import { menuHero } from "./menu.js";
+import { menuPage } from "./menu.js";
 
 let content = document.getElementById('content');
 content.appendChild(homePage);
@@ -19,7 +19,7 @@ homeButton.addEventListener('click', () => {
 
 menuButton.addEventListener('click', () => {
     content.removeChild(content.firstChild);
-    content.appendChild(menuHero);
+    content.appendChild(menuPage);
 });
 
 aboutButton.addEventListener('click', () => {
