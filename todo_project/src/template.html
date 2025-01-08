@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Project</title>
 </head>
-<body>
+<body class="min-h-screen max-h-screen flex flex-col">
     <header>
-        <div class="flex bg-slate-700 items-center font-bold">
+        <div class="flex bg-slate-700 items-center font-bold p-2 gap-2">
             <div class="w-20 justify-center items-center invert">
                 <img src="../icons/header.svg">
             </div>
             <p class="text-4xl text-white">
-                Todo List
+                To-Do List
             </p>
         </div>
     </header>
-    <div id="hero">
+    <div id="main" class="flex flex-grow">
+        <div id="sidebar" class="h-auto w-1/4 p-4 bg-gray-200 shadow-lg">
 
+        </div>
+        <div id="hero" class="h-full w-3/4">
+
+        </div>
     </div>
     <footer>
         <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
