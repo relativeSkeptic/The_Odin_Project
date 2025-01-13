@@ -1,5 +1,6 @@
 //singleton that manipulates the entire dom for the todo application
-import ObjectFactory from './factory.js';
+
+import { Types } from "./main.js";
 
 class DOM {
     constructor() {
@@ -10,9 +11,11 @@ class DOM {
         DOM.instance = this;
     }
 
-    createObject(type) {
-        const manager = ObjectFactory.createManager(type);
-        manager.createObject();
+    //public
+    getObjectData(type) {
+        if(type === Types.PROJECT) {
+            return this.#newProject();
+        }
     }
 
     modifyObject(object) {
@@ -21,6 +24,18 @@ class DOM {
 
     deleteObject(object) {
 
+    }
+
+    //private
+
+    //manipulates the dom in order to get the 
+    //necessary project data from the user
+    #newProject() {
+        let projectMap = new Map();
+        let projectName = prompt("What is the name of your new Project?");
+        projectMap.set('name', projectName);
+
+        return projectMap;
     }
 }
 

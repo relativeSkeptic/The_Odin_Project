@@ -1,44 +1,46 @@
-//handles the creation, deletion, and modification of a todo object
+//class structure that handles todo objects
 
-class todo {
+class Todo {
     constructor(name, description, dueDate, priority) {
-        this.name = name;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
+        this._name = name;
+        this._description = description;
+        this._dueDate = dueDate;
+        this._priority = priority;
     }
 
     //getters
     get name() {
-        return this.name;
+        return this._name;
     }
 
     get description() {
-        return this.description;
+        return this._description;
     }
 
     get dueDate() {
-        return this.dueDate;
+        return this._dueDate;
     }
 
     get priority() {
-        return this.priority;
+        return this._priority;
     }
 
     //setters
     set name(name) {
-        this.name = name;
+        this._name = name;
     }
 
     set description(description) {
-        this.description = description;
+        this._description = description;
     }
 
     set dueDate(dueDate) {
-        this.dueDate = dueDate;
+        this._dueDate = dueDate;
     }
 
     set priority(priority) {
-        this.priority = priority;
+        this._priority = priority;
     }
 }
+
+export default Todo;

@@ -1,17 +1,34 @@
-//handles the creation, deletion, and modification of a project object
+//class structure that handles project objects
 
-class project{
+class Project {
     constructor(name) {
-        this.name = name;
+        this._name = name;
+        this._todo = new Map();
     }
 
-    //getters
     get name() {
-        return this.name;
+        return this._name;
     }
 
-    //setters
     set name(name) {
-        this.name = name;
+        this._name = name;
+    }
+
+    get allTodo() {
+        return this._todo;
+    }
+
+    getSpecificTodo(name) {
+        return this._todo.get(name);
+    }
+
+    createTodo(todo) {
+        this._todo.set(todo.name, todo);
+    }
+
+    deleteTodo(name) {
+        this._todo.delete(name);
     }
 }
+
+export default Project;

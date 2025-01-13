@@ -1,30 +1,43 @@
-//object factory used to aid the dom.js in creating the necessary dom objects
+//singleton that manages the creation, deletion, 
+//and modification of objects for the todo application
 
-class ObjectFactory {
-  static createManager(type) {
-    switch (type) {
-      case 'project':
-        return new ProjectManager();
-      case 'todo':
-        return new TodoManager();
-      default:
-        throw new Error(`Unknown object type: ${type}`);
-    }
-  }
-}
+import { Types } from "./main.js";
+import Project from "./project.js";
+import Todo from "./todo.js";
 
-class ProjectManager {
-    createObject() {
-        let projectLocation = document.getElementById('project-objects');
-        let newObject = document.createElement('button');
-        
-    }
-}
-
-class TodoManager {
+class Factory {
     constructor() {
-        
+        this._projectObjects = new Map();
+        this._todoObjects = new Map ();
+    }
+
+    createObject(type, objectData) {
+        if(type === Types.PROJECT) {
+            this.#verifyKeyIntegrity(Types.PROJECT, objectData);
+        }
+    }
+
+    deleteObject() {
+
+    }
+
+    updateObject() {
+
+    }
+
+    //ensures keys all have a unique value
+    #verifyKeyIntegrity(type, objectData) {
+        if(type === Types.PROJECT) {
+            const projectKeys = Array.from(this._projectObjects.keys());
+            const objectKey = Array.from(objectData);
+        }
+    }
+
+    //if key name is non-unique updates the name of the key
+    #updateKeyName() {
+
     }
 }
 
-export default ObjectFactory;
+const FactoryManager = new Factory();
+export default FactoryManager;
