@@ -17,33 +17,44 @@
         </div>
     </header>
     <div id="main" class="flex flex-grow">
-        <div id="sidebar" class="flex flex-col min-w-64 w-1/6 p-4 bg-gray-200 shadow-lg gap-12">
+        <div id="sidebar" class="flex flex-col min-w-64 w-1/6 p-4 bg-gray-200 shadow-lg">
             <div class="flex flex-col gap-3 text-2xl">
-                <button id="all-tasks" class="flex items-center font-bold hover:bg-gray-100 hover:rounded-xl p-1 gap-2">
+                <button id="all-tasks" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/folder.svg">
                     All Tasks
                 </button>
-                <button id="all-tasks" class="flex items-center font-bold hover:bg-gray-100 hover:rounded-xl p-1 gap-2">
+                <button id="all-tasks" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/clock.svg">
                     Today
                 </button>
-                <button id="all-tasks" class="flex items-center font-bold hover:bg-gray-100 hover:rounded-xl p-1 gap-2">
+                <button id="all-tasks" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/calendar.svg">
                     Calendar
                 </button>
-                <button id="all-tasks" class="flex items-center font-bold hover:bg-gray-100 hover:rounded-xl p-1 gap-2">
+                <button id="all-tasks" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/important.svg">
                     Important
                 </button>
             </div>
-            <div class="flex flex-col text-2xl">
-                <button id="new-project" class="flex items-center font-bold hover:bg-gray-100 hover:rounded-xl gap-2">
+            <div class="flex flex-col text-2xl mt-8">
+                <button id="new-project" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/addition.svg">
                     New Project
                 </button>
             </div>
-            <div id="project-objects">
-                
+            <div id="project-objects" class="flex flex-col ml-14">
+                <div class="flex items-center hover:bg-gray-100 hover:rounded-l justify-between p-1">
+                    <div class="flex flex-col w-full font-bold rounded-lg">
+                        <button id="test" class="flex gap-2 items-center">
+                            <img src="../icons/work.svg">
+                            test
+                        </button>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="pencil"><img src="../icons/pencil.svg"></button>
+                        <button id="trash"><img src="../icons/trash_can.svg"></button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="hero" class="w-3/4">

@@ -13,10 +13,11 @@ class Factory {
 
     createObject(type, objectData) {
         if(type === TYPES.PROJECT) {
-            //this needs to be updated to work with more than one key
-            this.#verifyKeyIntegrity(this._projectObjects, objectData);
-            this._projectObjects.set(objectData.get('name'), new Project(objectData.get('name')));
-            console.log(this._projectObjects);
+            let id = objectData.get('name');
+            id = this.#verifyKeyValueIntegrity(id);
+            let newProject = new Project(objectData.get('name'), id);
+            this._projectObjects.set(id, newProject);
+            return newProject;
         }
     }
 
@@ -28,21 +29,15 @@ class Factory {
 
     }
 
-    //ensures keys all have a unique value
-    #verifyKeyIntegrity(objectMap, objectData) {
-        let name = objectData.get('name');
-        while(objectMap.has(objectData.get('name'))) {
-            let increment = 1;
-            this.#updateKeyName(objectData, name, increment);
-            increment++;
+    #verifyKeyValueIntegrity(id) {
+        //this is a bad but simply way to ensure key integrity
+        //at some point i need to build out some regex to
+        //simply ensure its an incremented number and not just
+        //adding decimals for every duplicate
+        while(this._projectObjects.has(id)) {
+            id = id + ".";
         }
-    }
-
-    //if key name is non-unique updates the name of the key
-    #updateKeyName(objectData, name, increment) {
-        const newValueName = objectData.get('name') + num.toString()
-        objectData.delete('name');
-        objectData.set('name', newValueName);
+        return id;
     }
 }
 

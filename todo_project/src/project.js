@@ -1,8 +1,9 @@
 //class structure that handles project objects
 
 class Project {
-    constructor(name) {
+    constructor(name, id) {
         this._name = name;
+        this._id = id;
         this._todo = new Map();
     }
 
@@ -16,6 +17,10 @@ class Project {
 
     get allTodo() {
         return this._todo;
+    }
+
+    get id() {
+        return this._id;
     }
 
     getSpecificTodo(name) {

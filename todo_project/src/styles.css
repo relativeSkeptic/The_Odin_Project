@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sidebar-buttons {
+    display: flex;
+    align-items: center; 
+    font-weight: 700;
+    padding: 0.25rem /* 4px */;
+    gap: 0.5rem /* 8px */;
+}
+
+.sidebar-buttons:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1)) /* #f3f4f6 */;
+    border-radius: 0.75rem /* 12px */;
+}

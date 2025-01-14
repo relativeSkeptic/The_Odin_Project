@@ -9,13 +9,11 @@ class DOM {
         }
 
         DOM.instance = this;
+        this._projectObjects = document.getElementById('project-objects');
     }
 
-    //public
     getObjectData(type) {
-        if(type === TYPES.PROJECT) {
-            return this.#newProject();
-        }
+        return this.#newObjectData(type);
     }
 
     modifyObject(object) {
@@ -26,17 +24,54 @@ class DOM {
 
     }
 
-    //private
+    updateDOM(type, object) {
+        if(type === TYPES.PROJECT) {
+            this.#projectDOM(object);
+        }
+    }
 
-    //manipulates the dom in order to get the 
-    //necessary project data from the user
-    #newProject() {
-        let projectMap = new Map();
+    #newObjectData(type) {
+        let objectMap = new Map();
 
+        if(type === TYPES.PROJECT) {
+            return this.#projectPrompt(objectMap);
+        }
+        else {
+            throw new error ("Invalid Object Type Provided.");
+        }
+    }
+
+    #projectPrompt(projectMap) {
         let projectName = prompt("What is the name of your new Project?");
         projectMap.set('name', projectName);
 
         return projectMap;
+    }
+
+    #projectDOM(projectObject) {
+        let projectContainer = document.createElement('div');
+
+        projectContainer.id = projectObject.id;
+        projectContainer.textContent = projectObject.name;
+
+        this.#addProjectButtons(projectContainer);
+        
+        this._projectObjects.appendChild(projectContainer);
+    }
+
+    #addProjectButtons(projectContainer) {
+        let deleteButton = document.createElement('button');
+        let trashCan = document.createElement('img');
+        trashCan.src = "../icons/trash_can.svg";
+        deleteButton.appendChild(trashCan);
+
+        let modifyButton = document.createElement('button');
+        let pencil = document.createElement('img');
+        pencil.src = "../icons/pencil.svg";
+        modifyButton.appendChild(pencil);
+
+        projectContainer.appendChild(modifyButton);
+        projectContainer.appendChild(deleteButton);
     }
 }
 
