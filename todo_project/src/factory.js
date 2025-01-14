@@ -1,7 +1,7 @@
 //singleton that manages the creation, deletion, 
 //and modification of objects for the todo application
 
-import { Types } from "./main.js";
+import { TYPES } from "./main.js";
 import Project from "./project.js";
 import Todo from "./todo.js";
 
@@ -12,8 +12,11 @@ class Factory {
     }
 
     createObject(type, objectData) {
-        if(type === Types.PROJECT) {
-            this.#verifyKeyIntegrity(Types.PROJECT, objectData);
+        if(type === TYPES.PROJECT) {
+            //this needs to be updated to work with more than one key
+            this.#verifyKeyIntegrity(this._projectObjects, objectData);
+            this._projectObjects.set(objectData.get('name'), new Project(objectData.get('name')));
+            console.log(this._projectObjects);
         }
     }
 
@@ -26,16 +29,20 @@ class Factory {
     }
 
     //ensures keys all have a unique value
-    #verifyKeyIntegrity(type, objectData) {
-        if(type === Types.PROJECT) {
-            const projectKeys = Array.from(this._projectObjects.keys());
-            const objectKey = Array.from(objectData);
+    #verifyKeyIntegrity(objectMap, objectData) {
+        let name = objectData.get('name');
+        while(objectMap.has(objectData.get('name'))) {
+            let increment = 1;
+            this.#updateKeyName(objectData, name, increment);
+            increment++;
         }
     }
 
     //if key name is non-unique updates the name of the key
-    #updateKeyName() {
-
+    #updateKeyName(objectData, name, increment) {
+        const newValueName = objectData.get('name') + num.toString()
+        objectData.delete('name');
+        objectData.set('name', newValueName);
     }
 }
 
