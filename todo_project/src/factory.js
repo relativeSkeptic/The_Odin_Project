@@ -21,8 +21,10 @@ class Factory {
         }
     }
 
-    deleteObject() {
-
+    deleteObject(type, object) {
+        if(type === TYPES.PROJECT) {
+            this._projectObjects.delete(object.id);
+        }
     }
 
     updateObject() {

@@ -19,15 +19,12 @@ class DOM {
         return this.#newObjectData(type);
     }
 
-    modifyObject(object) {
-
+    deleteDOM(objectID) {
+        let element = document.getElementById(objectID)
+        element.remove();
     }
 
-    deleteObject(object) {
-
-    }
-
-    updateDOM(type, object) {
+    modifyDOM(type, object) {
         if(type === TYPES.PROJECT) {
             this.#projectDOM(object);
         }
@@ -45,7 +42,7 @@ class DOM {
     }
 
     #projectPrompt(projectMap) {
-        let projectName = prompt("What is the name of your new Project?");
+        let projectName = prompt("What is the name of your Project?");
         projectMap.set('name', projectName);
 
         return projectMap;
