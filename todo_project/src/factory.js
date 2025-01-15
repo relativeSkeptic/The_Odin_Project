@@ -30,13 +30,14 @@ class Factory {
     }
 
     #verifyKeyValueIntegrity(id) {
-        //this is a bad but simply way to ensure key integrity
-        //at some point i need to build out some regex to
-        //simply ensure its an incremented number and not just
-        //adding decimals for every duplicate
-        while(this._projectObjects.has(id)) {
-            id = id + ".";
+        let baseId = id;
+        let counter = 1;
+    
+        while (this._projectObjects.has(id)) {
+            id = `${baseId}_${counter}`;
+            counter++;
         }
+    
         return id;
     }
 }
