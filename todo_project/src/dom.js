@@ -75,7 +75,7 @@ class DOM {
         
         let buttonText = document.createElement('p');
         buttonText.id = projectContainer.id + "_text";
-        buttonText.textContent = "test";
+        buttonText.textContent = name;
         projectButton.appendChild(projectImage);
         projectButton.appendChild(buttonText);
     

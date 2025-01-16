@@ -1,5 +1,5 @@
-//singleton that manages the creation, deletion, 
-//and modification of objects for the todo application
+//singleton that manages the creation, and 
+//modification of objects for the todo application
 
 import Project from "./project.js";
 import Todo from "./todo.js";
@@ -16,14 +16,8 @@ class Factory {
             let id = objectData.get('name');
             id = this.#verifyKeyValueIntegrity(id);
             let newProject = new Project(objectData.get('name'), id);
-            this._projectObjects.set(id, newProject);
+            this._projectObjects.set(id, newProject.name);
             return newProject;
-        }
-    }
-
-    deleteObject(object) {
-        if(object.type === PROJECT) {
-            this._projectObjects.delete(object.id);
         }
     }
 
