@@ -1,8 +1,9 @@
 //class structure that handles todo objects
 
 class Todo {
-    constructor(name, description, dueDate, priority) {
+    constructor(name, id, description, dueDate, priority) {
         this._name = name;
+        this._id = id;
         this._description = description;
         this._dueDate = dueDate;
         this._priority = priority;
@@ -12,6 +13,10 @@ class Todo {
     //getters
     get name() {
         return this._name;
+    }
+
+    get id() {
+        return this._id;
     }
 
     get description() {
@@ -29,6 +34,10 @@ class Todo {
     //setters
     set name(name) {
         this._name = name;
+    }
+
+    set id(id) {
+        this._id = id;
     }
 
     set description(description) {

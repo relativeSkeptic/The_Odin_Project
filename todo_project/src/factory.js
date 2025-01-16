@@ -5,6 +5,7 @@ import Project from "./project.js";
 import Todo from "./todo.js";
 
 const PROJECT = 'project';
+const TODO = 'todo';
 
 class Factory {
     constructor() {
@@ -19,12 +20,32 @@ class Factory {
             this._projectObjects.set(id, newProject.name);
             return newProject;
         }
+        else if(objectData.get('type') === TODO) {
+            let id = objectData.get('name');
+            id = this.#verifyKeyValueIntegrity(id);
+            let newTodo = new Todo(objectData.get('name'), 
+                                        id, 
+                                        objectData.get('description'), 
+                                        objectData.get('dueDate'), 
+                                        objectData.get('priority'));
+
+            return newTodo;
+        }
+        else {
+            throw new error ("Invalid Object Type Provided.");
+        }
     }
 
     updateObject(object, objectData) {
         if(objectData.get('type') === PROJECT) {
-            object.name = objectData.get('name');
+            if(objectData.get('name') != "" && objectData.get('name') != null) {
+                object.name = objectData.get('name');
+            }
         }
+    }
+
+    deleteObject(id) {
+        this._projectObjects.delete(id);
     }
 
     #verifyKeyValueIntegrity(id) {

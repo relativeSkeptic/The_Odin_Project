@@ -8,16 +8,9 @@ class Project {
         this._todo = new Map();
     }
 
+    //getters
     get name() {
         return this._name;
-    }
-
-    set name(name) {
-        this._name = name;
-    }
-
-    get allTodo() {
-        return this._todo;
     }
 
     get id() {
@@ -28,12 +21,22 @@ class Project {
         return this._type;
     }
 
-    getSpecificTodo(name) {
-        return this._todo.get(name);
+    get allTodo() {
+        return this._todo;
     }
 
+    getSpecificTodo(id) {
+        return this._todo.get(id);
+    }
+
+    //setters
+    set name(name) {
+        this._name = name;
+    }
+
+    //methods
     createTodo(todo) {
-        this._todo.set(todo.name, todo);
+        this._todo.set(todo.id, todo);
     }
 
     deleteTodo(name) {

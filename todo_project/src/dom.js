@@ -4,6 +4,7 @@ import trashCanSrc from "../icons/trash_can.svg";
 import addSrc from "../icons/add_small.svg";
 
 const PROJECT = 'project';
+const TODO = 'todo';
 
 class DOM {
     constructor() {
@@ -13,6 +14,7 @@ class DOM {
 
         DOM.instance = this;
         this._projectObjects = document.getElementById('project-objects');
+        this._todoObjects = document.getElementById('todo-objects');
     }
 
     getObjectData(type) {
@@ -21,6 +23,10 @@ class DOM {
         if(type === PROJECT) {
             objectMap.set('type', PROJECT);
             return this.#projectPrompt(objectMap);
+        }
+        else if (type === TODO) {
+            objectMap.set('type', TODO);
+            return this.#todoPrompt(objectMap);
         }
         else {
             throw new error ("Invalid Object Type Provided.");
@@ -43,6 +49,15 @@ class DOM {
     deleteDOM(objectID) {
         let element = document.getElementById(objectID)
         element.remove();
+
+        while (this._todoObjects.firstChild) {
+            this._todoObjects.removeChild(this._todoObjects.firstChild);
+        }
+    }
+
+    renderDOM(object) {
+        this.#renderProjectName(object.name);
+        this.#renderTodoObjects();
     }
 
     #projectPrompt(projectMap) {
@@ -50,6 +65,20 @@ class DOM {
         projectMap.set('name', projectName);
 
         return projectMap;
+    }
+
+    #todoPrompt(todoMap) {
+        let name = prompt('What is the name of your task?');
+        let description = prompt('Describe the task to be completed: ');
+        let dueDate = prompt('When is the task due?');
+        let priority = prompt('Is this a high priority item?');
+
+        todoMap.set('name', name);
+        todoMap.set('description', description);
+        todoMap.set('dueDate', dueDate);
+        todoMap.set('priority', priority);
+
+        return todoMap;
     }
 
     #projectDOM(object) {
@@ -67,7 +96,7 @@ class DOM {
         leftContainer.className = "flex flex-col w-full font-bold rounded-lg";
     
         let projectButton = document.createElement('button');
-        projectButton.id = newProject.id + "_project";
+        projectButton.id = newProject.id + "_render";
         projectButton.className = "flex gap-2 items-center";
         
         let buttonText = document.createElement('p');
@@ -110,6 +139,22 @@ class DOM {
         newProject.appendChild(leftContainer);
         newProject.appendChild(rightContainer);
         newProject.className = "flex items-center hover:bg-gray-100 hover:rounded-l justify-between p-1";
+    }
+
+    #renderProjectName(name) {
+        while (this._todoObjects.firstChild) {
+            this._todoObjects.removeChild(this._todoObjects.firstChild);
+        }
+
+        let projectHero = document.createElement('p');
+        projectHero.textContent = name;
+        projectHero.className = "project-hero";
+
+        this._todoObjects.appendChild(projectHero);
+    }
+
+    #renderTodoObjects() {
+
     }
 }
 
