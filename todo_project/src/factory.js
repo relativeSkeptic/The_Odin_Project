@@ -9,7 +9,6 @@ const PROJECT = 'project';
 class Factory {
     constructor() {
         this._projectObjects = new Map();
-        this._todoObjects = new Map ();
     }
 
     createObject(objectData) {
@@ -28,8 +27,10 @@ class Factory {
         }
     }
 
-    updateObject() {
-
+    updateObject(object, objectData) {
+        if(objectData.get('type') === PROJECT) {
+            object.name = objectData.get('name');
+        }
     }
 
     #verifyKeyValueIntegrity(id) {

@@ -12,14 +12,14 @@ class DOM {
         }
 
         DOM.instance = this;
-        this._projectObjects = document.getElementById('project-objects');
+        this._objects = document.getElementById('project-objects');
     }
 
     getObjectData(type) {
         let objectMap = new Map();
 
         if(type === PROJECT) {
-            objectMap.set('type', 'project');
+            objectMap.set('type', PROJECT);
             return this.#projectPrompt(objectMap);
         }
         else {
@@ -27,15 +27,22 @@ class DOM {
         }
     }
 
-    deleteDOM(objectID) {
-        let element = document.getElementById(objectID)
-        element.remove();
+    newDOM(object) {
+        if(object.type === PROJECT) {
+            this.#projectDOM(object);
+        }
     }
 
     modifyDOM(object) {
         if(object.type === PROJECT) {
-            this.#projectDOM(object);
+            let text = document.getElementById(object.id + "_text");
+            text.textContent = object.name;
         }
+    }
+
+    deleteDOM(objectID) {
+        let element = document.getElementById(objectID)
+        element.remove();
     }
 
     #projectPrompt(projectMap) {
@@ -45,14 +52,14 @@ class DOM {
         return projectMap;
     }
 
-    #projectDOM(projectObject) {
+    #projectDOM(object) {
         let projectContainer = document.createElement('div');
 
-        projectContainer.id = projectObject.id;
+        projectContainer.id = object.id;
 
-        this.#addProjectButtons(projectContainer, projectObject.name);
+        this.#addProjectButtons(projectContainer, object.name);
         
-        this._projectObjects.appendChild(projectContainer);
+        this._objects.appendChild(projectContainer);
     }
 
     #addProjectButtons(projectContainer, name) {
@@ -65,8 +72,10 @@ class DOM {
     
         let projectImage = document.createElement('img');
         projectImage.src = projectSrc;
-    
-        let buttonText = document.createTextNode(name);
+        
+        let buttonText = document.createElement('p');
+        buttonText.id = projectContainer.id + "_text";
+        buttonText.textContent = "test";
         projectButton.appendChild(projectImage);
         projectButton.appendChild(buttonText);
     
