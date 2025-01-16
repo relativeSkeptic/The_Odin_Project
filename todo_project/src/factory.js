@@ -1,9 +1,10 @@
 //singleton that manages the creation, deletion, 
 //and modification of objects for the todo application
 
-import { TYPES } from "./main.js";
 import Project from "./project.js";
 import Todo from "./todo.js";
+
+const PROJECT = 'project';
 
 class Factory {
     constructor() {
@@ -11,8 +12,8 @@ class Factory {
         this._todoObjects = new Map ();
     }
 
-    createObject(type, objectData) {
-        if(type === TYPES.PROJECT) {
+    createObject(objectData) {
+        if(objectData.get('type') === PROJECT) {
             let id = objectData.get('name');
             id = this.#verifyKeyValueIntegrity(id);
             let newProject = new Project(objectData.get('name'), id);
@@ -21,8 +22,8 @@ class Factory {
         }
     }
 
-    deleteObject(type, object) {
-        if(type === TYPES.PROJECT) {
+    deleteObject(object) {
+        if(object.type === PROJECT) {
             this._projectObjects.delete(object.id);
         }
     }

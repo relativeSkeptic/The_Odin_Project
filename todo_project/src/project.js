@@ -4,6 +4,7 @@ class Project {
     constructor(name, id) {
         this._name = name;
         this._id = id;
+        this._type = 'project';
         this._todo = new Map();
     }
 
@@ -21,6 +22,10 @@ class Project {
 
     get id() {
         return this._id;
+    }
+
+    get type() {
+        return this._type;
     }
 
     getSpecificTodo(name) {

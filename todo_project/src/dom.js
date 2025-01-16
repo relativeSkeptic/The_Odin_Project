@@ -3,7 +3,7 @@ import pencilSrc from "../icons/pencil.svg";
 import trashCanSrc from "../icons/trash_can.svg";
 import projectSrc from "../icons/work.svg";
 
-import { TYPES } from "./main.js";
+const PROJECT = 'project';
 
 class DOM {
     constructor() {
@@ -16,7 +16,15 @@ class DOM {
     }
 
     getObjectData(type) {
-        return this.#newObjectData(type);
+        let objectMap = new Map();
+
+        if(type === PROJECT) {
+            objectMap.set('type', 'project');
+            return this.#projectPrompt(objectMap);
+        }
+        else {
+            throw new error ("Invalid Object Type Provided.");
+        }
     }
 
     deleteDOM(objectID) {
@@ -24,20 +32,9 @@ class DOM {
         element.remove();
     }
 
-    modifyDOM(type, object) {
-        if(type === TYPES.PROJECT) {
+    modifyDOM(object) {
+        if(object.type === PROJECT) {
             this.#projectDOM(object);
-        }
-    }
-
-    #newObjectData(type) {
-        let objectMap = new Map();
-
-        if(type === TYPES.PROJECT) {
-            return this.#projectPrompt(objectMap);
-        }
-        else {
-            throw new error ("Invalid Object Type Provided.");
         }
     }
 
