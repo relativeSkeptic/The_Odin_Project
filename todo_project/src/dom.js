@@ -1,7 +1,7 @@
 //singleton that manipulates the entire dom for the todo application
 import pencilSrc from "../icons/pencil.svg";
 import trashCanSrc from "../icons/trash_can.svg";
-import projectSrc from "../icons/work.svg";
+import addSrc from "../icons/add_small.svg";
 
 const PROJECT = 'project';
 
@@ -12,7 +12,7 @@ class DOM {
         }
 
         DOM.instance = this;
-        this._objects = document.getElementById('project-objects');
+        this._projectObjects = document.getElementById('project-objects');
     }
 
     getObjectData(type) {
@@ -53,30 +53,26 @@ class DOM {
     }
 
     #projectDOM(object) {
-        let projectContainer = document.createElement('div');
+        let newProject = document.createElement('div');
 
-        projectContainer.id = object.id;
+        newProject.id = object.id;
 
-        this.#addProjectButtons(projectContainer, object.name);
+        this.#addProjectButtons(newProject, object.name);
         
-        this._objects.appendChild(projectContainer);
+        this._projectObjects.appendChild(newProject);
     }
 
-    #addProjectButtons(projectContainer, name) {
+    #addProjectButtons(newProject, name) {
         let leftContainer = document.createElement('div');
         leftContainer.className = "flex flex-col w-full font-bold rounded-lg";
     
         let projectButton = document.createElement('button');
-        projectButton.id = projectContainer.id + "_project";
+        projectButton.id = newProject.id + "_project";
         projectButton.className = "flex gap-2 items-center";
-    
-        let projectImage = document.createElement('img');
-        projectImage.src = projectSrc;
         
         let buttonText = document.createElement('p');
-        buttonText.id = projectContainer.id + "_text";
+        buttonText.id = newProject.id + "_text";
         buttonText.textContent = name;
-        projectButton.appendChild(projectImage);
         projectButton.appendChild(buttonText);
     
         leftContainer.appendChild(projectButton);
@@ -84,8 +80,17 @@ class DOM {
         let rightContainer = document.createElement('div');
         rightContainer.className = "flex gap-2";
 
+        let addButton = document.createElement('button');
+        addButton.id = newProject.id + "_add";
+
+        let add = document.createElement('img');
+        add.src = addSrc;
+        addButton.appendChild(add);
+
+        rightContainer.appendChild(addButton);
+
         let modifyButton = document.createElement('button');
-        modifyButton.id = projectContainer.id + "_modify";
+        modifyButton.id = newProject.id + "_modify";
     
         let pencil = document.createElement('img');
         pencil.src = pencilSrc; 
@@ -94,7 +99,7 @@ class DOM {
         rightContainer.appendChild(modifyButton);
     
         let deleteButton = document.createElement('button');
-        deleteButton.id = projectContainer.id + "_delete";
+        deleteButton.id = newProject.id + "_delete";
     
         let trashCan = document.createElement('img');
         trashCan.src = trashCanSrc; 
@@ -102,9 +107,9 @@ class DOM {
     
         rightContainer.appendChild(deleteButton);
     
-        projectContainer.appendChild(leftContainer);
-        projectContainer.appendChild(rightContainer);
-        projectContainer.className = "flex items-center hover:bg-gray-100 hover:rounded-l justify-between p-1";
+        newProject.appendChild(leftContainer);
+        newProject.appendChild(rightContainer);
+        newProject.className = "flex items-center hover:bg-gray-100 hover:rounded-l justify-between p-1";
     }
 }
 

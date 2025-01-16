@@ -1,4 +1,4 @@
-//singleton that manages the creation, and 
+//singleton that manages the creation and 
 //modification of objects for the todo application
 
 import Project from "./project.js";

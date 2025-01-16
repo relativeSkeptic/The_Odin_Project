@@ -6,6 +6,7 @@ class Todo {
         this._description = description;
         this._dueDate = dueDate;
         this._priority = priority;
+        this._type = "todo";
     }
 
     //getters
