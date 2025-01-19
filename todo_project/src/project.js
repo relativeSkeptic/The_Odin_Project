@@ -39,8 +39,12 @@ class Project {
         this._todo.set(todo.id, todo);
     }
 
-    deleteTodo(name) {
-        this._todo.delete(name);
+    modifyTodo(todo) {
+        this._todo.set(todo.id, todo);
+    }
+
+    deleteTodo(todoID) {
+        this._todo.delete(todoID);
     }
 }
 

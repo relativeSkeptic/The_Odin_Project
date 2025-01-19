@@ -1,7 +1,8 @@
 import './styles.css';
 import DomManager from './dom.js';
 import FactoryManager from './factory.js';
-import { dummyData } from './dummy.js';
+import { dummyProject } from './dummy.js';
+import { todoMap } from './dummy.js';
 
 const PROJECT = 'project';
 const TODO = 'todo';
@@ -9,21 +10,21 @@ const TODO = 'todo';
 let projectButton = document.getElementById('new-project');
 
 //creating a dummy object for testing and as an initial template
-createDummyProject(dummyData);
+createDummyProject(dummyProject, todoMap);
 
 projectButton.addEventListener("click", () => {
     let project = FactoryManager.createObject(DomManager.getObjectData(PROJECT));
     if(project.name != "" && project.name != null) {
-        DomManager.newDOM(project);
+        DomManager.addToDOM(project);
+        updateSidebarButtons(project);
         DomManager.renderDOM(project);
-        updateButtons(project);
     }
 })
 
-function updateButtons(object) {
+function updateSidebarButtons(object) {
     if(object.type === PROJECT) {
         document.getElementById(object.id + '_delete').addEventListener("click", ()=> {
-            FactoryManager.deleteObject(object.id);
+            FactoryManager.deleteObject(object.id, object.allTodo);
             DomManager.deleteDOM(object.id);
         })
         document.getElementById(object.id + '_modify').addEventListener("click", ()=> {
@@ -33,7 +34,9 @@ function updateButtons(object) {
         })
         document.getElementById(object.id + '_add').addEventListener("click", ()=> {
             let todo = FactoryManager.createObject(DomManager.getObjectData(TODO));
-            project.createTodo(todo);
+            if(todo.name != "" && todo.name != null) {
+                object.createTodo(todo);
+            }
         })
         document.getElementById(object.id + "_render").addEventListener("click", ()=> {
             DomManager.renderDOM(object);
@@ -41,9 +44,17 @@ function updateButtons(object) {
     }
 }
 
-function createDummyProject(data) {
-    let dummyProject = FactoryManager.createObject(data);
-    DomManager.newDOM(dummyProject);
-    updateButtons(dummyProject);
+function createDummyProject(project, todo) {
+    let dummyProject = FactoryManager.createObject(project);
+    for(const value of todo.values()) {
+        let newTodo = FactoryManager.createObject(value);
+        dummyProject.createTodo(newTodo);
+    }
+    DomManager.addToDOM(dummyProject);
+    updateSidebarButtons(dummyProject);
+    let todoMap = dummyProject.allTodo;
+    for(const value of todoMap.values()) {
+        DomManager.addToDOM(value);
+    }
     DomManager.renderDOM(dummyProject);
 }

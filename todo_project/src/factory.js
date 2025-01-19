@@ -10,25 +10,27 @@ const TODO = 'todo';
 class Factory {
     constructor() {
         this._projectObjects = new Map();
+        this._todoObjects = new Map();
     }
 
     createObject(objectData) {
         if(objectData.get('type') === PROJECT) {
             let id = objectData.get('name');
-            id = this.#verifyKeyValueIntegrity(id);
+            id = this.#verifyKeyValueIntegrity(id, PROJECT);
             let newProject = new Project(objectData.get('name'), id);
             this._projectObjects.set(id, newProject.name);
             return newProject;
         }
         else if(objectData.get('type') === TODO) {
             let id = objectData.get('name');
-            id = this.#verifyKeyValueIntegrity(id);
+            id = this.#verifyKeyValueIntegrity(id, TODO);
             let newTodo = new Todo(objectData.get('name'), 
                                         id, 
                                         objectData.get('description'), 
                                         objectData.get('dueDate'), 
                                         objectData.get('priority'));
 
+            this._todoObjects.set(id, newTodo.name);
             return newTodo;
         }
         else {
@@ -44,17 +46,34 @@ class Factory {
         }
     }
 
-    deleteObject(id) {
+    deleteObject(id, todoMap) {
+        for (const key of todoMap.keys()) {
+            if (this._todoObjects.has(key)) {
+                this._todoObjects.delete(key);
+            }
+        }
+
         this._projectObjects.delete(id);
     }
 
-    #verifyKeyValueIntegrity(id) {
+    #verifyKeyValueIntegrity(id, type) {
         let baseId = id;
         let counter = 1;
-    
-        while (this._projectObjects.has(id)) {
-            id = `${baseId}_${counter}`;
-            counter++;
+
+        if(type === PROJECT) {
+            while (this._projectObjects.has(id)) {
+                id = `${baseId}_${counter}`;
+                counter++;
+            }
+        }
+        else if (type === TODO) {
+            while (this._todoObjects.has(id)) {
+                id = `${baseId}_${counter}`;
+                counter++;
+            }
+        }
+        else {
+            throw new error ("Invalid Object Type Provided.");
         }
     
         return id;

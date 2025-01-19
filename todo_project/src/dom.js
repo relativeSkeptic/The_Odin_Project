@@ -14,9 +14,12 @@ class DOM {
 
         DOM.instance = this;
         this._projectObjects = document.getElementById('project-objects');
-        this._todoObjects = document.getElementById('todo-objects');
+        this._hero = document.getElementById('hero');
+        this._todoContainer = document.getElementById('todoContainer');
     }
 
+    //public accessor to request the necessary object data
+    //for object creation
     getObjectData(type) {
         let objectMap = new Map();
 
@@ -33,12 +36,31 @@ class DOM {
         }
     }
 
-    newDOM(object) {
+    //dynamically adds objects to the DOM
+    addToDOM(object) {
         if(object.type === PROJECT) {
-            this.#projectDOM(object);
+            let newProject = document.createElement('div');
+
+            newProject.id = object.id;
+            newProject.className = "project-container";
+    
+            this.#addProjectButtons(newProject, object.name);
+            
+            this._projectObjects.appendChild(newProject);
+        }
+        else if (object.type === TODO) {
+            let newTodo = document.createElement('div');
+
+            newTodo.id = object.id;
+            newTodo.className = "todo-objects";
+    
+            this.#addTodoButtons(newTodo, object.name);
+    
+            this._todoContainer.appendChild(newTodo);
         }
     }
 
+    //allows the user to update objects in the DOM
     modifyDOM(object) {
         if(object.type === PROJECT) {
             let text = document.getElementById(object.id + "_text");
@@ -46,20 +68,26 @@ class DOM {
         }
     }
 
+    //deletes requested objects by the user from the DOM 
     deleteDOM(objectID) {
         let element = document.getElementById(objectID)
         element.remove();
 
-        while (this._todoObjects.firstChild) {
-            this._todoObjects.removeChild(this._todoObjects.firstChild);
+        while (this._hero.firstChild) {
+            this._hero.removeChild(this._hero.firstChild);
         }
     }
 
+    //renders the selected object into the DOM
+    //if there are multiple projects this renders
+    //whichever project the user requests
     renderDOM(object) {
         this.#renderProjectName(object.name);
-        this.#renderTodoObjects();
+        this.#renderTodoObjects(object.allTodo);
     }
 
+    //renders the DOM to get the needed data
+    //from the user to create a project object
     #projectPrompt(projectMap) {
         let projectName = prompt("What is the name of your Project?");
         projectMap.set('name', projectName);
@@ -67,6 +95,8 @@ class DOM {
         return projectMap;
     }
 
+    //renders the DOM to get the needed data
+    //from the user to create a todo object
     #todoPrompt(todoMap) {
         let name = prompt('What is the name of your task?');
         let description = prompt('Describe the task to be completed: ');
@@ -81,48 +111,42 @@ class DOM {
         return todoMap;
     }
 
-    #projectDOM(object) {
-        let newProject = document.createElement('div');
-
-        newProject.id = object.id;
-
-        this.#addProjectButtons(newProject, object.name);
-        
-        this._projectObjects.appendChild(newProject);
-    }
-
     #addProjectButtons(newProject, name) {
         let leftContainer = document.createElement('div');
-        leftContainer.className = "flex flex-col w-full font-bold rounded-lg";
+        leftContainer.className = "left-container";
     
         let projectButton = document.createElement('button');
         projectButton.id = newProject.id + "_render";
-        projectButton.className = "flex gap-2 items-center";
-        
+        projectButton.className = "project-button";
+    
         let buttonText = document.createElement('p');
         buttonText.id = newProject.id + "_text";
-        buttonText.textContent = name;
+        if (name.length > 10) {
+            buttonText.textContent = name.slice(0, 10) + '...';
+        } else {
+            buttonText.textContent = name;
+        }
         projectButton.appendChild(buttonText);
     
         leftContainer.appendChild(projectButton);
     
         let rightContainer = document.createElement('div');
-        rightContainer.className = "flex gap-2";
-
+        rightContainer.className = "right-container";
+    
         let addButton = document.createElement('button');
         addButton.id = newProject.id + "_add";
-
+    
         let add = document.createElement('img');
         add.src = addSrc;
         addButton.appendChild(add);
-
+    
         rightContainer.appendChild(addButton);
-
+    
         let modifyButton = document.createElement('button');
         modifyButton.id = newProject.id + "_modify";
     
         let pencil = document.createElement('img');
-        pencil.src = pencilSrc; 
+        pencil.src = pencilSrc;
         modifyButton.appendChild(pencil);
     
         rightContainer.appendChild(modifyButton);
@@ -131,30 +155,39 @@ class DOM {
         deleteButton.id = newProject.id + "_delete";
     
         let trashCan = document.createElement('img');
-        trashCan.src = trashCanSrc; 
+        trashCan.src = trashCanSrc;
         deleteButton.appendChild(trashCan);
     
         rightContainer.appendChild(deleteButton);
     
         newProject.appendChild(leftContainer);
         newProject.appendChild(rightContainer);
-        newProject.className = "flex items-center hover:bg-gray-100 hover:rounded-l justify-between p-1";
     }
 
-    #renderProjectName(name) {
-        while (this._todoObjects.firstChild) {
-            this._todoObjects.removeChild(this._todoObjects.firstChild);
+    #addTodoButtons(todo) {
+
+    }
+
+    //deletes all of the current objects in the hero 
+    //and rerenders the hero with the requested project
+    #renderProjectName(projectName) {
+        while (this._todoContainer.firstChild) {
+            this._todoContainer.removeChild(this._todoContainer.firstChild);
         }
 
-        let projectHero = document.createElement('p');
-        projectHero.textContent = name;
-        projectHero.className = "project-hero";
-
-        this._todoObjects.appendChild(projectHero);
+        let projectHero = document.getElementById("projectHero");
+        projectHero.textContent = projectName;
     }
 
-    #renderTodoObjects() {
-
+    //renders all of the todo objects for the requested project
+    //in the hero
+    #renderTodoObjects(listOfTodoObjects) {
+        for(const value of listOfTodoObjects.values()) {
+            let newTodo = document.createElement('div');
+            newTodo.textContent = value.name;
+            newTodo.className = "todo-objects";
+            this._todoContainer.appendChild(newTodo);
+        }
     }
 }
 

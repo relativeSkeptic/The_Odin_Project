@@ -31,6 +31,10 @@ class Todo {
         return this._priority;
     }
 
+    get type() {
+        return this._type;
+    }
+
     //setters
     set name(name) {
         this._name = name;

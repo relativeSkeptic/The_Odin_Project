@@ -16,8 +16,8 @@
             </p>
         </div>
     </header>
-    <div id="main" class="flex flex-grow">
-        <div id="sidebar" class="flex flex-col min-w-64 w-1/6 p-4 bg-gray-200 shadow-lg">
+    <div id="main" class="flex flex-grow max-h-full overflow-auto">
+        <div id="sidebar" class="flex flex-col min-w-64 w-1/6 p-4 bg-gray-200 shadow-lg overflow-auto">
             <div class="flex flex-col gap-3 text-2xl">
                 <button id="all-tasks" class="sidebar-buttons sidebar-buttons:hover">
                     <img src="../icons/folder.svg">
@@ -42,10 +42,14 @@
                     New Project
                 </button>
             </div>
-            <div id="project-objects" class="flex flex-col ml-14 gap-1">
+            <div id="project-objects" class="flex flex-col ml-14 gap-3">
             </div>
         </div>
-        <div id="todo-objects" class="flex flex-col w-full p-4 gap-1 bg-gray-300">
+        <div id="hero" class="w-full p-4 gap-4 bg-gray-300 overflow-auto">
+            <p id="projectHero" class="project-hero">
+            </p>
+            <div id="todoContainer" class="todo-container">
+            </div>
         </div>
     </div>
     <footer>
