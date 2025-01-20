@@ -1,15 +1,10 @@
 //helper functions for the dom.js file to aide in rendering todo objects
 
-import pencilSrc from "../icons/pencil.svg";
-import trashCanSrc from "../icons/trash_can.svg";
-import prioritySrc from "../icons/star.svg";
-
 //single function that renders all of the necessary 
 //todo date to the dom
 function todoRender(newTodo, todoObject) {
     newTodo.appendChild(todoHeader(todoObject));
     newTodo.appendChild(todoBody(todoObject));
-    newTodo.appendChild(todoButtons(todoObject));
 }
 
 //renders the header of the todo which
@@ -69,68 +64,6 @@ function todoPriority(todoObject) {
     todoPriority.className = "todo-priority";
 
     return todoPriority;
-}
-
-//renders the modify and delete buttons 
-//to the todo element
-function todoButtons(todoObject) {
-    let todoButtons = document.createElement('div');
-    todoButtons.id = todoObject.id + "_buttons";
-    todoButtons.className = "todo-buttons";
-
-    todoButtons.appendChild(modifyButton(todoObject));
-    todoButtons.appendChild(deleteButton(todoObject));
-    todoButtons.appendChild(priorityButton(todoObject));
-
-    return todoButtons;
-}
-
-function modifyButton(todoObject) {
-    let modifyButton = document.createElement('div');
-    modifyButton.id = todoObject.id + "_todo_modify";
-    modifyButton.className = "todo-modify";
-    modifyButton.appendChild(appendButton('modify'));
-
-    return modifyButton;
-}
-
-function deleteButton(todoObject) {
-    let deleteButton = document.createElement('div');
-    deleteButton.id = todoObject.id + "_todo_delete";
-    deleteButton.className = "todo-delete";
-    deleteButton.appendChild(appendButton('delete'));
-
-    return deleteButton;
-}
-
-function priorityButton(todoObject) {
-    let priorityButton = document.createElement('div');
-    priorityButton.id = todoObject.id + "_todo_priority";
-    priorityButton.className = "todo-priority";
-    priorityButton.appendChild(appendButton('priority'));
-
-    return priorityButton;
-}
-
-function appendButton(type) {
-    let newButton = document.createElement('button');
-    let image = document.createElement('img');
-
-    if(type === 'modify') {
-        image.src = pencilSrc;
-    }
-    else if(type === 'delete') {
-        image.src = trashCanSrc;
-    }
-    else if(type === 'priority') {
-        image.src = prioritySrc;
-    }
-    else {
-        throw new error('Invalid Type provided');
-    }
-
-    newButton.appendChild(image);
-    return newButton;
 }
 
 //prompts the user for the necessary todo data

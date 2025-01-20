@@ -24,23 +24,7 @@ projectButton.addEventListener("click", () => {
 //ties event listeners to buttons
 function addEventListeners(object) {
     if(object.type === PROJECT) {
-        document.getElementById(object.id + '_delete').addEventListener("click", ()=> {
-            FactoryManager.deleteObject(object);
-            DomManager.deleteDOM(object);
-        })
-        document.getElementById(object.id + '_modify').addEventListener("click", ()=> {
-            FactoryManager.updateObject(object, DomManager.getObjectData(PROJECT));
-            DomManager.modifyDOM(object);
-            DomManager.renderDOM(object);
-        })
-        document.getElementById(object.id + '_add').addEventListener("click", ()=> {
-            let todo = FactoryManager.createObject(DomManager.getObjectData(TODO));
-            if(todo.name != "" && todo.name != null) {
-                object.createTodo(todo);
-                DomManager.renderDOM(object);
-            }
-        })
-        document.getElementById(object.id + "_render").addEventListener("click", ()=> {
+        document.getElementById(object.id + "_select_project_button").addEventListener("click", ()=> {
             DomManager.renderDOM(object);
         })
     }

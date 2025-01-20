@@ -33,9 +33,6 @@ class Factory {
             this._todoObjects.set(id, newTodo.name);
             return newTodo;
         }
-        else {
-            throw new error ("Invalid Object Type Provided.");
-        }
     }
 
     updateObject(object, objectData) {
@@ -47,13 +44,15 @@ class Factory {
     }
 
     deleteObject(object) {
-        for (const key of object.allTodo) {
-            if (this._todoObjects.has(key)) {
-                this._todoObjects.delete(key);
+        if(object.type === PROJECT) {
+            for (const key of object.allTodo) {
+                if (this._todoObjects.has(key)) {
+                    this._todoObjects.delete(key);
+                }
             }
+    
+            this._projectObjects.delete(object.id);
         }
-
-        this._projectObjects.delete(object.id);
     }
 
     #verifyKeyValueIntegrity(id, type) {
