@@ -46,14 +46,14 @@ class Factory {
         }
     }
 
-    deleteObject(id, todoMap) {
-        for (const key of todoMap.keys()) {
+    deleteObject(object) {
+        for (const key of object.allTodo) {
             if (this._todoObjects.has(key)) {
                 this._todoObjects.delete(key);
             }
         }
 
-        this._projectObjects.delete(id);
+        this._projectObjects.delete(object.id);
     }
 
     #verifyKeyValueIntegrity(id, type) {

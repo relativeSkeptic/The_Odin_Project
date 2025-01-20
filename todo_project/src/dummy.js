@@ -13,7 +13,7 @@ quotesTodo.set('type', 'todo');
 quotesTodo.set('name', 'Get Three Quotes');
 quotesTodo.set('description', 'Call People');
 quotesTodo.set('dueDate', '1/31/2099');
-quotesTodo.set('priority', 'High');
+quotesTodo.set('priority', 'Yes');
 
 todoMap.set('quotes', quotesTodo);
 
@@ -23,7 +23,7 @@ insuranceTodo.set('type', 'todo');
 insuranceTodo.set('name', "File Homeowner's Insurance Claim");
 insuranceTodo.set('description', "Call Insurance Company for another opinion");
 insuranceTodo.set('dueDate', '1/30/2099');
-insuranceTodo.set('priority', 'High');
+insuranceTodo.set('priority', 'Yes');
 
 todoMap.set('insurance', insuranceTodo);
 
@@ -33,7 +33,7 @@ scheduleTodo.set('type', 'todo');
 scheduleTodo.set('name', "Schedule Roof Installment Date");
 scheduleTodo.set('description', "Coordinate with company for install date");
 scheduleTodo.set('dueDate', '2/15/2099');
-scheduleTodo.set('priority', 'Medium');
+scheduleTodo.set('priority', 'No');
 
 todoMap.set('schedule', scheduleTodo);
 
@@ -43,7 +43,7 @@ warrantyTodo.set('type', 'todo');
 warrantyTodo.set('name', "File Warranty Complaints");
 warrantyTodo.set('description', "Monitor roof after install for any issues and file against warranty");
 warrantyTodo.set('dueDate', '2/30/2099');
-warrantyTodo.set('priority', 'Low');
+warrantyTodo.set('priority', 'No');
 
 todoMap.set('warranty', warrantyTodo);
 
@@ -53,7 +53,7 @@ reviewTodo.set('type', 'todo');
 reviewTodo.set('name', "Write Review for Roofing Company");
 reviewTodo.set('description', "Write a review describing the quality of work done by the roofers");
 reviewTodo.set('dueDate', '3/5/2099');
-reviewTodo.set('priority', 'Low');
+reviewTodo.set('priority', 'No');
 
 todoMap.set('review', reviewTodo);
 
@@ -63,7 +63,7 @@ extendedWarrantyTodo.set('type', 'todo');
 extendedWarrantyTodo.set('name', "File Warranty Complaints");
 extendedWarrantyTodo.set('description', "Review potential warranty claims again after one year");
 extendedWarrantyTodo.set('dueDate', '2/30/2100');
-extendedWarrantyTodo.set('priority', 'Low');
+extendedWarrantyTodo.set('priority', 'No');
 
 todoMap.set('extendedWarranty', extendedWarrantyTodo);
 

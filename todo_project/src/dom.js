@@ -3,6 +3,9 @@ import pencilSrc from "../icons/pencil.svg";
 import trashCanSrc from "../icons/trash_can.svg";
 import addSrc from "../icons/add_small.svg";
 
+import { todoRender, todoPrompt } from "./todoRender.js";
+import { projectRender, projectPrompt } from "./projectRender.js";
+
 const PROJECT = 'project';
 const TODO = 'todo';
 
@@ -21,42 +24,14 @@ class DOM {
     //public accessor to request the necessary object data
     //for object creation
     getObjectData(type) {
-        let objectMap = new Map();
-
         if(type === PROJECT) {
-            objectMap.set('type', PROJECT);
-            return this.#projectPrompt(objectMap);
+            return projectPrompt();
         }
         else if (type === TODO) {
-            objectMap.set('type', TODO);
-            return this.#todoPrompt(objectMap);
+            return todoPrompt(objectMap);
         }
         else {
             throw new error ("Invalid Object Type Provided.");
-        }
-    }
-
-    //dynamically adds objects to the DOM
-    addToDOM(object) {
-        if(object.type === PROJECT) {
-            let newProject = document.createElement('div');
-
-            newProject.id = object.id;
-            newProject.className = "project-container";
-    
-            this.#addProjectButtons(newProject, object.name);
-            
-            this._projectObjects.appendChild(newProject);
-        }
-        else if (object.type === TODO) {
-            let newTodo = document.createElement('div');
-
-            newTodo.id = object.id;
-            newTodo.className = "todo-objects";
-    
-            this.#addTodoButtons(newTodo, object.name);
-    
-            this._todoContainer.appendChild(newTodo);
         }
     }
 
@@ -69,48 +44,63 @@ class DOM {
     }
 
     //deletes requested objects by the user from the DOM 
-    deleteDOM(objectID) {
-        let element = document.getElementById(objectID)
-        element.remove();
+    deleteDOM(object) {
+        let projectSidebar = document.getElementById(object.id)
+        projectSidebar.remove();
 
-        while (this._hero.firstChild) {
-            this._hero.removeChild(this._hero.firstChild);
-        }
+        let projectHero = document.getElementById('projectHero');
+        projectHero.textContent = "";
+
+        this.#clearHero();
     }
 
     //renders the selected object into the DOM
     //if there are multiple projects this renders
     //whichever project the user requests
     renderDOM(object) {
-        this.#renderProjectName(object.name);
-        this.#renderTodoObjects(object.allTodo);
+        this.#clearHero();
+        this.#addToDOM(object);
+        this.#renderProject(object); 
     }
 
-    //renders the DOM to get the needed data
-    //from the user to create a project object
-    #projectPrompt(projectMap) {
-        let projectName = prompt("What is the name of your Project?");
-        projectMap.set('name', projectName);
+    //dynamically adds objects to the DOM
+    #addToDOM(object) {
+        if(object.type === PROJECT) {
+            if(document.getElementById(object.id) === null) {
+                let newProject = document.createElement('div');
 
-        return projectMap;
+                newProject.id = object.id;
+                newProject.className = "project-container";
+        
+                this.#addProjectButtons(newProject, object.name);
+                
+                this._projectObjects.appendChild(newProject);
+            }
+        }
+        else if (object.type === TODO) {
+            if(document.getElementById(object.id) === null) {
+                let newTodo = document.createElement('div');
+
+                newTodo.id = object.id;
+                newTodo.className = "todo-objects";
+        
+                this.#addTodoButtons(newTodo, object.name);
+        
+                this._todoContainer.appendChild(newTodo);
+            }
+        }
     }
 
-    //renders the DOM to get the needed data
-    //from the user to create a todo object
-    #todoPrompt(todoMap) {
-        let name = prompt('What is the name of your task?');
-        let description = prompt('Describe the task to be completed: ');
-        let dueDate = prompt('When is the task due?');
-        let priority = prompt('Is this a high priority item?');
-
-        todoMap.set('name', name);
-        todoMap.set('description', description);
-        todoMap.set('dueDate', dueDate);
-        todoMap.set('priority', priority);
-
-        return todoMap;
+    //clears the hero portion of the DOM 
+    //for rerendering of new / different project
+    #clearHero() {
+        while (this._todoContainer.firstChild) {
+            this._todoContainer.removeChild(this._todoContainer.firstChild);
+        }
     }
 
+    //creates template buttons that are used for
+    //manipulating project data
     #addProjectButtons(newProject, name) {
         let leftContainer = document.createElement('div');
         leftContainer.className = "left-container";
@@ -164,28 +154,25 @@ class DOM {
         newProject.appendChild(rightContainer);
     }
 
+    //creates template buttons that are used for
+    //manipulating todo data
     #addTodoButtons(todo) {
 
     }
 
-    //deletes all of the current objects in the hero 
-    //and rerenders the hero with the requested project
-    #renderProjectName(projectName) {
-        while (this._todoContainer.firstChild) {
-            this._todoContainer.removeChild(this._todoContainer.firstChild);
-        }
-
+    //the final function that renders all of the
+    //necessary data to the DOM once all of the object
+    //creation, deletion, and manipulation is complete
+    #renderProject(object) {
         let projectHero = document.getElementById("projectHero");
-        projectHero.textContent = projectName;
-    }
+        projectHero.textContent = object.name;
 
-    //renders all of the todo objects for the requested project
-    //in the hero
-    #renderTodoObjects(listOfTodoObjects) {
+        let listOfTodoObjects = object.allTodo;
         for(const value of listOfTodoObjects.values()) {
             let newTodo = document.createElement('div');
-            newTodo.textContent = value.name;
+            newTodo.id = value.id;
             newTodo.className = "todo-objects";
+            todoRender(newTodo, value);
             this._todoContainer.appendChild(newTodo);
         }
     }
