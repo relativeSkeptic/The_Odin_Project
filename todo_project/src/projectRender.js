@@ -1,8 +1,15 @@
 //helper functions for the dom.js file to aide in rendering project objects
 
-function projectRender(newProject, project) {
+function projectRender(project) {
+    let newProject = document.createElement('div');
+
+    newProject.id = project.id;
+    newProject.className = "project-container";
+
     updateHeroHeader(project);
+
     newProject.appendChild(projectButtons(project));
+    document.getElementById('project-objects').appendChild(newProject);
 }
 
 function updateProject(project) {
