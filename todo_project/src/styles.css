@@ -20,7 +20,6 @@
 
 .project-hero {
     display: flex;
-    flex-direction: column;
     border-radius: 0.5rem;
     align-items: center;
     font-size: 1.5rem;
@@ -29,6 +28,7 @@
     padding: 0.5rem;
     background-color: white;
     margin-bottom: 1%;
+    justify-content: center;
 }
 
 .project-buttons {
@@ -49,6 +49,11 @@
     width: 100%;
 }
 
+.settings-container {
+    display: flex;
+    color: rebeccapurple;
+}
+
 /* project styling end */
 
 /* todo styling start */
@@ -64,12 +69,24 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    color: black;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    width: 100%;
-    height: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    gap: 5%;
+}
+
+.todo-objects:hover {
+    background-color: #fafaf9;
+    cursor: pointer;
+}
+
+.todo-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* todo styling end */

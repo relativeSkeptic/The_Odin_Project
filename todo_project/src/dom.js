@@ -45,26 +45,14 @@ class DOM {
 
         if(object.id != null) {
             if(document.getElementById(object.id) === null) {
-                let newProject = document.createElement('div');
-
-                newProject.id = object.id;
-                newProject.className = "project-container";
-    
-                projectRender(newProject, object);
-                this._projectObjects.appendChild(newProject);
+                projectRender(object);
             }
             else {
                 updateProject(object);
             }
     
             for(const value of object.allTodo.values()) {
-                let newTodo = document.createElement('div');
-
-                newTodo.id = value.id;
-                newTodo.className = "todo-objects";
-
-                todoRender(newTodo, value);
-                this._todoContainer.appendChild(newTodo);
+                todoRender(value);
             }
         }
     }

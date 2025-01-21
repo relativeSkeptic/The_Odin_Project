@@ -2,9 +2,16 @@
 
 //single function that renders all of the necessary 
 //todo date to the dom
-function todoRender(newTodo, todoObject) {
+function todoRender(todoObject) {
+    let newTodo = document.createElement('div');
+
+    newTodo.id = todoObject.id;
+    newTodo.className = "todo-objects";
+
     newTodo.appendChild(todoHeader(todoObject));
     newTodo.appendChild(todoBody(todoObject));
+
+    document.getElementById('todoContainer').appendChild(newTodo);
 }
 
 //renders the header of the todo which
