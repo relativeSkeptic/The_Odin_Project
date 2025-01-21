@@ -9,6 +9,7 @@ const TODO = 'todo';
 
 class Factory {
     constructor() {
+        this._currentProjectID = null;
         this._projectObjects = new Map();
         this._todoObjects = new Map();
     }
@@ -18,7 +19,7 @@ class Factory {
             let id = objectData.get('name');
             id = this.#verifyKeyValueIntegrity(id, PROJECT);
             let newProject = new Project(objectData.get('name'), id);
-            this._projectObjects.set(id, newProject.name);
+            this._projectObjects.set(id, newProject);
             return newProject;
         }
         else if(objectData.get('type') === TODO) {
@@ -30,16 +31,14 @@ class Factory {
                                         objectData.get('dueDate'), 
                                         objectData.get('priority'));
 
-            this._todoObjects.set(id, newTodo.name);
+            this._todoObjects.set(id, newTodo);
             return newTodo;
         }
     }
 
     updateObject(object, objectData) {
-        if(objectData.get('type') === PROJECT) {
-            if(objectData.get('name') != "" && objectData.get('name') != null) {
-                object.name = objectData.get('name');
-            }
+        if(object.type === PROJECT) {
+            object.name = objectData
         }
     }
 
@@ -53,6 +52,20 @@ class Factory {
     
             this._projectObjects.delete(object.id);
         }
+    }
+
+    getObject(id, type) {
+        if(type === PROJECT) {
+            return this._projectObjects.get(id);
+        }
+    }
+
+    get getCurrentProjectID() {
+        return this._currentProjectID;
+    }
+
+    set setCurrentProjectID(id) {
+        this._currentProjectID = id;
     }
 
     #verifyKeyValueIntegrity(id, type) {

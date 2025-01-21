@@ -13,8 +13,8 @@ class DOM {
         }
 
         DOM.instance = this;
-        this._projectObjects = document.getElementById('project-objects');
         this._hero = document.getElementById('hero');
+        this._projectObjects = document.getElementById('project-objects');
         this._todoContainer = document.getElementById('todoContainer');
     }
 
@@ -28,9 +28,25 @@ class DOM {
         }
     }
 
+    displayProjectModal() {
+        let projectModal = document.getElementById('projectModal');
+        projectModal.style.display = "flex";
+    
+        window.onclick = function(event) {
+            if (event.target == projectModal) {
+              projectModal.style.display = "none";
+            }
+        }
+    }
+
+    closeProjectModal() {
+        let projectModal = document.getElementById('projectModal');
+        projectModal.style.display = "none";
+    }
+
     //deletes the selected object from the DOM
-    deleteDOM(object) {
-        let projectSidebar = document.getElementById(object.id)
+    deleteDOM(project) {
+        let projectSidebar = document.getElementById(project.id)
         projectSidebar.remove();
 
         let projectHero = document.getElementById('projectHero');
@@ -55,6 +71,8 @@ class DOM {
                 todoRender(value);
             }
         }
+
+        this._currentProjectID = object.id;
     }
 
     //clears the hero portion of the DOM 

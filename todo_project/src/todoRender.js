@@ -3,7 +3,7 @@
 //single function that renders all of the necessary 
 //todo date to the dom
 function todoRender(todoObject) {
-    let newTodo = document.createElement('div');
+    let newTodo = document.createElement('button');
 
     newTodo.id = todoObject.id;
     newTodo.className = "todo-objects";
