@@ -138,15 +138,6 @@
     line-height: 1.75rem /* 28px */;
 }
 
-.new-todo-button {
-    background-color: #eab308;
-    border-radius: 0.375rem /* 6px */;
-    color: #ffffff;
-    padding: 0.5rem /* 8px */;
-    font-size: 1.25rem /* 20px */;
-    line-height: 1.75rem /* 28px */;
-}
-
 .delete-button {
     background-color: #b91c1c;
     border-radius: 0.375rem /* 6px */;
