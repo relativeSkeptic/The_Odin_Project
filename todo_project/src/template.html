@@ -48,23 +48,40 @@
         <div id="hero" class="w-full p-4 gap-4 bg-gray-300 overflow-auto">
             <button id="projectHero" class="project-hero">
             </button>
-            <div id="projectModal" class="modal-background">
-                <div class="project-modal flex flex-col">
-                    <button id="closeButton" class="text-end mb-auto text-2xl font-bold">X</button>
-                    <div class="flex flex-col gap-12 justify-center mb-auto">
-                        <p class="text-center text-2xl font-bold">Project Settings</p>
-                        <div class="flex gap-4">
-                            <label for="projectInput" class="font-bold text-nowrap">Project Name:</label>
-                            <input type="text" id="projectInput" name="Project Name" placeholder="Your Project Name..." class="border-2 border-black w-full text-lg">
-                        </div>
-                        <div class="flex justify-around">
-                            <button id="projectSubmitButton" class="submit-button">Submit</button>
-                            <button id="projectDeleteButton" class="delete-button">Delete</button>
-                        </div>
+            <div id="todoContainer" class="todo-container">
+            </div>
+        </div>
+    </div>
+    <div id="modals">
+        <div id="newProjectModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeNewProject" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">New Project</p>
+                    <div class="flex gap-4">
+                        <label for="newProjectInput" class="font-bold text-nowrap">Project Name:</label>
+                        <input type="text" id="newProjectInput" name="Project Name" placeholder="Your Project Name..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="newProjectSubmit" class="submit-button">Submit</button>
                     </div>
                 </div>
             </div>
-            <div id="todoContainer" class="todo-container">
+        </div>
+        <div id="projectSettingsModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeProjectSettings" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">Project Settings</p>
+                    <div class="flex gap-4">
+                        <label for="projectSettingsInput" class="font-bold text-nowrap">New Project Name:</label>
+                        <input type="text" id="projectSettingsInput" name="Project Name" placeholder="Your Project Name..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-around">
+                        <button id="projectSettingsSubmit" class="submit-button">Submit</button>
+                        <button id="projectSettingsDelete" class="delete-button">Delete</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -5,6 +5,8 @@ import { projectRender, projectPrompt, updateProject } from "./projectRender.js"
 
 const PROJECT = 'project';
 const TODO = 'todo';
+const NEW = 'new';
+const SETTINGS = 'settings';
 
 class DOM {
     constructor() {
@@ -28,8 +30,14 @@ class DOM {
         }
     }
 
-    displayProjectModal() {
-        let projectModal = document.getElementById('projectModal');
+    displayProjectModal(type) {
+        let projectModal = null;
+        if(type === NEW) {
+            projectModal = document.getElementById('newProjectModal');
+        }
+        else if(type === SETTINGS) {
+            projectModal = document.getElementById('projectSettingsModal');
+        }
         projectModal.style.display = "flex";
     
         window.onclick = function(event) {
@@ -39,8 +47,14 @@ class DOM {
         }
     }
 
-    closeProjectModal() {
-        let projectModal = document.getElementById('projectModal');
+    closeProjectModal(type) {
+        let projectModal = null;
+        if(type === NEW) {
+            projectModal = document.getElementById('newProjectModal');
+        }
+        else if(type === SETTINGS) {
+            projectModal = document.getElementById('projectSettingsModal');
+        }
         projectModal.style.display = "none";
     }
 
