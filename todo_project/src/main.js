@@ -41,7 +41,13 @@ document.getElementById('projectDeleteButton').addEventListener("click", ()=> {
 });
 
 document.getElementById('projectSubmitButton').addEventListener("click", ()=> {
-    alert('submit');
+    let project = FactoryManager.getObject(FactoryManager.getCurrentProjectID, PROJECT);
+    let projectText = document.getElementById('projectInput');
+    if(projectText.value != "" && projectText.value != null) {
+        FactoryManager.updateObject(project, projectText.value);
+        DomManager.renderDOM(project);
+        DomManager.closeProjectModal();
+    }
 });
 
 document.getElementById('projectNewTodoButton').addEventListener("click", ()=> {
