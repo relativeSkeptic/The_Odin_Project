@@ -1,7 +1,7 @@
 //helper functions for the dom.js file to aide in rendering todo objects
 
 //single function that renders all of the necessary 
-//todo date to the dom
+//todo data to the dom
 function todoRender(todoObject) {
     let newTodo = document.createElement('button');
 
@@ -73,23 +73,15 @@ function todoPriority(todoObject) {
     return todoPriority;
 }
 
-//prompts the user for the necessary todo data
-//for todo object creation
-function todoPrompt() {
-    let todoMap = new Map();
-    todoMap.set('type', 'todo');
+function renderAddTodoButton(object) {
+    let newTodo = document.createElement('button');
 
-    let name = prompt('What is the name of your task?');
-    let description = prompt('Describe the task to be completed: ');
-    let dueDate = prompt('When is the task due?');
-    let priority = prompt('Is this a high priority item?');
+    newTodo.id = object.id + "_create_todo";
+    newTodo.className = "todo-objects";
+    newTodo.textContent = "Add New Todo";
+    newTodo.style.fontWeight = "bold";
 
-    todoMap.set('name', name);
-    todoMap.set('description', description);
-    todoMap.set('dueDate', dueDate);
-    todoMap.set('priority', priority);
-
-    return todoMap;
+    document.getElementById('todoContainer').appendChild(newTodo);
 }
 
-export { todoRender, todoPrompt };
+export { todoRender, renderAddTodoButton };

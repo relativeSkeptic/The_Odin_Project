@@ -84,6 +84,49 @@
                 </div>
             </div>
         </div>
+        <div id="todoSettingsModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeTodoSettings" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">Todo Settings</p>
+                    <div class="flex flex-col gap-4">
+                        <label for="todoSettingsInput" class="font-bold text-nowrap">Todo Name:</label>
+                        <input type="text" id="todoSettingsInput" name="Todo Name" placeholder="Your Todo Name..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoDescription" class="font-bold text-nowrap">Description:</label>
+                        <input type="text" id="settingsTodoDescription" name="Description" placeholder="Your Description..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoDueDate" class="font-bold text-nowrap">Due Date:</label>
+                        <input type="text" id="settingsTodoDueDate" name="Due Date" placeholder="Due Date..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoPriority" class="font-bold text-nowrap">Priority:</label>
+                        <input type="text" id="settingsTodoPriority" name="Priority" placeholder="Priority..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-around">
+                        <button id="todoSettingsSubmit" class="submit-button">Submit</button>
+                        <button id="todoSettingsDelete" class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="newTodoModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeNewTodo" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">New Todo</p>
+                    <div class="flex flex-col gap-4">
+                        <label for="newTodoInput" class="font-bold text-nowrap">Todo Name:</label>
+                        <input type="text" id="newTodoInput" name="Todo Name" placeholder="Your Todo Name..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoDescription" class="font-bold text-nowrap">Description:</label>
+                        <input type="text" id="newTodoDescription" name="Description" placeholder="Your Description..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoDueDate" class="font-bold text-nowrap">Due Date:</label>
+                        <input type="text" id="newTodoDueDate" name="Due Date" placeholder="Due Date..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoPriority" class="font-bold text-nowrap">Priority:</label>
+                        <input type="text" id="newTodoPriority" name="Priority" placeholder="Priority..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="newTodoSubmit" class="submit-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">

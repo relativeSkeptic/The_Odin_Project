@@ -56,16 +56,4 @@ function selectButtonLength(button, project) {
     return button;
 }
 
-//prompts the user for the necessary project data
-//for project object creation
-function projectPrompt() {
-    let projectMap = new Map();
-    projectMap.set('type', 'project');
-
-    let projectName = prompt("What is the name of your Project?");
-    projectMap.set('name', projectName);
-
-    return projectMap;
-}
-
-export { projectRender, projectPrompt, updateProject };
+export { projectRender, updateProject };

@@ -1,7 +1,7 @@
 //singleton that manipulates the entire dom for the todo application
 
-import { todoRender, todoPrompt } from "./todoRender.js";
-import { projectRender, projectPrompt, updateProject } from "./projectRender.js";
+import { todoRender, renderAddTodoButton } from "./todoRender.js";
+import { projectRender, updateProject } from "./projectRender.js";
 
 const PROJECT = 'project';
 const TODO = 'todo';
@@ -47,6 +47,23 @@ class DOM {
         }
     }
 
+    displayTodoModal(type) {
+        let todoModal = null;
+        if(type === NEW) {
+            todoModal = document.getElementById('newTodoModal');
+        }
+        else if(type === SETTINGS) {
+            todoModal = document.getElementById('todoSettingsModal');
+        }
+        todoModal.style.display = "flex";
+    
+        window.onclick = function(event) {
+            if (event.target == todoModal) {
+                todoModal.style.display = "none";
+            }
+        }
+    }
+
     closeProjectModal(type) {
         let projectModal = null;
         if(type === NEW) {
@@ -58,15 +75,32 @@ class DOM {
         projectModal.style.display = "none";
     }
 
+    closeTodoModal(type) {
+        let todoModal = null;
+        if(type === NEW) {
+            todoModal = document.getElementById('newTodoModal');
+        }
+        else if(type === SETTINGS) {
+            todoModal = document.getElementById('todoSettingsModal');
+        }
+        todoModal.style.display = "none";
+    }
+
     //deletes the selected object from the DOM
-    deleteDOM(project) {
-        let projectSidebar = document.getElementById(project.id)
-        projectSidebar.remove();
-
-        let projectHero = document.getElementById('projectHero');
-        projectHero.textContent = "";
-
-        this.#clearHero();
+    deleteDOM(object) {
+        if(object.type === PROJECT) {
+            let projectSidebar = document.getElementById(project.id)
+            projectSidebar.remove();
+    
+            let projectHero = document.getElementById('projectHero');
+            projectHero.textContent = "";
+    
+            this.#clearHero();
+        }
+        else if(object.type === TODO) {
+            let todoObject = document.getElementById(object.id);
+            todoObject.remove();
+        }
     }
 
     //renders the selected object into the DOM
@@ -80,6 +114,8 @@ class DOM {
             else {
                 updateProject(object);
             }
+
+            renderAddTodoButton(object);
     
             for(const value of object.allTodo.values()) {
                 todoRender(value);
