@@ -2,11 +2,10 @@
 
 import { todoRender, renderAddTodoButton } from "./todoRender.js";
 import { projectRender, updateProject } from "./projectRender.js";
+import { addTodoEventListener, addTodoDisplayListener } from "./eventListeners.js";
 
 const PROJECT = 'project';
 const TODO = 'todo';
-const NEW = 'new';
-const SETTINGS = 'settings';
 
 class DOM {
     constructor() {
@@ -30,66 +29,10 @@ class DOM {
         }
     }
 
-    displayProjectModal(type) {
-        let projectModal = null;
-        if(type === NEW) {
-            projectModal = document.getElementById('newProjectModal');
-        }
-        else if(type === SETTINGS) {
-            projectModal = document.getElementById('projectSettingsModal');
-        }
-        projectModal.style.display = "flex";
-    
-        window.onclick = function(event) {
-            if (event.target == projectModal) {
-              projectModal.style.display = "none";
-            }
-        }
-    }
-
-    displayTodoModal(type) {
-        let todoModal = null;
-        if(type === NEW) {
-            todoModal = document.getElementById('newTodoModal');
-        }
-        else if(type === SETTINGS) {
-            todoModal = document.getElementById('todoSettingsModal');
-        }
-        todoModal.style.display = "flex";
-    
-        window.onclick = function(event) {
-            if (event.target == todoModal) {
-                todoModal.style.display = "none";
-            }
-        }
-    }
-
-    closeProjectModal(type) {
-        let projectModal = null;
-        if(type === NEW) {
-            projectModal = document.getElementById('newProjectModal');
-        }
-        else if(type === SETTINGS) {
-            projectModal = document.getElementById('projectSettingsModal');
-        }
-        projectModal.style.display = "none";
-    }
-
-    closeTodoModal(type) {
-        let todoModal = null;
-        if(type === NEW) {
-            todoModal = document.getElementById('newTodoModal');
-        }
-        else if(type === SETTINGS) {
-            todoModal = document.getElementById('todoSettingsModal');
-        }
-        todoModal.style.display = "none";
-    }
-
     //deletes the selected object from the DOM
     deleteDOM(object) {
         if(object.type === PROJECT) {
-            let projectSidebar = document.getElementById(project.id)
+            let projectSidebar = document.getElementById(object.id)
             projectSidebar.remove();
     
             let projectHero = document.getElementById('projectHero');
@@ -116,13 +59,13 @@ class DOM {
             }
 
             renderAddTodoButton(object);
+            addTodoEventListener(object);
     
             for(const value of object.allTodo.values()) {
                 todoRender(value);
+                addTodoDisplayListener(value);
             }
         }
-
-        this._currentProjectID = object.id;
     }
 
     //clears the hero portion of the DOM 

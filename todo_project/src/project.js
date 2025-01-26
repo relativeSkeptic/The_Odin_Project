@@ -40,7 +40,10 @@ class Project {
     }
 
     modifyTodo(todo) {
-        this._todo.set(todo.id, todo);
+        if(this._todo.has(todo.id)) {
+            this._todo.delete(todo.id);
+            this._todo.set(todo.id, todo);
+        }
     }
 
     deleteTodo(todoID) {

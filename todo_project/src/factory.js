@@ -39,13 +39,15 @@ class Factory {
 
     updateObject(object, objectData) {
         if(object.type === PROJECT) {
-            object.name = objectData
+            let updateProject = this._projectObjects.get(object.id);
+            updateProject.name = objectData
         }
         else if(object.type === TODO) {
-            object.name = objectDate.name;
-            object.description = objectData.description;
-            object.dueDate = objectData.dueDate;
-            object.priority = objectData.priority;
+            let updateObject = this._todoObjects.get(object.id);
+            updateObject.name = objectData.get('name');
+            updateObject.description = objectData.get('description');
+            updateObject.dueDate = objectData.get('dueDate');
+            updateObject.priority = objectData.get('priority');
         }
     }
 
@@ -56,7 +58,6 @@ class Factory {
                     this._todoObjects.delete(key);
                 }
             }
-    
             this._projectObjects.delete(object.id);
         }
 
