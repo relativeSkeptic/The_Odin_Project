@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Project</title>
+</head>
+<body class="min-h-screen max-h-screen flex flex-col">
+    <header>
+        <div class="flex bg-slate-700 items-center font-bold p-2 gap-2">
+            <div class="w-20 justify-center items-center invert">
+                <img src="../icons/header.svg">
+            </div>
+            <p class="text-4xl text-white">
+                To-Do List
+            </p>
+        </div>
+    </header>
+    <div id="main" class="flex flex-grow max-h-full overflow-auto">
+        <div id="sidebar" class="flex flex-col min-w-64 w-1/6 p-4 bg-gray-200 shadow-lg overflow-auto">
+            <div class="flex flex-col text-2xl mt-8">
+                <button id="new-project" class="sidebar-buttons sidebar-buttons:hover">
+                    <img src="../icons/add.svg">
+                    New Project
+                </button>
+            </div>
+            <div id="project-objects" class="flex flex-col ml-14 gap-3">
+            </div>
+        </div>
+        <div id="hero" class="w-full p-4 gap-4 bg-gray-300 overflow-auto">
+            <button id="projectHero" class="project-hero">
+            </button>
+            <div id="todoContainer" class="todo-container">
+            </div>
+        </div>
+    </div>
+    <div id="modals">
+        <div id="newProjectModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeNewProject" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">New Project</p>
+                    <div class="flex gap-4">
+                        <label for="newProjectInput" class="font-bold text-nowrap">Project Name:</label>
+                        <input type="text" id="newProjectInput" name="Project Name" placeholder="Your Project Name..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="newProjectSubmit" class="submit-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="projectSettingsModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeProjectSettings" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">Project Settings</p>
+                    <div class="flex gap-4">
+                        <label for="projectSettingsInput" class="font-bold text-nowrap">New Project Name:</label>
+                        <input type="text" id="projectSettingsInput" name="Project Name" placeholder="Your Project Name..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-around">
+                        <button id="projectSettingsSubmit" class="submit-button">Submit</button>
+                        <button id="projectSettingsDelete" class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="todoSettingsModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeTodoSettings" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">Todo Settings</p>
+                    <div class="flex flex-col gap-4">
+                        <label for="todoSettingsInput" class="font-bold text-nowrap">Todo Name:</label>
+                        <input type="text" id="todoSettingsInput" name="Todo Name" placeholder="Your Todo Name..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoDescription" class="font-bold text-nowrap">Description:</label>
+                        <input type="text" id="settingsTodoDescription" name="Description" placeholder="Your Description..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoDueDate" class="font-bold text-nowrap">Due Date:</label>
+                        <input type="text" id="settingsTodoDueDate" name="Due Date" placeholder="Due Date..." class="border-2 border-black w-full text-lg">
+                        <label for="settingsTodoPriority" class="font-bold text-nowrap">Priority:</label>
+                        <input type="text" id="settingsTodoPriority" name="Priority" placeholder="Priority..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-around">
+                        <button id="todoSettingsSubmit" class="submit-button">Submit</button>
+                        <button id="todoSettingsDelete" class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="newTodoModal" class="modal-background">
+            <div class="project-modal flex flex-col">
+                <button id="closeNewTodo" class="text-end mb-auto text-2xl font-bold">X</button>
+                <div class="flex flex-col gap-12 justify-center mb-auto">
+                    <p class="text-center text-2xl font-bold">New Todo</p>
+                    <div class="flex flex-col gap-4">
+                        <label for="newTodoInput" class="font-bold text-nowrap">Todo Name:</label>
+                        <input type="text" id="newTodoInput" name="Todo Name" placeholder="Your Todo Name..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoDescription" class="font-bold text-nowrap">Description:</label>
+                        <input type="text" id="newTodoDescription" name="Description" placeholder="Your Description..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoDueDate" class="font-bold text-nowrap">Due Date:</label>
+                        <input type="text" id="newTodoDueDate" name="Due Date" placeholder="Due Date..." class="border-2 border-black w-full text-lg">
+                        <label for="newTodoPriority" class="font-bold text-nowrap">Priority:</label>
+                        <input type="text" id="newTodoPriority" name="Priority" placeholder="Priority..." class="border-2 border-black w-full text-lg">
+                    </div>
+                    <div class="flex justify-center">
+                        <button id="newTodoSubmit" class="submit-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
+            <p class="text-white font-bold">
+                By Dakota Stroud @ 2024
+            </p>
+            <div class="flex gap-8 invert">
+                <div class="w-8">
+                    <button>
+                        <img id="linkedin" src="../../global_data/icons/linkedin.svg">
+                    </button>
+                </div>
+                <div class="w-8">
+                    <button>
+                        <img id="github" src="../../global_data/icons/github.svg">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
