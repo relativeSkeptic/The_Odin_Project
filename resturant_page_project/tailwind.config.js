@@ -1,18 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./src/*.html'],
+  purge: ["./src/*.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
     fontFamily: {
-      'cowboy': ["Rye", "sans-serif"],
+      cowboy: ["Rye", "sans-serif"],
     },
     backgroundImage: {
-      'cowboy': "url(../images/cowboy.jpg)",
+      cowboy: "url(../images/cowboy.jpg)",
     },
   },
   variants: {
-  extend: {},
+    extend: {},
   },
   plugins: [],
 };
