@@ -1,8 +1,7 @@
 import "./styles.css";
-import dropDown from "./dropdown.js";
+import { addDropDownEventListener } from "./dropdown.js";
 
-let dropDownElements = document.getElementsByClassName('dropDown');
-
-for (let i = 0; i < dropDownElements.length; i++) {
-    const menu = new dropDown(i, )
-}
+let dropDownMenu = document.getElementById('dropDownMenu');
+dropDownMenu.className = 'dropdown-menu';
+let dropDownContent = document.getElementById('dropDownContent');
+addDropDownEventListener(dropDownMenu, dropDownContent);
