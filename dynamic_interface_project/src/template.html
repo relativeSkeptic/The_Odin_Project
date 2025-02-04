@@ -20,20 +20,34 @@
       </div>
     </header>
     <div id="hero" class="flex flex-col flex-1 justify-center items-center">
-      <div class="w-1/2 border-2 border-black flex flex-1 justify-between items-center">
-        <button id="leftButton" class="border-2 border-black h-36 w-20 z-10">
-          LEFT
-        </button>
-        <div id="imageContainer">
+      <div class="w-1/2 border-2 border-black flex flex-1 flex-col">
+        <div id="slideshowContainer" class="flex flex-1 items-center justify-between">
+          <button id="leftButton" class="border-2 border-black h-36 w-20 z-10">
+            LEFT
+          </button>
+          <div id="imageContainer" class="relative m-auto max-w-3xl">
+            <div id="doorContainer" class="">
+              <img src="../images/door.jpg">
+            </div>
+            <div id="forestContainer" class="hidden">
+              <img src="../images/forest.jpg">
+            </div>
+            <div id="spaceContainer" class="hidden">
+              <img src="../images/space.jpg">
+            </div>
+          </div>
+          <button id="rightButton" class="border-2 border-black h-36 w-20 z-10">
+            RIGHT
+          </button>
         </div>
-        <button id="rightButton" class="border-2 border-black h-36 w-20 z-10">
-          RIGHT
-        </button>
+        <div id="imageCarousel" class="border-2 border-black h-10">
+          carousel
+        </div>
       </div>
     </div>
     <footer>
       <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
-        <p class="text-white font-bold">By Dakota Stroud @ 2024</p>
+        <p class="text-white font-bold">By Dakota Stroud @ 2025</p>
         <div class="flex gap-8 invert">
           <div class="w-8">
             <button>
