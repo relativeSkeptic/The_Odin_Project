@@ -20,28 +20,30 @@
       </div>
     </header>
     <div id="hero" class="flex flex-col flex-1 justify-center items-center">
-      <div class="w-1/2 border-2 border-black flex flex-1 flex-col">
+      <div class="w-1/2 flex flex-1 flex-col">
         <div id="slideshowContainer" class="flex flex-1 items-center justify-between">
-          <button id="leftButton" class="border-2 border-black h-36 w-20 z-10">
+          <button id="leftButton" class="bg-slate-300 hover:bg-slate-400 shadow-xl rounded-xl h-36 w-20 z-10">
             LEFT
           </button>
-          <div id="imageContainer" class="relative m-auto max-w-3xl">
-            <div id="doorContainer" class="">
+          <div id="imageContainer" class="relative m-auto max-w-3xl p-5">
+            <div id="doorContainer" class="slides flex">
               <img src="../images/door.jpg">
             </div>
-            <div id="forestContainer" class="hidden">
+            <div id="forestContainer" class="slides hidden">
               <img src="../images/forest.jpg">
             </div>
-            <div id="spaceContainer" class="hidden">
+            <div id="spaceContainer" class="slides hidden">
               <img src="../images/space.jpg">
             </div>
           </div>
-          <button id="rightButton" class="border-2 border-black h-36 w-20 z-10">
+          <button id="rightButton" class="bg-slate-300 hover:bg-slate-400 shadow-xl rounded-xl h-36 w-20 z-10">
             RIGHT
           </button>
         </div>
-        <div id="imageCarousel" class="border-2 border-black h-10">
-          carousel
+        <div id="imageCarousel" class="flex h-10 justify-center gap-10">
+          <button class="dot" id="dot1">1</button>
+          <button class="dot" id="dot2">2</button>
+          <button class="dot" id="dot3">3</button>
         </div>
       </div>
     </div>

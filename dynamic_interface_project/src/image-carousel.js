@@ -7,7 +7,7 @@ function carouselRight() {
     else {
         currentImage += 1;
     }
-    updateImage();
+    updateImage(currentImage);
 }
 
 function carouselLeft() {
@@ -17,11 +17,22 @@ function carouselLeft() {
     else {
         currentImage -= 1;
     }
-    updateImage();
+    updateImage(currentImage);
 }
 
-function updateImage() {
-    
+function updateImage(num) {
+    let slides = document.getElementsByClassName('slides');
+    let carousel = document.getElementsByClassName('dot');
+    for (let i = 0; i < slides.length; i++) {
+        if (i === num) {
+            slides[i].style.display = 'flex';
+            carousel[i].style.textDecoration = 'underline';
+        }
+        else {
+            slides[i].style.display = 'none';
+            carousel[i].style.textDecoration = 'none';
+        }
+    }
 }
 
-export { carouselLeft, carouselRight }
+export { carouselLeft, carouselRight, updateImage }
