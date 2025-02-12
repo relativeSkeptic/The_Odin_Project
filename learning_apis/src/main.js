@@ -12,20 +12,15 @@ searchText.value = 'cats';
 
 async function getImgData() {
     try {
-        fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${searchText.value}`, {mode: 'cors'})
-        .then(function(response) {
-            return response.json();
-          })
-        .then(function(response) {
-            console.log(response);
-            if(response.data.length === 0) {
-                giphyImg.src = "";
-                alert('ERROR');
-            } 
-            else {
-                giphyImg.src = response.data.images.original.url;
-            }
-        });
+        const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${searchText.value}`, {mode: 'cors'})
+        const giphyData = await response.json();
+        if(giphyData.data.length === 0) {
+            giphyImg.src = "";
+            alert('ERROR');
+        } 
+        else {
+            giphyImg.src = giphyData.data.images.original.url;
+        }
     }
     catch(error) {
         console.log(error);
