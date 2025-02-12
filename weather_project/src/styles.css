@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dayContainer {
+    @apply rounded-md flex flex-col gap-2 justify-center bg-slate-100 hover:border-black border-2;
+}
