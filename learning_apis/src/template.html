@@ -11,8 +11,19 @@
         <p class="">Learning API's</p>
       </div>
     </header>
-    <div class="flex flex-1">
-      
+    <div class="flex flex-1 justify-center items-center">
+      <div class="flex flex-col h-2/3 w-1/2 rounded-md bg-slate-600">
+        <div class="flex gap-4 p-4">
+          <input type="text" id="searchText" class="w-11/12 p-1 rounded-md" placeholder="Search...">
+          <button id="searchButton" class="p-1 rounded-md w-1/12 bg-white active:bg-slate-300">Search</button>
+        </div>
+        <div class="flex justify-center">
+          <button id="randomButton" class="p-1 rounded-md w-1/12 bg-white active:bg-slate-300">Random</button>
+        </div>
+        <div class="m-4 flex flex-1 justify-center items-center">
+          <img id="giphyImg" class="rounded-md">
+        </div>
+      </div>
     </div>
     <footer>
       <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
