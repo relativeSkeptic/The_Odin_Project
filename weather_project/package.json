@@ -1,0 +1,12 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "main": "webpackconfig.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
