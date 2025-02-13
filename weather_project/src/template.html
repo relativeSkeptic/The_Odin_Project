@@ -15,23 +15,24 @@
       <div id="leftBlob" class="flex flex-col flex-1 p-4 m-4 rounded-xl gap-2 bg-slate-300">
         <div id="searchContainer" class="flex gap-4 p-4 rounded-md">
           <input type="text" id="searchText" class="flex flex-1 p-1 rounded-md" placeholder="Search...">
-          <button id="searchButton" class="flex w-1/12 p-1 justify-center rounded-md bg-white active:bg-slate-300">Search</button>
+          <button id="searchButton" class="flex w-1/12 p-1 justify-center rounded-md bg-white active:bg-slate-100">Search</button>
         </div>
-        <div id="weatherDataContainer" class="flex flex-col flex-1 border-2 border-black">
-          <div id="dataContainer" class="flex flex-col gap-2 pt-4">
+        <div id="weatherDataContainer" class="flex flex-col flex-1">
+          <div id="dataContainer" class="flex flex-col gap-4 pt-4">
             <div id="locationContainer" class="flex justify-center">
-              <p id="location" class="border-2 border-black">Location</p>
+              <p id="location" class="font-bold text-4xl">Huntsville, AL</p>
             </div>
             <div id="dateContainer" class="flex justify-center">
-              <p id="date" class="border-2 border-black">Date</p>
+              <p id="date" class="font-bold text-3xl">Wednesday - February 12th</p>
             </div>
           </div>
           <div id="weatherImgContainer" class="flex flex-1 p-4 gap-4">
-            <div id="weatherIconContainer" class="border-black border-2 overflow-hidden w-1/2">
-              <img id="weatherIcon" class="" src="../images/clouds.png">
+            <div id="weatherIconContainer" class="flex flex-col w-1/2 items-center mt-14">
+              <img id="weatherIcon" class="w-1/2" src="../images/clouds.png">
             </div>
-            <div id="dateDataContainer" class="border-2 border-black flex flex-1 w-1/2">
-
+            <div id="dateDataContainer" class="flex flex-col justify-center w-1/2 gap-8">
+              <p id="temperature" class="text-9xl">59.8&deg</p>
+              <p id="weatherType" class="text-5xl">Cloudy</p>
             </div>
           </div>
         </div>
@@ -39,7 +40,7 @@
           <button id="sunday" class="dayContainer">Sun</button>
           <button id="monday" class="dayContainer">
             <p class="font-bold">Monday</p>
-            <p id="mondayTemp" class="text-xl">57.8</p>
+            <p id="mondayTemp" class="text-xl">59.8&deg</p>
             <p id="mondayDesc" class="font-thin">Rain, Overcast</p>
           </button>
           <button id="tuesday" class="dayContainer">Tues</button>
