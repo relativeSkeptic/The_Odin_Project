@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body class="min-h-screen max-h-screen flex flex-col h-full">
+  <body class="h-screen flex  flex-col m-0">
     <header>
       <div class="flex gap-8 text-2xl bg-slate-700 p-4 text-white font-bold">
         <p class="">Weather App</p>
@@ -26,32 +26,65 @@
               <p id="date" class="font-bold text-3xl">Wednesday - February 12th</p>
             </div>
           </div>
-          <div id="weatherImgContainer" class="flex flex-1 p-4 gap-4">
-            <div id="weatherIconContainer" class="flex flex-col w-1/2 items-center mt-14">
-              <img id="weatherIcon" class="w-1/2" src="../images/clouds.png">
+          <div id="weatherImgContainer" class="flex flex-1 p-4 gap-20 justify-center mt-5 mb-5">
+            <div id="weatherIconContainer" class="flex flex-col items-center">
+              <img id="weatherIcon" class="flex h-full w-full" src="../icons/partly-cloudy-day.svg">
             </div>
-            <div id="dateDataContainer" class="flex flex-col justify-center w-1/2 gap-8">
-              <p id="temperature" class="text-9xl">59.8&deg</p>
+            <div id="dateDataContainer" class="flex flex-col justify-center">
+              <p id="temperature" class="text-8xl font-bold">59.8&deg</p>
               <p id="weatherType" class="text-5xl">Cloudy</p>
             </div>
           </div>
         </div>
         <div id="weeklyWeatherContainer" class="grid grid-cols-7 h-1/4 gap-2">
-          <button id="sunday" class="dayContainer">Sun</button>
-          <button id="monday" class="dayContainer">
-            <p class="font-bold">Monday</p>
-            <p id="mondayTemp" class="text-xl">59.8&deg</p>
-            <p id="mondayDesc" class="font-thin">Rain, Overcast</p>
+          <button id="dayOne" class="dayContainer">
+            <p class="font-bold">dayOne</p>
           </button>
-          <button id="tuesday" class="dayContainer">Tues</button>
-          <button id="wednesday" class="dayContainer">Wed</button>
-          <button id="thursday" class="dayContainer">Thur</button>
-          <button id="friday" class="dayContainer">Fri</button>
-          <button id="saturday" class="dayContainer">Sat</button>
+          <button id="dayTwo" class="dayContainer">
+            <p class="font-bold">dayTwo</p>
+          </button>
+          <button id="dayThree" class="dayContainer">
+            <p class="font-bold">dayThree</p>
+          </button>
+          <button id="dayFour" class="dayContainer">
+            <p class="font-bold">dayFour</p>
+          </button>
+          <button id="dayFive" class="dayContainer">
+            <p class="font-bold">dayFive</p>
+          </button>
+          <button id="daySix" class="dayContainer">
+            <p class="font-bold">daySix</p>
+          </button>
+          <button id="daySeven" class="dayContainer">
+            <p class="font-bold">daySeven</p>
+          </button>
         </div>
       </div>
-      <div id="rightBlob" class="flex p-4 m-4 rounded-xl w-1/4 bg-slate-300">
-        rightBlob
+      <div id="rightBlob" class="grid grid-cols-2 grid-rows-3 p-4 m-4 rounded-xl w-1/4 bg-slate-300 gap-4">
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Minimum Temperature</p>
+          <p id="minTemp" class="text-xl">54.3&deg</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Maximum Temperature</p>
+          <p id="maxTemp" class="text-xl">59.8&deg</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Precipitation Probability</p>
+          <p id="precipProb" class="text-xl">27.8%</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Precipitation Type</p>
+          <p id="precipType" class="text-xl">Rain</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Humidity</p>
+          <p id="humidity" class="text-xl">15.6%</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Wind Speed</p>
+          <p id="windSpeed" class="text-xl">26 MPH</p>
+        </div>
       </div>
     </div>
     <footer>
