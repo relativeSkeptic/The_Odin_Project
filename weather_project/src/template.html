@@ -20,19 +20,20 @@
         <div id="weatherDataContainer" class="flex flex-col flex-1">
           <div id="dataContainer" class="flex flex-col gap-4 pt-4">
             <div id="locationContainer" class="flex justify-center">
-              <p id="location" class="font-bold text-4xl">Huntsville, AL</p>
+              <p id="location" class="font-bold text-4xl">Huntsville, AL, United States</p>
             </div>
             <div id="dateContainer" class="flex justify-center">
               <p id="date" class="font-bold text-3xl">Wednesday - February 12th</p>
             </div>
           </div>
-          <div id="weatherImgContainer" class="flex flex-1 p-4 gap-20 justify-center mt-5 mb-5">
-            <div id="weatherIconContainer" class="flex flex-col items-center">
-              <img id="weatherIcon" class="flex h-full w-full" src="../icons/partly-cloudy-day.svg">
+          <div id="weatherImgContainer" class="flex flex-1 gap-10">
+            <div id="weatherIconContainer" class="h-full w-full flex justify-end items-center">
+              <img id="weatherIcon" class="h-1/2 w-1/2" src="../icons/clear-day.svg">
             </div>
-            <div id="dateDataContainer" class="flex flex-col justify-center">
+            <div id="dateDataContainer" class="flex flex-col justify-center h-full w-full gap-6">
               <p id="temperature" class="text-8xl font-bold">59.8&deg</p>
-              <p id="weatherType" class="text-5xl">Cloudy</p>
+              <p id="weatherCondition" class="text-5xl">Clear</p>
+              <p id="weatherDescription" class="text-xl">Clear conditions throughout the day.</p>
             </div>
           </div>
         </div>
