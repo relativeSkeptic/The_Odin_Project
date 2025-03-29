@@ -27,6 +27,8 @@ async function initialize() {
         daysOfWeek.push(weatherData.days[i].datetime);
     }
     updateDates(daysOfWeek);
+    updateWeatherInfo(weatherData.days[0]);
+    updateDisplay(weatherData.days[0], weatherData.resolvedAddress);
 }
 
 async function query(newLocation) {
@@ -47,12 +49,23 @@ function updateDates(daysOfWeek) {
     });
 }
 
-function updateWeatherInfo() {
-
+function updateWeatherInfo(currentData) {
+    weatherInfo.minTemp.textContent = currentData.tempmin + "\u00B0";;
+    weatherInfo.maxTemp.textContent = currentData.tempmax + "\u00B0";;
+    weatherInfo.precipProb.textContent = currentData.precipprob + "%";
+    weatherInfo.precipType.textContent = currentData.preciptype;
+    weatherInfo.humidity.textContent = currentData.humidity + "%";
+    weatherInfo.windSpeed.textContent = currentData.windspeed + " MPH";
 }
 
-function updateDisplay() {
-
+function updateDisplay(currentData, address) {
+    display.location.textContent = address;
+    display.date.textContent = currentData.datetime;
+    const iconPath = require(`../icons/${currentData.icon}.svg`);
+    display.weatherIcon.src = iconPath;
+    display.temperature.textContent = currentData.temp + "\u00B0";;
+    display.weatherCondition.textContent = currentData.conditions;
+    display.weatherDescription.textContent = currentData.description;
 }
 
 display.searchButton.addEventListener("click", function() {

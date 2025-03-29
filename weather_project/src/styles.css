@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .dayContainer {
-    @apply rounded-md flex flex-col gap-2 justify-center items-center bg-slate-100 hover:border-black border-2 p-10 font-bold;
+    @apply rounded-md flex flex-col gap-2 justify-center items-center bg-slate-100 hover:bg-slate-200 border-2 p-10 font-bold;
 }
 
 .dataContainer {

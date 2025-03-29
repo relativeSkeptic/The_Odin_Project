@@ -43,7 +43,7 @@ const display = {
     weatherIcon: document.getElementById('weatherIcon'),
     temperature: document.getElementById('temperature'),
     weatherCondition: document.getElementById('weatherCondition'),
-    weatherDescription: document.getElementById('weatherCondition'),
+    weatherDescription: document.getElementById('weatherDescription'),
     searchButton: document.getElementById('searchButton')
 }
 
