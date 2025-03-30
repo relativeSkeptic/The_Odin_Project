@@ -1,13 +1,4 @@
-const dateButtons = {
-    buttons: {
-        dayOne: document.getElementById('dayOne'),
-        dayTwo: document.getElementById('dayTwo'),
-        dayThree: document.getElementById('dayThree'),
-        dayFour: document.getElementById('dayFour'),
-        dayFive: document.getElementById('dayFive'),
-        daySix: document.getElementById('daySix'),
-        daySeven: document.getElementById('daySeven')
-    },
+const dateData = {
     names: {
         dayOne: document.getElementById('dayOneName'),
         dayTwo: document.getElementById('dayTwoName'),
@@ -44,7 +35,19 @@ const display = {
     temperature: document.getElementById('temperature'),
     weatherCondition: document.getElementById('weatherCondition'),
     weatherDescription: document.getElementById('weatherDescription'),
+}
+
+const buttons = {
+    dates: {
+        dayOne: document.getElementById('dayOne'),
+        dayTwo: document.getElementById('dayTwo'),
+        dayThree: document.getElementById('dayThree'),
+        dayFour: document.getElementById('dayFour'),
+        dayFive: document.getElementById('dayFive'),
+        daySix: document.getElementById('daySix'),
+        daySeven: document.getElementById('daySeven')
+    },
     searchButton: document.getElementById('searchButton')
 }
 
-export { dateButtons, weatherInfo, display };
+export { dateData, weatherInfo, display, buttons };
