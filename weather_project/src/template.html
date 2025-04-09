@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body class="h-screen flex  flex-col m-0">
+    <header>
+      <div class="flex gap-8 text-2xl bg-slate-700 p-4 text-white font-bold">
+        <p class="">Weather App</p>
+      </div>
+    </header>
+    <div id="hero" class="flex flex-1 bg-white">
+      <div id="leftBlob" class="flex flex-col flex-1 p-4 m-4 rounded-xl gap-2 bg-slate-300">
+        <div id="searchContainer" class="flex gap-4 p-4 rounded-md">
+          <input type="text" id="searchText" class="flex flex-1 p-1 rounded-md" placeholder="Search...">
+          <button id="searchButton" class="flex w-1/12 p-1 justify-center rounded-md bg-white active:bg-slate-100">Search</button>
+        </div>
+        <div id="weatherDataContainer" class="flex flex-col flex-1">
+          <div id="dataContainer" class="flex flex-col gap-4 pt-4">
+            <div id="locationContainer" class="flex justify-center">
+              <p id="location" class="font-bold text-4xl"></p>
+            </div>
+            <div id="dateContainer" class="flex justify-center">
+              <p id="date" class="font-bold text-3xl"></p>
+            </div>
+          </div>
+          <div id="weatherImgContainer" class="flex flex-1 gap-10">
+            <div id="weatherIconContainer" class="h-full w-full flex justify-end items-center">
+              <img id="weatherIcon" class="h-1/2 w-1/2" src="../icons/clear-day.svg">
+            </div>
+            <div id="dateDataContainer" class="flex flex-col justify-center h-full w-full gap-6">
+              <p id="temperature" class="text-8xl font-bold">NULL</p>
+              <p id="weatherCondition" class="text-5xl">NULL</p>
+              <p id="weatherDescription" class="text-xl">NULL</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-7 h-1/4 gap-2">
+          <button id="dayOne" class="dayContainer">
+            <p id="dayOneName" class="font-bold"></p>
+            <p id="dayOneDate"></p>
+          </button>
+          <button id="dayTwo" class="dayContainer">
+            <p id="dayTwoName" class="font-bold"></p>
+            <p id="dayTwoDate"></p>
+          </button>
+          <button id="dayThree" class="dayContainer">
+            <p id="dayThreeName" class="font-bold"></p>
+            <p id="dayThreeDate"></p>
+          </button>
+          <button id="dayFour" class="dayContainer">
+            <p id="dayFourName" class="font-bold"></p>
+            <p id="dayFourDate"></p>
+          </button>
+          <button id="dayFive" class="dayContainer">
+            <p id="dayFiveName" class="font-bold"></p>
+            <p id="dayFiveDate"></p>
+          </button>
+          <button id="daySix" class="dayContainer">
+            <p id="daySixName" class="font-bold"></p>
+            <p id="daySixDate"></p>
+          </button>
+          <button id="daySeven" class="dayContainer">
+            <p id="daySevenName" class="font-bold"></p>
+            <p id="daySevenDate"></p>
+          </button>
+        </div>
+      </div>
+      <div id="rightBlob" class="grid grid-cols-2 grid-rows-3 p-4 m-4 rounded-xl w-1/4 bg-slate-300 gap-4">
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Minimum Temperature</p>
+          <p id="minTemp" class="text-xl">NULL</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Maximum Temperature</p>
+          <p id="maxTemp" class="text-xl">NULL</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Precipitation Probability</p>
+          <p id="precipProb" class="text-xl">NULL</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Precipitation Type</p>
+          <p id="precipType" class="text-xl">NULL</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Humidity</p>
+          <p id="humidity" class="text-xl">NULL</p>
+        </div>
+        <div class="dataContainer">
+          <p class="p-2 text-center font-bold text-lg">Wind Speed</p>
+          <p id="windSpeed" class="text-xl">NULL</p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
+        <p class="text-white font-bold">By Dakota Stroud @ 2025</p>
+        <div class="flex gap-8 invert">
+          <div class="w-8">
+            <button>
+              <img id="linkedin" src="../../global_data/icons/linkedin.svg" />
+            </button>
+          </div>
+          <div class="w-8">
+            <button>
+              <img id="github" src="../../global_data/icons/github.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
