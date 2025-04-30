@@ -86,11 +86,12 @@ class LinkedList {
 
     find(value) {
         let currentNode = this.head;
-        for(let i = 0; i < this.size(); i++) {
+        let index = 0;
+        while(currentNode != null) {
             if(currentNode.value === value) {
-                console.log('found');
-                return i;
+                return index;
             }
+            index++;
             currentNode = currentNode.next;
         }
         return null;
@@ -107,11 +108,41 @@ class LinkedList {
     }
 
     insertAt(value, index) {
-
+        let newNode = new Node(value);
+        let currentNode = this.head;
+        let tempNode = null;
+        for(let i = 0; i < this.size(); i++) {
+            if(i === index - 1) {
+                tempNode = currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+        currentNode = this.head;
+        for(let i = 0; i < this.size(); i++) {
+            if(i === index) {
+                tempNode.next = newNode;
+                newNode.next = currentNode;
+            }
+            currentNode = currentNode.next;
+        }
     }
 
     removeAt(index) {
-
+        let currentNode = this.head;
+        let tempNode = null;
+        for(let i = 0; i < this.size(); i++) {
+            if(i === index + 1) {
+                tempNode = currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+        currentNode = this.head;
+        for(let i = 0; i < this.size(); i++) {
+            if(i === index - 1) {
+                currentNode.next = tempNode;
+            }
+            currentNode = currentNode.next;
+        }
     }
 }
 
@@ -147,9 +178,12 @@ list.toString();
 list.contains(2);
 list.contains(8);
 
-if (list.find(5) != null) {
-    console.log('Value found');
-}
-else {
-    console.log('Value not found');
-}
+console.log(list.find(5));
+
+list.removeAt(4);
+
+list.toString();
+
+list.insertAt(50, 2);
+
+list.toString();
