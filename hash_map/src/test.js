@@ -19,14 +19,16 @@ function testHashFunction() {
 
 function testLoadFactor(nodes) {
     console.log('Testing Hash Map load factor...');
-    console.log('Loading ' + nodes + ' into Hash Map.');
+    console.log('Loading ' + nodes + ' nodes into Hash Map');
 
     let hashMap = new HashMap();
     for (let i = 0; i < nodes; i++) {
-        hashMap.hash('test');
+        hashMap.set(i.toString(), 'Test ' + i.toString());
     }
 
-    return hashMap.capacity;
+    let list = hashMap.entries();
+    console.log(list);
+    console.log(hashMap.capacity);
 }
 
 function testSetFunction() {
@@ -47,6 +49,7 @@ function testRemoveFunction() {
 
 function testHashMapClass() {
     testHashFunction();
+    testLoadFactor(50);
 }
 
 testHashMapClass();

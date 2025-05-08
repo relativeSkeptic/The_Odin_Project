@@ -4,32 +4,33 @@ export class HashMap {
     constructor() {
         this.loadFactor = 0.8;
         this.capacity = 16;
-        this.list = [];
+        this.size = 0;
+        this.data = [];
     }
 
     hash(key) {
-        let hashCode = 0;
+        let hash = 0;
       
-        const primeNumber = 31;
+        const primeNumber = 107;
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
+            hash = (primeNumber * hash + key.charCodeAt(i)) % this.capacity;
         }
 
-        return hashCode;
+        return hash;
     }
 
     set(key, value) {
-        if(this.checkCapacity() === true) {
-            updateCapacity();
+        this.checkCapacity();
+        let hash = this.hash(key);
+        this.checkBounds(hash);
+
+        if (!this.data[hash]) {
+            this.data[hash] = [];
         }
 
-        let hashCode = this.hash(key);
-        
-        if (hashCode < 0 || hashCode >= capacity.length) {
-            throw new Error("Trying to access index out of bounds");
-        }
+        this.data[hash].push([key, value]);
 
-        this.list[hashCode] = value;
+        this.size++;
     }
 
     get(key) {
@@ -45,11 +46,11 @@ export class HashMap {
     }
 
     length() {
-        return this.list.length;
+
     }
 
     clear() {
-        this.list.length = 0;
+
     }
 
     keys() {
@@ -61,23 +62,18 @@ export class HashMap {
     }
 
     entries() {
-
-    }
-
-    getList() {
-        return this.list;
+        return this.data;
     }
 
     checkCapacity() {
-        if(this.list.length > this.capacity * this.loadFactor) {
-            return true;
-        }
-        else {
-            return false;
+        if(this.size > this.capacity * this.loadFactor) {
+            this.capacity = this.capacity * 2;
         }
     }
 
-    updateCapacity() {
-        this.capacity = this.capacity * 2;
+    checkBounds(index) {
+        if (index < 0 || index >= this.capacity.length) {
+            throw new Error("Trying to access index out of bounds");
+        }
     }
 }
