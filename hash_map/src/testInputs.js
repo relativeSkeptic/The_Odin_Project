@@ -1,7 +1,4 @@
 const inputCapacity = {
-    negativeFifty: -50,
-    negativeOne: -1,
-    zero: 0,
     eleven: 11,
     twelve: 12,
     thirteen: 13,
@@ -9,17 +6,22 @@ const inputCapacity = {
     twentySix: 26,
     oneThousandTwentyThree: 1023,
     oneThousandSixHundredForty: 1640,
-    thirtyTwoThousandEightyThree: 32083,
-    float: 3.14,
-    string: "10"
+    thirtyTwoThousandEightyThree: 32083
 };
 
-const inputGet = {
-    keyOne: [ 'keyOne', 'valueOne' ],
-    keyTwo: [ 'keyTwo', 'valueTwo' ],
-    keyThree: [ 'keyThree', 'valueThree' ],
-    keyFour: [ 'keyFour', 'valueFour' ],
-    keyFive: [ 'keyFive', 'valueFive' ]
+const inputGetSet = {
+    stringTest: [ 'favoriteFruit', 'apple' ],
+    numberTest: [ 'favoriteNumber', 5 ],
+    keyNumberTest: [ 28, 'theKeyIsAnInteger' ],
+    updateValueTest: [ 'favoriteFruit', 'banana' ],
+    nullKeyTest: [],
+    specialCharTest: [ 'te$t😀', '🤯em0j!' ],
+    emptyKeyTest: [ '', 'theKeyIsEmpty' ],
+    updateValue_2Test: [28, 'theKeyIsStillAnInteger' ]
 };
 
-export { inputCapacity };
+const largeInputGet = {
+
+};
+
+export { inputCapacity, inputGetSet };

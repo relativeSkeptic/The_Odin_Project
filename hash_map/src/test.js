@@ -1,6 +1,6 @@
 import { HashMap } from './main'
-import { inputCapacity } from './testInputs';
-import { outputCapacity } from './testOutputs';
+import { inputCapacity, inputGetSet } from './testInputs';
+import { outputCapacity, outputGetSet } from './testOutputs';
 
 function testCapacity(nodes) {
     let hashMap = new HashMap();
@@ -31,18 +31,30 @@ function capacityOutputs() {
     });
 }
 
-function testGet() {
-
+function testGetSet() {
+    let hashMap = new HashMap();
+    Object.entries(inputGetSet).forEach(([key, value]) => {
+        console.log('Setting: ');
+        console.log('Key: ' + key + ' - Value: ' + value);
+        hashMap.set(key, value);
+    });
 }
 
-function getOutputs() {
-    console.log('Testing Hash Map Get() function...');
+function testLargeGetSet() {
+    let hashMap = new HashMap();
+    for (let i = 0; i < 1000; i++) {
+        hashMap.set(i.toString(), 'input' + i.toString());
+    }
+}
 
+function getSetOutputs() {
+    console.log('Testing Hash Map Get / Set functions...');
+    testGetSet();
 }
 
 function testHashMapClass() {
     capacityOutputs();
-    getOutputs();
+    getSetOutputs();
 }
 
 testHashMapClass();
