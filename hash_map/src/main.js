@@ -20,7 +20,6 @@ export class HashMap {
     }
 
     set(key, value) {
-        this.checkCapacity();
         let hash = this.hash(key);
         this.checkBounds(hash);
 
@@ -31,6 +30,7 @@ export class HashMap {
         this.data[hash].push([key, value]);
 
         this.size++;
+        this.checkCapacity();
     }
 
     get(key) {
@@ -63,6 +63,10 @@ export class HashMap {
 
     entries() {
         return this.data;
+    }
+
+    getSize() {
+        return this.capacity;
     }
 
     checkCapacity() {

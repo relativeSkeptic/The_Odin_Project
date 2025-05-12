@@ -1,34 +1,35 @@
 import { HashMap } from './main'
-import { hashKeys, loadValues } from './testValues';
+import { inputCapacity } from './inputs';
+import { outputCapacity } from './outputs';
 
-function testHashFunction() {
-    let hashMap = new HashMap();
-    console.log('Testing hash function...');
-    for (const key in hashKeys) {
-        if (hashKeys.hasOwnProperty(key)) {
-            const value = hashKeys[key];
-            console.log('------');
-            console.log('Testing ' + key + ' key');
-            console.log('Value: ' + value);
-            console.log('Generating Hash...');
-            let hashCode = hashMap.hash(value);
-            console.log('Hash: ' + hashCode);
-        }
-    }
-}
-
-function testLoadFactor(nodes) {
-    console.log('Testing Hash Map load factor...');
-    console.log('Loading ' + nodes + ' nodes into Hash Map');
-
+function testCapacity(nodes) {
     let hashMap = new HashMap();
     for (let i = 0; i < nodes; i++) {
         hashMap.set(i.toString(), 'Test ' + i.toString());
     }
+    return hashMap.getSize();
+}
 
-    let list = hashMap.entries();
-    console.log(list);
-    console.log(hashMap.capacity);
+
+function capacityOutputs() {
+    console.log('Testing Hash Map load factor...');
+    Object.entries(inputCapacity).forEach(([key, value]) => {
+        console.log('Inputting ' + value + ' nodes into Hash Map');
+
+        let actualCapacity = testCapacity(value);
+        let expectedCapacity = outputCapacity[key];
+
+        console.log('Expected Capacity: ' + expectedCapacity);
+        console.log('Actual Capacity: ' + actualCapacity);
+
+        if(expectedCapacity === actualCapacity) {
+            console.log('%cPASS', 'color: green; font-weight: bold;');
+        }
+        else {
+            console.log('%cFAIL', 'color: red; font-weight: bold;');
+        }
+        console.log('%c-----', 'color: yellow; font-weight: bold;');
+    });
 }
 
 function testSetFunction() {
@@ -48,8 +49,7 @@ function testRemoveFunction() {
 }
 
 function testHashMapClass() {
-    testHashFunction();
-    testLoadFactor(50);
+    capacityOutputs();
 }
 
 testHashMapClass();
