@@ -14,4 +14,12 @@ const inputCapacity = {
     string: "10"
 };
 
+const inputGet = {
+    keyOne: [ 'keyOne', 'valueOne' ],
+    keyTwo: [ 'keyTwo', 'valueTwo' ],
+    keyThree: [ 'keyThree', 'valueThree' ],
+    keyFour: [ 'keyFour', 'valueFour' ],
+    keyFive: [ 'keyFive', 'valueFive' ]
+};
+
 export { inputCapacity };

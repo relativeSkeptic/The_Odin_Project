@@ -1,6 +1,6 @@
 import { HashMap } from './main'
-import { inputCapacity } from './inputs';
-import { outputCapacity } from './outputs';
+import { inputCapacity } from './testInputs';
+import { outputCapacity } from './testOutputs';
 
 function testCapacity(nodes) {
     let hashMap = new HashMap();
@@ -10,9 +10,8 @@ function testCapacity(nodes) {
     return hashMap.getSize();
 }
 
-
 function capacityOutputs() {
-    console.log('Testing Hash Map load factor...');
+    console.log('Testing Hash Map capacity...');
     Object.entries(inputCapacity).forEach(([key, value]) => {
         console.log('Inputting ' + value + ' nodes into Hash Map');
 
@@ -32,24 +31,18 @@ function capacityOutputs() {
     });
 }
 
-function testSetFunction() {
+function testGet() {
 
 }
 
-function testGetFunction() {
-
-}
-
-function testHasFunction() {
-
-}
-
-function testRemoveFunction() {
+function getOutputs() {
+    console.log('Testing Hash Map Get() function...');
 
 }
 
 function testHashMapClass() {
     capacityOutputs();
+    getOutputs();
 }
 
 testHashMapClass();

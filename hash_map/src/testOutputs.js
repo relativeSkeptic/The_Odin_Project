@@ -14,4 +14,12 @@ const outputCapacity = {
     string: 16
 };
 
+const outputGet = {
+    keyOne: 'valueOne',
+    keyTwo: 'valueTwo',
+    keyThree: 'valueThree',
+    keyFour: 'valueFour',
+    keyFive: 'valueFive'
+};
+
 export { outputCapacity };
