@@ -20,11 +20,27 @@ export class HashMap {
     }
 
     set(key, value) {
+        //Obtains hash of key
         let hash = this.hash(key);
+        //Checks to ensure we are within the bounds of the array
         this.checkBounds(hash);
 
+        //Attempts to access a bucket at a particular hash
         if (!this.data[hash]) {
+            //If nothing exists create an array for that bucket
             this.data[hash] = [];
+        }
+        else {
+            //Check if the key already exists in the bucket
+            for(let i = 0; i < this.data[hash].length; i++) {
+                const [currentKey] = this.data[hash][i];
+                //If the key already exists update the value and return
+                if(currentKey === key) {
+                    this.data[hash][i][1] = value;
+                    return;
+                }
+                
+            }
         }
 
         this.data[hash].push([key, value]);
@@ -34,17 +50,25 @@ export class HashMap {
     }
 
     get(key) {
-        let hash = this.hash(key);
-
-        if (this.data[hash]) {
-            const bucket = this.data[hash];
-            for (let [bucketKey, bucketValue] of bucket) {
-                if (bucketKey === key) {
-                    return bucketValue;
+        const hash = this.hash(key);
+        const bucket = this.data[hash];
+    
+        if (bucket) {
+            for (let item of bucket) {
+                if (Array.isArray(item)) {
+                    const [bucketKey, bucketValue] = item;
+                    if (bucketKey === key) {
+                        return bucketValue;
+                    }
+                } 
+                else {
+                    if (item.key === key) {
+                        return item.value;
+                    }
                 }
             }
         }
-
+    
         return null;
     }
 
@@ -57,7 +81,7 @@ export class HashMap {
     }
 
     length() {
-
+        return this.size;
     }
 
     clear() {

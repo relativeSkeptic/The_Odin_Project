@@ -1,60 +1,43 @@
-import { HashMap } from './main'
-import { inputCapacity, inputGetSet } from './testInputs';
-import { outputCapacity, outputGetSet } from './testOutputs';
+import { HashMap } from "./main";
 
-function testCapacity(nodes) {
-    let hashMap = new HashMap();
-    for (let i = 0; i < nodes; i++) {
-        hashMap.set(i.toString(), 'Test ' + i.toString());
-    }
-    return hashMap.getSize();
-}
+const test = new HashMap();
 
-function capacityOutputs() {
-    console.log('Testing Hash Map capacity...');
-    Object.entries(inputCapacity).forEach(([key, value]) => {
-        console.log('Inputting ' + value + ' nodes into Hash Map');
+test.set('apple', 'red');
+test.set('banana', 'yellow');
+test.set('carrot', 'orange');
+test.set('dog', 'brown');
+test.set('elephant', 'gray');
+test.set('frog', 'green');
+test.set('grape', 'purple');
+test.set('hat', 'black');
+test.set('ice cream', 'white');
+test.set('jacket', 'blue');
+test.set('kite', 'pink');
+test.set('lion', 'golden');
 
-        let actualCapacity = testCapacity(value);
-        let expectedCapacity = outputCapacity[key];
+console.log('Size: ' + test.getSize());
+console.log('Length: ' + test.length());
+console.log(test.entries());
 
-        console.log('Expected Capacity: ' + expectedCapacity);
-        console.log('Actual Capacity: ' + actualCapacity);
+test.set('moon', 'silver');
 
-        if(expectedCapacity === actualCapacity) {
-            console.log('%cPASS', 'color: green; font-weight: bold;');
-        }
-        else {
-            console.log('%cFAIL', 'color: red; font-weight: bold;');
-        }
-        console.log('%c-----', 'color: yellow; font-weight: bold;');
-    });
-}
+console.log('Size: ' + test.getSize());
+console.log('Length: ' + test.length());
+console.log(test.entries());
 
-function testGetSet() {
-    let hashMap = new HashMap();
-    Object.entries(inputGetSet).forEach(([key, value]) => {
-        console.log('Setting: ');
-        console.log('Key: ' + key + ' - Value: ' + value);
-        hashMap.set(key, value);
-    });
-}
+test.set('apple', 'green');
+test.set('banana', 'pink');
+test.set('carrot', 'red');
+test.set('dog', 'beige');
+test.set('elephant', 'white');
+test.set('frog', 'purple');
+test.set('grape', 'white');
+test.set('hat', 'tan');
+test.set('ice cream', 'brown');
+test.set('jacket', 'green');
+test.set('kite', 'neon');
+test.set('lion', 'indigo');
 
-function testLargeGetSet() {
-    let hashMap = new HashMap();
-    for (let i = 0; i < 1000; i++) {
-        hashMap.set(i.toString(), 'input' + i.toString());
-    }
-}
-
-function getSetOutputs() {
-    console.log('Testing Hash Map Get / Set functions...');
-    testGetSet();
-}
-
-function testHashMapClass() {
-    capacityOutputs();
-    getSetOutputs();
-}
-
-testHashMapClass();
+console.log('Size: ' + test.getSize());
+console.log('Length: ' + test.length());
+console.log(test.entries());
