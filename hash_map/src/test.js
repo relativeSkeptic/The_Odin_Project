@@ -41,3 +41,8 @@ test.set('lion', 'indigo');
 console.log('Size: ' + test.getSize());
 console.log('Length: ' + test.length());
 console.log(test.entries());
+
+console.log("Has Apple?: " + test.has("apple"));
+console.log("Remove Apple?: " + test.remove("apple"));
+console.log(test.entries());
+console.log("Has Apple?: " + test.has("apple"));

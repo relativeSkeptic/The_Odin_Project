@@ -24,60 +24,98 @@ export class HashMap {
         let hash = this.hash(key);
         //Checks to ensure we are within the bounds of the array
         this.checkBounds(hash);
-
-        //Attempts to access a bucket at a particular hash
-        if (!this.data[hash]) {
-            //If nothing exists create an array for that bucket
-            this.data[hash] = [];
-        }
-        else {
-            //Check if the key already exists in the bucket
-            for(let i = 0; i < this.data[hash].length; i++) {
-                const [currentKey] = this.data[hash][i];
-                //If the key already exists update the value and return
+        //Check array to see if there is already a value assigned to that hash
+        if(this.data[hash]) {
+            //Bucket exists
+            //Check to see if key is already used
+            let bucket = this.data[hash];
+            for(let i = 0; i < bucket.length; i++) {
+                let [currentKey, currentValue] = bucket[i];
                 if(currentKey === key) {
-                    this.data[hash][i][1] = value;
+                    //We have already used this key once
+                    //Update the old value to the new value
+                    bucket[i][1] = value;
                     return;
                 }
-                
             }
+            //Key was not found, push a new key value pair into array
+            this.data[hash].push([key, value]);
+            this.size++;
         }
-
-        this.data[hash].push([key, value]);
-
-        this.size++;
+        else {
+            //Bucket does not exist creating a new bucket
+            //Assigning new key value pair to bucket
+            this.data[hash] = [[key, value]];
+            this.size++;
+        }
         this.checkCapacity();
     }
 
     get(key) {
+        //Obtains hash of key
         const hash = this.hash(key);
-        const bucket = this.data[hash];
-    
-        if (bucket) {
-            for (let item of bucket) {
-                if (Array.isArray(item)) {
-                    const [bucketKey, bucketValue] = item;
-                    if (bucketKey === key) {
-                        return bucketValue;
-                    }
-                } 
-                else {
-                    if (item.key === key) {
-                        return item.value;
-                    }
+        //Check array to see if there is already a value assigned to that hash
+        if(this.data[hash]) {
+            //There is a bucket
+            let bucket = this.data[hash];
+            for(let i = 0; i < bucket.length; i++) {
+                //Search bucket for value
+                let [currentKey, currentValue] = bucket[i];
+                //Compare keys to ensure they match
+                if(currentKey === key) {
+                    //If they match then return the value associated with key
+                    return currentValue;
                 }
             }
         }
-    
+        
+        //If key is not found then return null
         return null;
     }
 
     has(key) {
-
+        //Obtains hash of key
+        const hash = this.hash(key);
+        //Check array to see if there is already a value assigned to that hash
+        if(this.data[hash]) {
+            //There is a bucket
+            let bucket = this.data[hash];
+            for(let i = 0; i < bucket.length; i++) {
+                //Search bucket for key
+                let [currentKey, currentValue] = bucket[i];
+                //Compare keys to ensure they match
+                if(currentKey === key) {
+                    //If key is found then return true
+                    return true;
+                }
+            }
+        }
+        
+        //If key is not found then return false
+        return false;
     }
 
     remove(key) {
-
+        //Obtains hash of key
+        const hash = this.hash(key);
+        //Check array to see if there is already a value assigned to that hash
+        if(this.data[hash]) {
+            //There is a bucket
+            let bucket = this.data[hash];
+            for(let i = 0; i < bucket.length; i++) {
+                //Search bucket for value
+                let [currentKey, currentValue] = bucket[i];
+                //Compare keys to ensure they match
+                if(currentKey === key) {
+                    //If key is found then delete value and return true
+                    //Delete function returns boolean
+                    return delete bucket[i];
+                }
+            }
+        }
+        
+        //If key is not found then return false
+        return false;
     }
 
     length() {
