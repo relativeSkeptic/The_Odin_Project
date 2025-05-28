@@ -24,14 +24,13 @@ export class HashMap {
         let hash = this.hash(key);
         //Checks to ensure we are within the bounds of the array
         this.checkBounds(hash);
-        //Check array to see if there is already a value assigned to that hash
+        //Check array to see if there is already a bucket assigned to that hash
         if(this.data[hash]) {
             //Bucket exists
             //Check to see if key is already used
             let bucket = this.data[hash];
             for(let i = 0; i < bucket.length; i++) {
-                let [currentKey, currentValue] = bucket[i];
-                if(currentKey === key) {
+                if(bucket[i][0] === key) {
                     //We have already used this key once
                     //Update the old value to the new value
                     bucket[i][1] = value;
@@ -81,10 +80,8 @@ export class HashMap {
             //There is a bucket
             let bucket = this.data[hash];
             for(let i = 0; i < bucket.length; i++) {
-                //Search bucket for key
-                let [currentKey, currentValue] = bucket[i];
                 //Compare keys to ensure they match
-                if(currentKey === key) {
+                if(bucket[i][0] === key) {
                     //If key is found then return true
                     return true;
                 }
@@ -103,13 +100,11 @@ export class HashMap {
             //There is a bucket
             let bucket = this.data[hash];
             for(let i = 0; i < bucket.length; i++) {
-                //Search bucket for value
-                let [currentKey, currentValue] = bucket[i];
                 //Compare keys to ensure they match
-                if(currentKey === key) {
-                    //If key is found then delete value and return true
-                    //Delete function returns boolean
-                    return delete bucket[i];
+                if(bucket[i][0] === key) {
+                    //If key is found then splice the value and return true
+                    bucket.splice (i, 1);
+                    return true;
                 }
             }
         }
@@ -123,15 +118,49 @@ export class HashMap {
     }
 
     clear() {
-
+        this.data = [];
+        this.capacity = 16;
+        this.size = 0;
     }
 
     keys() {
-
+        //Create array to store key elements
+        let keyArray = [];
+        //Loop through data array
+        for(let i = 0; i < this.data.length; i++) {
+            //Check if i is a bucket
+            if(this.data[i]) {
+                //It is a bucket
+                let bucket = this.data[i];
+                //Loop through bucket
+                for(let j = 0; j < bucket.length; j++) {
+                    //Push the keys into the key array
+                    keyArray.push(bucket[j][0]);
+                }
+            }
+        }
+        //Return array
+        return keyArray;
     }
 
     values() {
-
+        //Create array to store value elements
+        let valuesArray = [];
+        //Loop through data array
+        for(let i = 0; i < this.data.length; i++) {
+            //Check if i is a bucket
+            if(this.data[i]) {
+                //It is a bucket
+                let bucket = this.data[i];
+                //Loop through bucket
+                for(let j = 0; j < bucket.length; j++) {
+                    //Push the keys into the values array
+                    valuesArray.push(bucket[j][1]);
+                }
+            }
+        }
+        //Return array
+        return valuesArray;
     }
 
     entries() {
@@ -145,12 +174,27 @@ export class HashMap {
     checkCapacity() {
         if(this.size > this.capacity * this.loadFactor) {
             this.capacity = this.capacity * 2;
+            this.resize();
         }
     }
 
     checkBounds(index) {
         if (index < 0 || index >= this.capacity.length) {
             throw new Error("Trying to access index out of bounds");
+        }
+    }
+
+    resize() {
+        const oldData = this.data;
+        this.data = new Array(this.capacity);
+        this.size = 0;
+
+        for(const bucket of oldData) {
+            if(bucket) {
+                for(const [key, value] of bucket) {
+                    this.set(key, value);
+                }
+            }
         }
     }
 }

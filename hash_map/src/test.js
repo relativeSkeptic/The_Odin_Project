@@ -15,15 +15,19 @@ test.set('jacket', 'blue');
 test.set('kite', 'pink');
 test.set('lion', 'golden');
 
+console.log(test.keys());
+console.log(test.values());
+
 console.log('Size: ' + test.getSize());
 console.log('Length: ' + test.length());
-console.log(test.entries());
 
 test.set('moon', 'silver');
 
+console.log(test.keys());
+console.log(test.values());
+
 console.log('Size: ' + test.getSize());
 console.log('Length: ' + test.length());
-console.log(test.entries());
 
 test.set('apple', 'green');
 test.set('banana', 'pink');
@@ -40,9 +44,11 @@ test.set('lion', 'indigo');
 
 console.log('Size: ' + test.getSize());
 console.log('Length: ' + test.length());
-console.log(test.entries());
 
 console.log("Has Apple?: " + test.has("apple"));
 console.log("Remove Apple?: " + test.remove("apple"));
-console.log(test.entries());
 console.log("Has Apple?: " + test.has("apple"));
+
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
