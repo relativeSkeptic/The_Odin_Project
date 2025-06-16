@@ -8,10 +8,9 @@ class Node {
     }
 }
 
-class Tree {
+export class BST {
     constructor (array) {
-        this.array = array;
-        this.root = null;
+        this.root = this.buildTree(array);
     }
 
     //Takes an array and converts it into a balanced BST
@@ -23,10 +22,31 @@ class Tree {
         data.sort(function(a, b){return a - b});
 
         //Converts the sorted array into a BST
-        data = this.convertToBST(data);
+        let rootNode = this.convertToBST(data, 0, data.length - 1);
 
-        //Returns the root node of the BST
-        return this.root;
+        //Returns the initial root node of the BST
+        return rootNode;
+    }
+
+    //Recursive function to convert sorted array to BST
+    convertToBST(data, start, end) {
+        //Check to ensure that recursion needs to continue
+        if (start > end) {
+            return null;
+        }
+        
+        //Get mid point of array
+        let mid = start + Math.floor((end - start)) / 2;
+
+        ///Create new node
+        let node = new Node(data[mid]);
+
+        ///Use recursion for subtrees
+        node.left = this.convertToBST(data, start, mid - 1);
+        node.right = this.convertToBST(data, mid + 1, end);
+
+        ///Return the node
+        return node;
     }
 
     //Inserts a given value in the BST
@@ -52,8 +72,13 @@ class Tree {
 
     }
 
-    preOrder(callback) {
-
+    preOrder(root) {
+        if(root === null) {
+            return;
+        }
+        console.log(root.data);
+        this.preOrder(root.left);
+        this.preOrder(root.right);
     }
 
     postOrder(callback) {
@@ -80,35 +105,15 @@ class Tree {
 
     }
 
-    //Logs tree onto command line
-    logTree = (node, prefix = '', isLeft = true) => {
-        if (node === null) {
-          return;
-        }
-        if (node.right !== null) {
-          logTree(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
-        }
-        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
-        if (node.left !== null) {
-          logTree(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
-        }
-      };
+    //Logs BST onto command line
+    logTree() {
+        this.preOrder(this.root);
+    }
 
     //Removes duplicate values from an array
     removeDuplicates(data) {
         //Set only stores unique values so we 
         //are leveraging that to remove duplicates
         return [...new Set(data)];
-    }
-
-    //Recursive function to convert sorted array to BST
-    convertToBST(data, start, end) {
-        //Check to ensure that recursion needs to continue
-        if (start > end) {
-            return null;
-        }
-        
-        //Get mid point of array
-        let mid = start + (end - start) / 2;
     }
 }
