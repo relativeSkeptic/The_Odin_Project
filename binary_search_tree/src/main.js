@@ -36,7 +36,7 @@ export class BST {
         }
         
         //Get mid point of array
-        let mid = start + Math.floor((end - start)) / 2;
+        let mid = start + Math.floor((end - start) / 2);
 
         ///Create new node
         let node = new Node(data[mid]);
@@ -107,7 +107,7 @@ export class BST {
 
     //Logs BST onto command line
     logTree() {
-        this.preOrder(this.root);
+        prettyPrint(this.root);
     }
 
     //Removes duplicate values from an array
@@ -117,3 +117,16 @@ export class BST {
         return [...new Set(data)];
     }
 }
+
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.left !== null) {
+      prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  };
