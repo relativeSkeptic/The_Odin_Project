@@ -50,18 +50,29 @@ export class BST {
     }
 
     //Inserts a given value in the BST
-    insert(value) {
-        //Check if value is already in BST
+    insert(data, node = this.root) {
+
     }
 
     //Deletes a given value from the BST
-    delete(value) {
-        //Check if value is in BST
+    delete(data) {
+
     }
 
     //Returns the node with the given value
-    find(value) {
+    find(data, node = this.root) {
+        //Check if node is null or contains wanted value
+        if (node === null || node.data === data) {
+            return node;
+        }
 
+        //Checks if the value is greater or less than the 
+        //value we are searching for
+        if (node.data < data)
+            return this.find(data, node.right);
+        else {
+            return this.find(data, node.left);
+        }
     }
 
     levelOrder(callback) {
@@ -73,12 +84,7 @@ export class BST {
     }
 
     preOrder(root) {
-        if(root === null) {
-            return;
-        }
-        console.log(root.data);
-        this.preOrder(root.left);
-        this.preOrder(root.right);
+
     }
 
     postOrder(callback) {
