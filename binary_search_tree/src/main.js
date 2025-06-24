@@ -51,7 +51,30 @@ export class BST {
 
     //Inserts a given value in the BST
     insert(data, node = this.root) {
+        //Checks if node is null
+        //If node is null put new node here
+        if (node === null) {
+            return new Node(data);
+        }
 
+        //Checks for duplicate
+        //If duplicate value the no insertion occurs  
+        if (node.data === data)
+        {
+            return node;
+        }
+
+        //Checks if node is less than or greater than insertion node
+        if (data < node.data)
+        {
+            node.left = this.insert(data, node.left);
+        }
+        else if (data > node.data)
+        {
+            node.right = this.insert(data, node.right);
+        }
+
+        return node;
     }
 
     //Deletes a given value from the BST

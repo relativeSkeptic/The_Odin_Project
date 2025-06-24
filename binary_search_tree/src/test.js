@@ -21,3 +21,10 @@ if(testTree.find(99) != null) {
 if(testTree.find("ice cream") != null) {
     console.log("FOUND");
 }
+
+testTree.insert(28);
+testTree.insert(5000);
+testTree.insert(99);
+testTree.insert(23);
+
+testTree.logTree();
