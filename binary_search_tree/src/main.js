@@ -78,8 +78,59 @@ export class BST {
     }
 
     //Deletes a given value from the BST
-    delete(data) {
+    delete(data, node = this.root) {
+        ///Stops recursion when node to be deleted isn't found
+        if(node === null) {
+            return node;
+        }
 
+        //If current nodes data is greater than value node, must be
+        //in left subtree. Recursively call delete until node is found
+        if(node.data > data) {
+            node.left = this.delete(data, node.left);
+        }
+        //If current nodes data is less than value, node must be
+        //in right subtree. Recursively call delete until node is found
+        else if(node.data < data) {
+            node.right = this.delete(data, node.right);
+        }
+        //Match case, this should mean that we have found the node to be deleted
+        else {
+            //Case 1: Node has no left child (either has no children or right child)
+            //Sets right node as replacement for node to be deleted
+            if(node.left === null) {
+                return node.right;
+            }
+            //Case 2: Node has no right child (either has no children or left child)
+            //Sets left node as replacement for node to be deleted
+            else if(node.right === null) {
+                return node.left;
+            }
+            //Case 3: Node has two children
+            else {
+                //Find the smallest node in the right subtree
+                let smallNode = this.getSuccessor(node);
+                //Replace the current nodes key with the new smaller nodes key
+                node.data = smallNode.data;
+                //Now we need to delete the smaller node since it is now the current node
+                node.right = this.delete(smallNode.data, node.right);
+            }
+        }
+        //Return the root of the subtree
+        return node;
+    }
+
+    //Finds the in order successor (smallest node in the right subtree)
+    getSuccessor(node) {
+        //Start by moving one step to the right child of the current node
+        node = node.right;
+        //Loops to find the left most node in the right subtree
+        //The left most node should be the smallest value in that subtree
+        while (node !== null && node.left !== null) {
+            node = node.left;
+        }
+        //Returns the found node
+        return node;
     }
 
     //Returns the node with the given value

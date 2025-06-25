@@ -28,3 +28,10 @@ testTree.insert(99);
 testTree.insert(23);
 
 testTree.logTree();
+
+testTree.delete(8);
+testTree.delete(5000);
+testTree.delete("pizza");
+testTree.delete(153252);
+
+testTree.logTree();
