@@ -166,13 +166,39 @@ export class BST {
     }
 
     //Returns height of node at a given value
-    height(value) {
+    height(data) {
+        ///Use find function to find the location of the node in the BST
+        let heightNode = this.find(data);
+        if(heightNode !== null) {
+            return this.computeHeight(heightNode);
+        }
+    }
 
+    computeHeight(node) {
+        //Ensures that a leaf node will return 0
+        if (node === null) {
+            return -1;
+        }
+
+        //Recursively compute the height of the left and right subtrees of the current node
+        const leftHeight = this.computeHeight(node.left);
+        const rightHeight = this.computeHeight(node.right);
+
+        //Return the maximum height of the left and right subtrees add 1 to account for the edge
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     //Returns depth of node at a given value
-    depth(value) {
+    depth(data) {
+        ///Use find function to find the location of the node in the BST
+        let depthNode = this.find(data);
+        if(depthNode !== null) {
+            return this.computerDepth(depthNode);
+        }
+    }
 
+    computeDepth(node) {
+        
     }
 
     //Returns true if tree is balanced, and false if it isn't
@@ -181,7 +207,7 @@ export class BST {
     }
 
     //Rebalance an unbalanced BST
-    rebalance(data) {
+    rebalance() {
 
     }
 

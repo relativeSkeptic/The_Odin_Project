@@ -35,3 +35,5 @@ testTree.delete("pizza");
 testTree.delete(153252);
 
 testTree.logTree();
+
+console.log(testTree.height(4));
