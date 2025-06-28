@@ -188,17 +188,23 @@ export class BST {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
-    //Returns depth of node at a given value
-    depth(data) {
-        ///Use find function to find the location of the node in the BST
-        let depthNode = this.find(data);
-        if(depthNode !== null) {
-            return this.computerDepth(depthNode);
+    // Function to find depth of a given node
+    depth(data, node = this.root) {
+        if (node === null) {
+            return -1;
         }
-    }
-
-    computeDepth(node) {
         
+        let depth = -1;
+        
+        // Check if x is the current node or
+        // if it exists in the left or right subtree
+        if (node.data === data ||
+            (depth = this.depth(data, node.left)) >= 0 ||
+            (depth = this.depth(data, node.right)) >= 0) {
+            return depth + 1;
+        }
+        
+        return depth;
     }
 
     //Returns true if tree is balanced, and false if it isn't
