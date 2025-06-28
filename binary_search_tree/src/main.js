@@ -208,12 +208,23 @@ export class BST {
     }
 
     //Returns true if tree is balanced, and false if it isn't
-    isBalanced() {
+    isBalanced(node = this.root) {
+        if (node === null) {
+            return true;
+        }
 
+        const leftHeight = this.height(node.left.data);
+        const rightHeight = this.height(node.right.data);
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return false;
+        } 
+
+        return this.isBalanced(node.left) && this.isBalanced(node.right);
     }
 
     //Rebalance an unbalanced BST
-    rebalance() {
+    balanceTree() {
 
     }
 
