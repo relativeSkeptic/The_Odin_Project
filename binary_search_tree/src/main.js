@@ -1,8 +1,8 @@
 import "./styles.css";
 
 class Node {
-    constructor (data) {
-        this.data = data;
+    constructor (value) {
+        this.value = value;
         this.left = null;
         this.right = null;
     }
@@ -14,22 +14,22 @@ export class BST {
     }
 
     //Takes an array and converts it into a balanced BST
-    buildTree(data) {
+    buildTree(value) {
         //Remove duplicates from the array
-        data = this.removeDuplicates(data);
+        value = this.removeDuplicates(value);
 
         //Sort the array
-        data.sort(function(a, b){return a - b});
+        value.sort(function(a, b){return a - b});
 
         //Converts the sorted array into a BST
-        let rootNode = this.convertToBST(data, 0, data.length - 1);
+        let rootNode = this.convertToBST(value, 0, value.length - 1);
 
         //Returns the initial root node of the BST
         return rootNode;
     }
 
     //Recursive function to convert sorted array to BST
-    convertToBST(data, start, end) {
+    convertToBST(value, start, end) {
         //Check to ensure that recursion needs to continue
         if (start > end) {
             return null;
@@ -39,114 +39,177 @@ export class BST {
         let mid = start + Math.floor((end - start) / 2);
 
         ///Create new node
-        let node = new Node(data[mid]);
+        let node = new Node(value[mid]);
 
         ///Use recursion for subtrees
-        node.left = this.convertToBST(data, start, mid - 1);
-        node.right = this.convertToBST(data, mid + 1, end);
+        node.left = this.convertToBST(value, start, mid - 1);
+        node.right = this.convertToBST(value, mid + 1, end);
 
         ///Return the node
         return node;
     }
 
     //Inserts a given value in the BST
-    insert(data, node = this.root) {
+    insert(value, node = this.root) {
         //Checks if node is null
         //If node is null put new node here
         if (node === null) {
-            return new Node(data);
+            return new Node(value);
         }
 
         //Checks for duplicate
         //If duplicate value the no insertion occurs  
-        if (node.data === data)
+        if (node.value === value)
         {
             return node;
         }
 
         //Checks if node is less than or greater than insertion node
-        if (data < node.data)
+        if (value < node.value)
         {
-            node.left = this.insert(data, node.left);
+            node.left = this.insert(value, node.left);
         }
-        else if (data > node.data)
+        else if (value > node.value)
         {
-            node.right = this.insert(data, node.right);
+            node.right = this.insert(value, node.right);
         }
 
         return node;
     }
 
-    //Deletes a given value from the BST
-    delete(data, node = this.root) {
-        ///Stops recursion when node to be deleted isn't found
+    //Delete a specified node from the BST
+    delete(value, node = this.root) {
+        //Base case if node is null return null (end of branch)
         if(node === null) {
-            return node;
+            return null;
         }
 
-        //If current nodes data is greater than value node, must be
-        //in left subtree. Recursively call delete until node is found
-        if(node.data > data) {
-            node.left = this.delete(data, node.left);
+        //Recursively parse through the BST looking for the value
+        if(value < node.value) {
+            node.left = this.delete(value, node.left);
         }
-        //If current nodes data is less than value, node must be
-        //in right subtree. Recursively call delete until node is found
-        else if(node.data < data) {
-            node.right = this.delete(data, node.right);
+        else if(value > node.value) {
+            node.right = this.delete(value, node.right);
         }
-        //Match case, this should mean that we have found the node to be deleted
-        else {
-            //Case 1: Node has no left child (either has no children or right child)
-            //Sets right node as replacement for node to be deleted
-            if(node.left === null) {
-                return node.right;
+        //We've found the value we want to delete
+        else if (node.value === value) {
+            //There are three cases we need to handle: no children, one child, two child
+
+            //If node has no children then we simply return null
+            if(node.left === null && node.right === null) {
+                return null;
             }
-            //Case 2: Node has no right child (either has no children or left child)
-            //Sets left node as replacement for node to be deleted
-            else if(node.right === null) {
-                return node.left;
+            //The node has two children
+            else if(node.left !== null && node.right !== null) {
+                //We first need to find the smallest node in right subtree
+                let smallNode = this.getSmallestNode(node.right);
+                //Assign the value of the smallest node to the current node
+                node.value = smallNode.value;
+                //Recursively delete the small node from the BST
+                node.right = this.delete(smallNode.value, node.right);
             }
-            //Case 3: Node has two children
-            else {
-                //Find the smallest node in the right subtree
-                let smallNode = this.getSuccessor(node);
-                //Replace the current nodes key with the new smaller nodes key
-                node.data = smallNode.data;
-                //Now we need to delete the smaller node since it is now the current node
-                node.right = this.delete(smallNode.data, node.right);
+            //The node has at least one child
+            else if(node.left !== null || node.right !== null) {
+                //Determine which is the non-null child and return it to replace the deleted node
+                if(node.left !== null) {
+                    return node.left;
+                }
+                else {
+                    return node.right;
+                }
             }
         }
-        //Return the root of the subtree
         return node;
     }
 
-    //Finds the in order successor (smallest node in the right subtree)
-    getSuccessor(node) {
-        //Start by moving one step to the right child of the current node
-        node = node.right;
-        //Loops to find the left most node in the right subtree
-        //The left most node should be the smallest value in that subtree
-        while (node !== null && node.left !== null) {
+    //Helper function for delete method that returns the smallest child based on the provided node
+    getSmallestNode(node) {
+        while (node.left !== null) {
             node = node.left;
         }
-        //Returns the found node
         return node;
     }
 
     //Returns the node with the given value
-    find(data, node = this.root) {
+    find(value, node = this.root) {
         //Check if node is null or contains wanted value
-        if (node === null || node.data === data) {
+        if (node === null || node.value === value) {
             return node;
         }
 
         //Checks if the value is greater or less than the 
         //value we are searching for
-        if (node.data < data)
-            return this.find(data, node.right);
+        if (node.value < value)
+            return this.find(value, node.right);
         else {
-            return this.find(data, node.left);
+            return this.find(value, node.left);
         }
+    }
+
+    //Returns height of a specified node in a BST
+    height(value) {
+        //Finds our initial node that we are determining the height for
+        let heightNode = this.find(value);
+        //If the node exists find its height, otherwise return null
+        if(heightNode != null) {
+            return this.helperHeight(heightNode);
+        }
+        else {
+            return null;
+        }
+    }
+
+    //Helper function to find height of node in BST
+    helperHeight(node) {
+        //Our base case, if we progress down the tree until we hit null then
+        //we return -1 to account for that edge
+        if(node === null) {
+            return -1;
+        }
+
+        //Recursively determine the height of the left and right trees
+        let left = this.helperHeight(node.left);
+        let right = this.helperHeight(node.right);
+
+        //Math.max compares the two values and returns the greater values (longer tree) + 1
+        return Math.max(left, right) + 1;
+    }
+
+    //Returns the depth of a specified node in a BST
+    depth(value, node = this.root) {
+        //We have two base cases, one if the value is null (end of the tree)
+        //Or we find the value we are looking for
+        if(node === null) {
+            return -1;
+        }
+        if(node.value === value) {
+            return 0;
+        }
+
+        //If we don't find the value or a null node then we increment by one
+        //and continue searching the nodes children for the value
+        let left = this.depth(value, node.left);
+        if (left !== -1) {
+            return left + 1;
+        }
+
+        let right = this.depth(value, node.right);
+        if (right !== -1) {
+            return right + 1;
+        }
+
+        //If the value is not found in either of the subtrees we return -1
+        return -1;
+    }
+
+    //Returns true if tree is balanced, and false if it isn't
+    isBalanced(node = this.root) {
+
+    }
+
+    //Rebalance an unbalanced BST
+    balanceTree() {
+
     }
 
     levelOrder(callback) {
@@ -165,79 +228,16 @@ export class BST {
 
     }
 
-    //Returns height of node at a given value
-    height(data) {
-        ///Use find function to find the location of the node in the BST
-        let heightNode = this.find(data);
-        if(heightNode !== null) {
-            return this.computeHeight(heightNode);
-        }
-    }
-
-    computeHeight(node) {
-        //Ensures that a leaf node will return 0
-        if (node === null) {
-            return -1;
-        }
-
-        //Recursively compute the height of the left and right subtrees of the current node
-        const leftHeight = this.computeHeight(node.left);
-        const rightHeight = this.computeHeight(node.right);
-
-        //Return the maximum height of the left and right subtrees add 1 to account for the edge
-        return Math.max(leftHeight, rightHeight) + 1;
-    }
-
-    // Function to find depth of a given node
-    depth(data, node = this.root) {
-        if (node === null) {
-            return -1;
-        }
-        
-        let depth = -1;
-        
-        // Check if x is the current node or
-        // if it exists in the left or right subtree
-        if (node.data === data ||
-            (depth = this.depth(data, node.left)) >= 0 ||
-            (depth = this.depth(data, node.right)) >= 0) {
-            return depth + 1;
-        }
-        
-        return depth;
-    }
-
-    //Returns true if tree is balanced, and false if it isn't
-    isBalanced(node = this.root) {
-        if (node === null) {
-            return true;
-        }
-
-        const leftHeight = this.height(node.left.data);
-        const rightHeight = this.height(node.right.data);
-
-        if (Math.abs(leftHeight - rightHeight) > 1) {
-            return false;
-        } 
-
-        return this.isBalanced(node.left) && this.isBalanced(node.right);
-    }
-
-    //Rebalance an unbalanced BST
-    balanceTree() {
-
-    }
-
     //Logs BST onto command line
     logTree() {
         prettyPrint(this.root);
     }
 
     //Removes duplicate values from an array
-    removeDuplicates(data) {
+    removeDuplicates(value) {
         //Set only stores unique values so we 
         //are leveraging that to remove duplicates
-        return [...new Set(data)];
+        return [...new Set(value)];
     }
 }
 
@@ -248,7 +248,7 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node.right !== null) {
       prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
     }
-    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
     if (node.left !== null) {
       prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
