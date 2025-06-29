@@ -204,7 +204,26 @@ export class BST {
 
     //Returns true if tree is balanced, and false if it isn't
     isBalanced(node = this.root) {
+        //Base case is when we reach the edge of a branch
+        //Return true because this node is "balanced"
+        if(node === null) {
+            return true;
+        }
+        //Now we need to take the height of both the left and right subtrees 
+        let leftHeight = this.helperHeight(node.left);
+        let rightHeight = this.helperHeight(node.right);
 
+        //Obtain the difference in height between the two subtrees 
+        let heightDiff = Math.abs(leftHeight - rightHeight);
+
+        //If the height diff is <= 1 and the other subtrees are balanced return true
+        //Otherwise the tree is unbalanced (return false)
+        if(heightDiff <= 1 && this.isBalanced(node.left) && this.isBalanced(node.right)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     //Rebalance an unbalanced BST
