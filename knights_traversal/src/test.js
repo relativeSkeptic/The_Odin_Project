@@ -1,1 +1,1 @@
-import { Knight } from "./main";
+import { knightMoves } from "./main";
