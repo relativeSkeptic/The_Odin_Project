@@ -6,4 +6,4 @@ let tree = new BST(array);
 
 tree.logTree();
 
-console.log(tree.preOrder());
+console.log(tree.postOrder());

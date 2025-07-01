@@ -276,12 +276,40 @@ export class BST {
         this.preOrderHelper(preArray, node.right);
     }
 
+    //left subtree, node, right subtree
     inOrder() {
-
+        let inOrder = [];
+        this.inOrderHelper(inOrder);
+        return inOrder;
     }
 
-    postOrder() {
+    //Helper function for in order traversal
+    inOrderHelper(inOrder, node = this.root) {
+        if(node === null) {
+            return;
+        }
 
+        this.inOrderHelper(inOrder, node.left);
+        inOrder.push(node.value);
+        this.inOrderHelper(inOrder, node.right);
+    }
+
+    //Right subtree, node, left subtree
+    postOrder() {
+        let postOrder = [];
+        this.postOrderHelper(postOrder);
+        return postOrder;
+    }
+
+    //Helper function for post order traversal
+    postOrderHelper(postOrder, node = this.root) {
+        if(node === null) {
+            return;
+        }
+
+        this.postOrderHelper(postOrder, node.right);
+        postOrder.push(node.value);
+        this.postOrderHelper(postOrder, node.left);
     }
 
     //Logs BST onto command line
