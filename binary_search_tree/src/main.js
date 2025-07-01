@@ -227,23 +227,60 @@ export class BST {
     }
 
     //Rebalance an unbalanced BST
-    balanceTree() {
+    balanceTree(node = this.root) {
+        //First step is to traverse the entire tree and store each value into an array
 
     }
 
-    levelOrder(callback) {
+    //Level-order traversal visits nodes level by level, from top to bottom and left to right.
+    levelOrder() {
+        let levelOrder = [];
+        this.levelOrderHelper(levelOrder);
+        return levelOrder; 
+    }
+
+    //Helper function for level order to allow for recursive calls
+    levelOrderHelper(levelArray, level = 0, node = this.root) {
+        //Base case: If Node is null
+        if(node === null) {
+            return;
+        }
+
+        if(levelArray.length <= level) {
+            levelArray.push([]);
+        }
+
+        levelArray[level].push(node.value);
+
+        this.levelOrderHelper(levelArray, level + 1, node.left);
+        this.levelOrderHelper(levelArray, level + 1, node.right);
+    }
+
+    //Passing the root, then traverses the left subtree, then traverses the right subtree
+    preOrder() {
+        let preOrder = [];
+        this.preOrderHelper(preOrder);
+        return preOrder;
+    }
+
+    //Helper function for pre order to allow for recursive calls
+    preOrderHelper(preArray, node = this.root) {
+        //Base case if we hit a null node return
+        if(node === null) {
+            return;
+        }
+
+        preArray.push(node.value);
+
+        this.preOrderHelper(preArray, node.left);
+        this.preOrderHelper(preArray, node.right);
+    }
+
+    inOrder() {
 
     }
 
-    inOrder(callback) {
-
-    }
-
-    preOrder(root) {
-
-    }
-
-    postOrder(callback) {
+    postOrder() {
 
     }
 
