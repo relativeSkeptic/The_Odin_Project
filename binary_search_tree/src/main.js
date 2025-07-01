@@ -228,8 +228,11 @@ export class BST {
 
     //Rebalance an unbalanced BST
     balanceTree(node = this.root) {
-        //First step is to traverse the entire tree and store each value into an array
-
+        if(this.isBalanced() === true) {
+            return this.root;
+        }
+        let newTree = this.inOrder();
+        this.root = this.buildTree(newTree);
     }
 
     //Level-order traversal visits nodes level by level, from top to bottom and left to right.
