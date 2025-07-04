@@ -1,9 +1,10 @@
 {
-  "name": "binary_search_tree",
+  "name": "testing_practices",
   "version": "1.0.0",
   "main": "webpackconfig.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
