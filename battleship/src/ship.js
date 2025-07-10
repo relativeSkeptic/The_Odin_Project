@@ -4,8 +4,8 @@ export class Ship {
     #isSunk;
 
     constructor(length) {
-        if (typeof length !== 'number' || length < 1 || length > 5) {
-            throw new Error('Invalid ship length. Must be between 1 and 5.');
+        if (!Number.isInteger(length) || length < 1 || length > 5) {
+            throw new Error("Length of ship is invalid");
         }
 
         this.#length = length;
@@ -31,7 +31,7 @@ export class Ship {
 
     //Used for debugging / logging purposes, returns a string that contains the current status of the ship
     toString() {
-        return `Ship(length=${this.#length}, hits=${this.#numHits}, sunk=${this.#isSunk})`;
+        return `Ship(length = ${this.#length}, hits = ${this.#numHits}, sunk = ${this.#isSunk})`;
     }
 
     // Checks if that current ship has been destroyed or not
