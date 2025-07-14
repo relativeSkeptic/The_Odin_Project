@@ -155,3 +155,19 @@ test('Ensure ships returns all possible values', () => {
     //Check to ensure that the function returns false correctly as well
     expect(gameboard.shipPositions.has(ship4)).toBe(false);
 });
+
+test('Ensure clearGameboard properly removes all data', () => {
+    let gameboard = new Gameboard();
+    let ship1 = new Ship(2);
+    gameboard.placeShip([1,1], [1,2], ship1);
+    gameboard.receiveAttack([1,5]);
+    expect(gameboard.ships.has(ship1)).toBe(true);
+    expect(gameboard.shipPositions.has("1,1")).toBe(true);
+    expect(gameboard.attackCoord.has("1,5")).toBe(true);
+
+    gameboard.clearBoard();
+
+    expect(gameboard.ships.has(ship1)).toBe(false);
+    expect(gameboard.shipPositions.has("1,1")).toBe(false);
+    expect(gameboard.attackCoord.has("1,5")).toBe(false);
+});

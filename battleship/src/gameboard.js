@@ -160,6 +160,13 @@ export class Gameboard {
         return true;
     }
 
+    //Loops through and clears all maps and sets tied to this particular gameboard
+    clearBoard() {
+        this.#shipPositions.clear();
+        this.#attackCoord.clear();
+        this.#ships.clear();
+    }
+
     //Returns the set of coordinates that have been attacked on this gameboard
     get attackCoord() {
         return this.#attackCoord;
