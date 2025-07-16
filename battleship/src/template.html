@@ -1,18 +1,39 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battleship</title>
   </head>
-  <body class="h-screen flex  flex-col m-0">
+  <body class="h-screen flex flex-col m-0">
     <header>
       <div class="flex gap-8 text-2xl bg-slate-700 p-4 text-white font-bold">
         <p class="">Battleship</p>
       </div>
     </header>
-    <div id="hero" class="flex flex-1 bg-white">
+    <div id="hero" class="flex flex-1 bg-white justify-center items-center p-10 gap-10">
+      <div class="flex flex-1 flex-col h-full items-center gap-4">
+        <div class="font-bold text-2xl">Player</div>
+        <div id="player" class="gameboard"></div>
+      </div>
+      <div class="flex flex-col self-start gap-10 w-1/12">
+        <div class="flex flex-col p-6 gap-10">
+          <button class="game-button bg-green-400 active:bg-green-300">Start Game</button>
+          <button class="game-button bg-yellow-400 active:bg-yellow-300">Reset</button>
+          <button class="game-button bg-red-400 active:bg-red-300">Fire</button>
+        </div>
+        <div class="flex flex-1 bg-neutral-300 rounded-md w-full justify-center">
+          <div id="status" class="p-8 font-bold text-3xl text-center">
+            You Win
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col h-full items-center gap-4">
+        <div class="font-bold text-2xl">Computer</div>
+        <div id="computer" class="gameboard">
+      </div>
     </div>
+  </div>
     <footer>
       <div class="flex justify-between gap-8 text-2xl bg-slate-700 p-4">
         <p class="text-white font-bold">By Dakota Stroud @ 2025</p>
