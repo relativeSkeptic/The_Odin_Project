@@ -7,7 +7,7 @@ export class Computer {
 
     constructor() {
         this.#gameboard = new Gameboard();
-        this.#randomAttackCoords = this.generateCoordinates();
+        this.#randomAttackCoords = this.#generateCoordinates();
         this.#randomizeLayout();
     }
 
@@ -161,7 +161,7 @@ export class Computer {
         }
 
         //Utilize the Fisher-Yates shuffling algorithm to randomize the array 
-        for(let i = coords.length - 1; i > 0; i++) {
+        for(let i = coords.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [coords[i], coords[j]] = [coords[j], coords[i]];
         }
