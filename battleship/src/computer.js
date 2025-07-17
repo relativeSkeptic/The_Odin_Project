@@ -44,109 +44,69 @@ export class Computer {
 
     //Randomly places ships on gameboard
     #randomizeLayout() {
+        //Generate random starting coordinates for the ships
         let randomShipPlacement = this.#generateCoordinates();
+
+        //Create an array that represents each ship and loop through and place them on the gameboard
         const ships = [5, 4, 3, 3, 2];
         for(let i = 0; i < ships.length; i++) {
             //Obtain the ships overall length
             const shipsLength = ships[i];
 
-            //Flag that determines whether a ship has been placed or not
+            //Flag to tell if the ship has been placed yet or not
             let placed = false;
 
-            //Loop until the ship has successfully placed on the gameboard
             while(placed !== true) {
-                //Valid coordinates on the gameboard that are checked to see if other ships are there
-                let coordsToCheck = [];
+                //Get a random coordinate to test out
+                let randomCoord = randomShipPlacement.pop();
 
-                //Obtain a random coordinate
-                const coord = randomShipPlacement.pop();
+                //Parse out X and Y coordinate for easy manipulation
+                let [start_X, start_Y] = randomCoord;
 
-                //X and Y coordinates for easier bounds checking and more readable code
-                const X_Coord = coord[0];
-                const Y_Coord = coord[1];
+                //Generate an array which represents which direction the ship will face
+                let direction = ["up", "down", "left", "right"];
 
-                //Determines if we are placing the ship vertically or horizontally
-                let isVert = false;
-                if(Math.floor(Math.random() * 2) === 1) {
-                    isVert = true;
+                //Shuffle the array for a random affect
+                direction = this.#shuffleArray(direction);
+
+                //Select the first value as the randomized direction
+                let randDirection = direction[0];
+
+                //New end coordinates for the ship
+                let end_X = start_X;
+                let end_Y = start_Y;
+
+                //Generate a new end X and Y coordinate
+                if(randDirection === "up") {
+                    end_X = start_X - (shipsLength - 1);
+                }
+                else if(randDirection === "down") {
+                    end_X = start_X + (shipsLength - 1);
+                }
+                else if(randDirection === "left") {
+                    end_Y = start_Y - (shipsLength - 1);
+                }
+                else if (randDirection === "right") {
+                    end_Y = start_Y + (shipsLength - 1);
                 }
 
-                //Determines if ship will be placed negatively or positively
-                let direction = -1;
-                if(Math.floor(Math.random() * 2) === 1) {
-                    direction = 1;
+                //This is our new end coordinate
+                let endCoord = [end_X, end_Y];
+
+                //Attempt to place the ship
+                let shipPlacement = this.#gameboard.placeShip(randomCoord, endCoord, new Ship(shipsLength));
+
+                //Check to see if the ship was placed successfully 
+                if(shipPlacement.result !== "success") {
+                    //If not push the random coordinate back into the array for use later
+                    randomShipPlacement.push(randomCoord);
                 }
-
-                //Loop through every coordinate associated with a particular ship
-                for(let j = 0; j < shipsLength; j++) {
-                    //Where our new X and Y coordinates will be stored
-                    let new_X_Coord = X_Coord;
-                    let new_Y_Coord = Y_Coord;
-
-                    //Builds full list of coordinates that a ship of a certain length could occupy
-                    if(isVert === true) {
-                        new_Y_Coord = Y_Coord + (direction * j);
-                    }
-                    else {
-                        new_X_Coord = X_Coord + (direction * j);
-                    }
-
-                    //Check if the coordinate is in the gameboard
-                    if (this.#inBounds([new_X_Coord, new_Y_Coord]) === false) {
-                        //If this exceeds the gameboard then move on to the next coordinate
-                        coordsToCheck = null;
-
-                        //Push the coordinate back into the array for use with another ship later
-                        randomShipPlacement.push(coord);
-
-                        break;
-                    }
-
-                    //We found a valid coordinate but now we have to ensure it is not already being used
-                    coordsToCheck.push([new_X_Coord, new_Y_Coord]);
-                }
-
-                //Check our list of valid coordinates to see if a ship already occupies those locations
-                if(coordsToCheck !== null) {
-
-                    //This coordinate has no overlap and fits in the gameboard we can place the ship here
-                    if(this.#overlaps(coordsToCheck) === false) {
-                        //Create our start and end coordinates from the validated coordinate array
-                        const startCoord = coordsToCheck[0];
-                        const endCoord = coordsToCheck[coordsToCheck.length - 1];
-
-                        //Place our ship on the board and set the placed flag to true
-                        this.#gameboard.placeShip(startCoord, endCoord, new Ship(shipsLength));
-                        placed = true;
-                    }
+                else {
+                    //Otherwise we exit the loop and begin the next ship
+                    placed = true;
                 }
             }
         }
-    }
-
-    //Returns true if coordinates overlap with another ship, otherwise returns false
-    #overlaps(shipCoords) {
-        //Loop through the coordinates checking for other ships
-        for(let i = 0; i < shipCoords.length; i++) {
-            const coord = shipCoords[i];
-            if(this.#gameboard.getShip(coord) !== null) {
-                //This coordinate overlaps with another ship
-                return true;
-            }
-        }
-        //Coordinates do not overlap with another ship
-        return false;
-    }
-
-    //Returns true if coordinates are within the bounds of the gameboard, otherwise returns false
-    #inBounds(coord) {
-        //Check if the coordinate is in the gameboard
-        if (coord[0] < 1 || coord[0] > 10 || coord[1] < 1 || coord[1] > 10) {
-            //Coordinate is not inside the gameboard
-            return false
-        }
-        //Coordinate is inside the gameboard
-        return true;
     }
 
     //Generates randomized coordinates within the board
@@ -160,12 +120,18 @@ export class Computer {
             }
         }
 
+        return this.#shuffleArray(coords);
+    }
+
+    //Fisher-Yates shuffling algorithm
+    #shuffleArray(data) {
         //Utilize the Fisher-Yates shuffling algorithm to randomize the array 
-        for(let i = coords.length - 1; i > 0; i--) {
+        for(let i = data.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [coords[i], coords[j]] = [coords[j], coords[i]];
+            [data[i], data[j]] = [data[j], data[i]];
         }
 
-        return coords;
+        //Return the shuffled array
+        return data;
     }
 }
