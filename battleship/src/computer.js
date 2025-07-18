@@ -64,46 +64,39 @@ export class Computer {
                 let [start_X, start_Y] = randomCoord;
 
                 //Generate an array which represents which direction the ship will face
-                let direction = ["up", "down", "left", "right"];
+                const directions = this.#shuffleArray(["up", "down", "left", "right"]);
 
-                //Shuffle the array for a random affect
-                direction = this.#shuffleArray(direction);
+                //Loop through all of the directions checking to see if any of them fit the board
+                for(let dir of directions) {
+                    //New end coordinates for the ship
+                    let end_X = start_X;
+                    let end_Y = start_Y;
 
-                //Select the first value as the randomized direction
-                let randDirection = direction[0];
+                    //Generate a new end X and Y coordinate
+                    if(dir === "up") {
+                        end_X = start_X - (shipsLength - 1);
+                    }
+                    else if(dir === "down") {
+                        end_X = start_X + (shipsLength - 1);
+                    }
+                    else if(dir === "left") {
+                        end_Y = start_Y - (shipsLength - 1);
+                    }
+                    else if (dir === "right") {
+                        end_Y = start_Y + (shipsLength - 1);
+                    }
 
-                //New end coordinates for the ship
-                let end_X = start_X;
-                let end_Y = start_Y;
+                    //This is our new end coordinate
+                    let endCoord = [end_X, end_Y];
 
-                //Generate a new end X and Y coordinate
-                if(randDirection === "up") {
-                    end_X = start_X - (shipsLength - 1);
-                }
-                else if(randDirection === "down") {
-                    end_X = start_X + (shipsLength - 1);
-                }
-                else if(randDirection === "left") {
-                    end_Y = start_Y - (shipsLength - 1);
-                }
-                else if (randDirection === "right") {
-                    end_Y = start_Y + (shipsLength - 1);
-                }
+                    //Attempt to place the ship
+                    let shipPlacement = this.#gameboard.placeShip(randomCoord, endCoord, new Ship(shipsLength));
 
-                //This is our new end coordinate
-                let endCoord = [end_X, end_Y];
-
-                //Attempt to place the ship
-                let shipPlacement = this.#gameboard.placeShip(randomCoord, endCoord, new Ship(shipsLength));
-
-                //Check to see if the ship was placed successfully 
-                if(shipPlacement.result !== "success") {
-                    //If not push the random coordinate back into the array for use later
-                    randomShipPlacement.push(randomCoord);
-                }
-                else {
-                    //Otherwise we exit the loop and begin the next ship
-                    placed = true;
+                    //Check to see if the ship was placed successfully 
+                    if(shipPlacement.result === "success") {
+                        placed = true;
+                        break;
+                    }
                 }
             }
         }
