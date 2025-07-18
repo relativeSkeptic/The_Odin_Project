@@ -1,5 +1,5 @@
-import { Gameboard } from './gameboard';
-import { Ship } from './ship';
+import { Gameboard } from '../src/gameboard.js';
+import { Ship } from '../src/ship.js';
 
 test('Ensures coordinates are validated correctly', () => {
     let gameboard = new Gameboard();

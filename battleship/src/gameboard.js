@@ -1,10 +1,12 @@
 export class Gameboard {
     #attackCoord;
     #shipPositions;
+    #shipToCoords;
     #ships
 
     constructor() {
         this.#ships = new Set();
+        this.#shipToCoords = new Map();
         this.#shipPositions = new Map();
         this.#attackCoord = new Set();
     }
@@ -118,12 +120,22 @@ export class Gameboard {
             }
         }
 
+        //Array that will store all of a ships coordinates
+        let coordsArray = [];
+
         //The coordinates are not in use so place the ship
         for(const coord of shipCoords) {
             const key = this.#coordToString(coord);
+
             //The key is a string version of the coordinate and the value is a reference to the ship
             this.#shipPositions.set(key, ship);
+
+            //Push a coordinate into the array
+            coordsArray.push(coord);
         }
+
+        //The ships length is the key and its coordinates are the value
+        this.#shipToCoords.set(ship, coordsArray);
 
         //Adding all of the referenced ships to just a Set for easy access later
         if(this.#ships.has(ship) === false) {
