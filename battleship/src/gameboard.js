@@ -34,18 +34,30 @@ export class Gameboard {
             };
         }
         else {
-            //It has not so we now add that coordinate to the Set
+            //It has not so we now we attack the ship and update the set
             this.#attackCoord.add(stringCoord);
         }
 
         //Determine if the value is a hit or a miss
         if(this.#shipPositions.has(stringCoord) === true) {
-            return {
-                result: "hit",
-                ship: this.#shipPositions.get(stringCoord),
-                message: "Ship has been hit.",
-                coord: coord
-            };
+            const ship = this.#shipPositions.get(stringCoord);
+            ship.hit();
+            if(ship.isSunk === true) {
+                return {
+                    result: "sunk",
+                    ship: this.#shipPositions.get(stringCoord),
+                    message: "Ship has been sunk.",
+                    coord: coord
+                };
+            } 
+            else {
+                return {
+                    result: "hit",
+                    ship: this.#shipPositions.get(stringCoord),
+                    message: "Ship has been hit.",
+                    coord: coord
+                };
+            }
         }
         else {
             return {
@@ -86,13 +98,26 @@ export class Gameboard {
 
         //Determine if ship is horizontal or vertical
         let shipDiff = 0;
-        if(startCoord[0] === endCoord[0]) {
+        let [start_X, start_Y] = startCoord;
+        let [end_X, end_Y] = endCoord;
+
+        // Normalize coordinates (low to high)
+        if(start_X > end_X || start_Y > end_Y) {
+            if (start_X !== end_X) {
+                [start_X, end_X] = [Math.min(start_X, end_X), Math.max(start_X, end_X)];
+            }
+            if (start_Y !== end_Y) {
+                [start_Y, end_Y] = [Math.min(start_Y, end_Y), Math.max(start_Y, end_Y)];
+            }
+        }
+
+        if(start_X === end_X) {
             //Horizontal
-            shipDiff = Math.abs(endCoord[1] - startCoord[1] + 1);
+            shipDiff = Math.abs(end_Y - start_Y + 1);
         }
         else {
             //Vertical
-            shipDiff = Math.abs(endCoord[0] - startCoord[0] + 1);
+            shipDiff = Math.abs(end_X - start_X + 1);
         }
 
         //Check to see if ship length is equal to coordinate difference
@@ -138,9 +163,7 @@ export class Gameboard {
         this.#shipToCoords.set(ship, coordsArray);
 
         //Adding all of the referenced ships to just a Set for easy access later
-        if(this.#ships.has(ship) === false) {
-            this.#ships.add(ship);
-        }
+        this.#ships.add(ship);
 
         //Return a success message
         return {
@@ -164,7 +187,7 @@ export class Gameboard {
     checkShips() {
         //Loop through all available ships, and if any one has not sunk return false
         for(const ship of this.#ships) {
-            if(ship.isSunk() === false) {
+            if(ship.isSunk === false) {
                 return false;
             }
         }
@@ -187,6 +210,11 @@ export class Gameboard {
     //Returns the set of coordinates of each ship on this gameboard
     get shipPositions() {
         return this.#shipPositions;
+    }
+
+    //Returns a map with a ship as a key and the coordinates as a value
+    get shipsToCoords() {
+        return this.#shipToCoords;
     }
 
     //Returns a set that contains all available ships within a particular gameboard

@@ -22,7 +22,7 @@ test('tracks number of hits and does not mark ship as sunk before reaching max h
         ship.hit();
     }
     expect(ship.numHits).toBe(3);
-    expect(ship.sunk).toBe(false);
+    expect(ship.isSunk).toBe(false);
 });
 
 test('marks ship as sunk when number of hits equals its length', () => {
@@ -31,18 +31,5 @@ test('marks ship as sunk when number of hits equals its length', () => {
         ship.hit();
     }
     expect(ship.numHits).toBe(3);
-    expect(ship.sunk).toBe(true);
-});
-
-test('toString returns the correct status string', () => {
-    const ship = new Ship(3);
-    
-    expect(ship.toString()).toBe('Ship(length = 3, hits = 0, sunk = false)');
-
-    ship.hit();
-    expect(ship.toString()).toBe('Ship(length = 3, hits = 1, sunk = false)');
-
-    ship.hit();
-    ship.hit();
-    expect(ship.toString()).toBe('Ship(length = 3, hits = 3, sunk = true)');
+    expect(ship.isSunk).toBe(true);
 });

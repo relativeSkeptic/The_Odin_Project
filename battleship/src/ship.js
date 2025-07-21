@@ -29,13 +29,8 @@ export class Ship {
         }
     }
 
-    //Used for debugging / logging purposes, returns a string that contains the current status of the ship
-    toString() {
-        return `Ship(length = ${this.#length}, hits = ${this.#numHits}, sunk = ${this.#isSunk})`;
-    }
-
     // Checks if that current ship has been destroyed or not
-    get sunk() {
+    get isSunk() {
         return this.#isSunk;
     }
 
