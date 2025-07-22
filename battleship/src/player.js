@@ -79,7 +79,7 @@ export class Player {
 
         //Loop through the results array to ensure they were all placed successfully
         for(const data of results) {
-            if(data.results !== "success") {
+            if(data.result !== "success") {
                 //Return the error to the driver for processing
                 return {
                     result: "error",
