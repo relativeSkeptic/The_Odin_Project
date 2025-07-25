@@ -36,10 +36,10 @@ export class UserInterface {
         }
 
         //Loop through all of the X and Y coordinates to create the grid and assign the correct values to it
-        for (let x = 10; x != 0; x--) {
-            for (let y = 10; y != 0; y--) {
+        for (let y = 10; y >= 1; y--) {
+            for (let x = 1; x <= 10; x++) {
                 const cell = document.createElement('div');
-                const coord = `${letters[y]}${x}`;
+                const coord = `${letters[x - 1]}${y}`;
                 cell.id = `${boardOwner}-${coord}`;
                 cell.dataset.x = x;
                 cell.dataset.y = y;

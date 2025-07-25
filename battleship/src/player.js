@@ -111,10 +111,10 @@ export class Player {
     #defaultLayout() {
         const ships = [5, 4, 3, 3, 2];
         for (let i = 0; i < ships.length; i++) {
-            const col = 10 - i;
+            const col = i + 1;
             const length = ships[i];
-            const start = [1, col];
-            const end = [length, col];
+            const start = [col, 1];
+            const end = [col, length];
             this.#gameboard.placeShip(start, end, new Ship(length));
         }
         this.#isReady = true
