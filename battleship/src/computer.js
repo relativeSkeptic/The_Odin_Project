@@ -33,7 +33,7 @@ export class Computer {
     //Resets the gameboard and generates a new layout
     resetLayout() {
         this.#gameboard.clearBoard();
-        this.#randomAttackCoords = this.generateCoordinates();
+        this.#randomAttackCoords = this.#generateCoordinates();
         this.#randomizeLayout();
     }
 
@@ -49,9 +49,11 @@ export class Computer {
 
         //Create an array that represents each ship and loop through and place them on the gameboard
         const ships = [5, 4, 3, 3, 2];
+        const shipNames = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolboat'];
         for(let i = 0; i < ships.length; i++) {
             //Obtain the ships overall length
             const shipsLength = ships[i];
+            const name = shipNames[i];
 
             //Flag to tell if the ship has been placed yet or not
             let placed = false;
@@ -90,7 +92,7 @@ export class Computer {
                     let endCoord = [end_X, end_Y];
 
                     //Attempt to place the ship
-                    let shipPlacement = this.#gameboard.placeShip(randomCoord, endCoord, new Ship(shipsLength));
+                    let shipPlacement = this.#gameboard.placeShip(randomCoord, endCoord, new Ship(shipsLength, name));
 
                     //Check to see if the ship was placed successfully 
                     if(shipPlacement.result === "success") {

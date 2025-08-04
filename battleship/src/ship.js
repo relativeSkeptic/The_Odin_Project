@@ -2,12 +2,14 @@ export class Ship {
     #length;
     #numHits;
     #isSunk;
+    #name;
 
-    constructor(length) {
+    constructor(length, name) {
         if (!Number.isInteger(length) || length < 1 || length > 5) {
             throw new Error("Length of ship is invalid");
         }
 
+        this.#name = name;
         this.#length = length;
         this.#numHits = 0;
         this.#isSunk = false;
@@ -42,5 +44,10 @@ export class Ship {
     //Returns the overall length of the ship
     get length() {
         return this.#length;
+    }
+
+    //Returns the name of the ship
+    get name() {
+        return this.#name;
     }
 }

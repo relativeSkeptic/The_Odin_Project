@@ -7,7 +7,6 @@ export class Player {
 
     constructor() {
         this.#gameboard = new Gameboard();
-        this.#isReady = false;
         this.#defaultLayout();
     }
 
@@ -31,7 +30,6 @@ export class Player {
     resetLayout() {
         this.#gameboard.clearBoard();
         this.#defaultLayout();
-        this.#isReady = true;
     }
 
     //Allows the player to redefine the layout of their ships before playing
@@ -89,8 +87,7 @@ export class Player {
             }
         }
 
-        //Set the flag and return a message saying the layout updated successfully
-        this.#isReady = true;
+        //Return a message saying the layout updated successfully
         return {
             result: "success",
             message: "Layout was successfully updated."
@@ -110,13 +107,14 @@ export class Player {
     //Standard layout of game board
     #defaultLayout() {
         const ships = [5, 4, 3, 3, 2];
+        const shipNames = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolboat'];
         for (let i = 0; i < ships.length; i++) {
             const col = i + 1;
             const length = ships[i];
+            const name = shipNames[i];
             const start = [col, 1];
             const end = [col, length];
-            this.#gameboard.placeShip(start, end, new Ship(length));
+            this.#gameboard.placeShip(start, end, new Ship(length, name));
         }
-        this.#isReady = true
     }
 }
