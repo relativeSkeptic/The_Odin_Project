@@ -27,6 +27,10 @@ export class UserInterface {
                     shipPiece.classList.add('ship-body');
                 }
 
+                if(owner === 'computer') {
+                    //shipPiece.classList.add('computer-ship');
+                }
+
                 //Parse out the X and Y coordinate of this particular ship from the provided map
                 const [x, y] = location[i];
 
@@ -39,7 +43,7 @@ export class UserInterface {
         }
     }
 
-    resetLayout(playerMap) {
+    resetLayout() {
         //Remove all objects from player board
         document.querySelectorAll('[data-owner="human"]').forEach(parentDiv => {
             while (parentDiv.firstChild) {
@@ -57,12 +61,19 @@ export class UserInterface {
 
     //Reveals a computer ship once it has been sunk
     revealShip(shipName) {
+        const text = '.computer_' + shipName;
+        const ships = document.querySelectorAll(text);
 
+        ships.forEach((shipElement) => {
+            console.log(shipElement);
+            shipElement.classList.remove('computer-ship');
+        });
     }
 
     //Updates the message board with a provided message
     updateMessageBoard(message) {
-
+        const status = document.getElementById('status');
+        status.textContent = message;
     }
 
     //Apply's a hit or miss marker on a coordinate

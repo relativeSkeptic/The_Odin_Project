@@ -2,32 +2,42 @@ import "./styles.css";
 import { Player } from "./player";
 import { Computer } from "./computer";
 import { UserInterface } from "./userInterface"
+import { Elements } from "./elements"
 
 let human = new Player();
 let computer = new Computer();
 let UI = new UserInterface(human.gameboard.shipsToCoords);
 UI.placeShips(computer.gameboard.shipsToCoords, 'computer');
-console.log(human.gameboard.shipsToCoords);
-
-let startFlag = false;
 let whosTurn = 'human';
+let startFlag = false;
 
 //Start button logic
-document.querySelector('#startButton').addEventListener('click', (e) => {
+Elements.startButton.addEventListener('click', (startLogic));
+Elements.resetButton.addEventListener('click', (resetLogic));
+
+function startLogic() {
+    startFlag = true; 
     //Determine who the starting player will be
     if(Math.floor(Math.random() * 2) === 1) {
         whosTurn = 'computer';
     }
-    startFlag = true;
-});
+    if(whosTurn === 'computer') {
+        takeTurn('computer');
+    }
+    Elements.startButton.removeEventListener('click', startLogic);
+    Elements.startButton.classList.add('deactivate-game-button');
+}
 
-//Reset gameboard logic
-document.querySelector('#resetButton').addEventListener('click', (e) => {
+function resetLogic() {
     human.resetLayout();
     computer.resetLayout();
-    UI.resetLayout(human.gameboard.shipsToCoords);
-    //UI.placeShips(computer.gameboard.shipsToCoords, 'computer');
-});
+    UI.resetLayout();
+    UI.placeShips(human.gameboard.shipsToCoords);
+    UI.placeShips(computer.gameboard.shipsToCoords, 'computer');
+    startFlag = false;
+    Elements.startButton.classList.remove('deactivate-game-button');
+    Elements.startButton.addEventListener('click', (startLogic));
+}
 
 // Attach listeners to computer grid
 document.querySelectorAll('[data-owner="computer"]').forEach(cell => {
@@ -35,6 +45,11 @@ document.querySelectorAll('[data-owner="computer"]').forEach(cell => {
 });
 
 function takeTurn(player, cell = null) {
+    //Ensure start button has been pressed
+    if(startFlag === false) {
+        return;
+    }
+
     //Only fire a missile on a players turn
     if (player !== whosTurn) {
         return;
@@ -64,55 +79,58 @@ function takeTurn(player, cell = null) {
     switch (attack.result) {
     case "hit":
         //If the attack was a hit update the message board and switch the turn
-        //UI.updateGameboard(attack.message);
+        UI.updateMessageBoard(attack.message);
         UI.applyMarker(attack.coord, 'hit', whosBoard);
         switchTurn();
         break;
 
     case "miss":
         //If the attack was a miss update the message board and switch the turn
-        //UI.updateMessageBoard(attack.message);
+        UI.updateMessageBoard(attack.message);
         UI.applyMarker(attack.coord, 'miss', whosBoard);
         switchTurn();
         break;
 
     case "sunk":
-        //If the attack sunk a ship check if the game is over then switch the turn if it isn't
+        UI.applyMarker(attack.coord, 'hit', whosBoard);
+        UI.revealShip(attack.ship.name);
         if(attack.hasWon === true) {
             endGame();
         }
         else {
-            //UI.revealShip(attack.ship.name);
-            //UI.updateMessageBoard(attack.message);
+            UI.updateMessageBoard(attack.message);
             switchTurn();
         }
         break;
 
     default:
-        //UI.updateMessageBoard(attack.message);
+        UI.updateMessageBoard(attack.message);
         break;
     }
 
     //If it is now the computers turn, have it take its turn with a small delay
     if(whosTurn === 'computer') {
         setTimeout(() => {takeTurn('computer');
-        }, 1);
+        }, 1000);
     }
 }
 
 //Logic that is executed once the game ends
 function endGame() {
     //Reveal all computer ship locations
-    //UI.revealComputerShips();
+    UI.revealComputerShips();
 
     //Message to output to player
     let message = 'You win!';
-    if(currentPlayer === 'computer') {
+    if(whosTurn === 'computer') {
         message = 'Computer Wins.';
     }
 
     //Update the message board
-    //UI.updateMessageBoard(message);
+    UI.updateMessageBoard(message);
+
+    //Locks the computer board to prevent additional moves
+    UI.lockBoard()
 
     //Update the message board prompting the user to restart the game after 10 seconds
     setTimeout(() => {UI.updateMessageBoard('Click "Reset", to start a new game.');

@@ -197,6 +197,7 @@ export class Gameboard {
 
     //Loops through and clears all maps and sets tied to this particular gameboard
     clearBoard() {
+        this.#shipToCoords.clear();
         this.#shipPositions.clear();
         this.#attackCoord.clear();
         this.#ships.clear();
