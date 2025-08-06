@@ -65,9 +65,16 @@ export class UserInterface {
         const ships = document.querySelectorAll(text);
 
         ships.forEach((shipElement) => {
-            console.log(shipElement);
             shipElement.classList.remove('computer-ship');
         });
+    }
+
+    //Reveals all computer ships on the gameboard
+    revealComputerShips() {
+        const shipNames = ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolboat'];
+        for(const name of shipNames) {
+            this.revealShip(name);
+        }
     }
 
     //Updates the message board with a provided message

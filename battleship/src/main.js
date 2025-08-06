@@ -2,7 +2,11 @@ import "./styles.css";
 import { Player } from "./player";
 import { Computer } from "./computer";
 import { UserInterface } from "./userInterface"
-import { Elements } from "./elements"
+
+const Elements = {
+    startButton: document.getElementById('startButton'),
+    resetButton: document.getElementById('resetButton'),
+}
 
 let human = new Player();
 let computer = new Computer();
@@ -15,6 +19,7 @@ let startFlag = false;
 Elements.startButton.addEventListener('click', (startLogic));
 Elements.resetButton.addEventListener('click', (resetLogic));
 
+//Start button logic
 function startLogic() {
     startFlag = true; 
     //Determine who the starting player will be
@@ -24,10 +29,17 @@ function startLogic() {
     if(whosTurn === 'computer') {
         takeTurn('computer');
     }
+
+    // Attach listeners to computer grid
+    document.querySelectorAll('[data-owner="computer"]').forEach(cell => {
+        cell.addEventListener('click', handleComputerCellClick);
+    });
+
     Elements.startButton.removeEventListener('click', startLogic);
     Elements.startButton.classList.add('deactivate-game-button');
 }
 
+//Reset button logic
 function resetLogic() {
     human.resetLayout();
     computer.resetLayout();
@@ -39,11 +51,7 @@ function resetLogic() {
     Elements.startButton.addEventListener('click', (startLogic));
 }
 
-// Attach listeners to computer grid
-document.querySelectorAll('[data-owner="computer"]').forEach(cell => {
-    cell.addEventListener('click', () => takeTurn('human', cell));
-});
-
+//Logic executed to take a single turn
 function takeTurn(player, cell = null) {
     //Ensure start button has been pressed
     if(startFlag === false) {
@@ -129,8 +137,9 @@ function endGame() {
     //Update the message board
     UI.updateMessageBoard(message);
 
-    //Locks the computer board to prevent additional moves
-    UI.lockBoard()
+    document.querySelectorAll('[data-owner="computer"]').forEach(cell => {
+        cell.removeEventListener('click', handleComputerCellClick);
+    });
 
     //Update the message board prompting the user to restart the game after 10 seconds
     setTimeout(() => {UI.updateMessageBoard('Click "Reset", to start a new game.');
@@ -145,4 +154,9 @@ function switchTurn() {
     else {
         whosTurn = 'human';
     }
+}
+
+function handleComputerCellClick(event) {
+    const cell = event.currentTarget;
+    takeTurn('human', cell);
 }
