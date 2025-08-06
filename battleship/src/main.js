@@ -3,11 +3,6 @@ import { Player } from "./player";
 import { Computer } from "./computer";
 import { UserInterface } from "./userInterface"
 
-const Elements = {
-    startButton: document.getElementById('startButton'),
-    resetButton: document.getElementById('resetButton'),
-}
-
 let human = new Player();
 let computer = new Computer();
 let UI = new UserInterface(human.gameboard.shipsToCoords);
@@ -15,9 +10,14 @@ UI.placeShips(computer.gameboard.shipsToCoords, 'computer');
 let whosTurn = 'human';
 let startFlag = false;
 
-//Start button logic
-Elements.startButton.addEventListener('click', (startLogic));
-Elements.resetButton.addEventListener('click', (resetLogic));
+//Buttons
+startButton = document.getElementById('startButton').addEventListener('click', (startLogic));
+resetButton = document.getElementById('resetButton').addEventListener('click', (resetLogic));
+
+//Drag and drop API
+document.querySelectorAll('.human-ship').forEach(ship => {
+    console.log(ship);
+});
 
 //Start button logic
 function startLogic() {

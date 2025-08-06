@@ -16,19 +16,29 @@ export class UserInterface {
                 //Create a new div that will house the ship object
                 let shipPiece = document.createElement('div');
 
-                //Append a class that represents the name and owner of the ship
-                shipPiece.classList.add(`${owner}_${ship.name}`);
+                shipPiece.dataset.shipName = ship.name;
 
                 //Add the appropriate styling to the ship
-                if(i === 0 || i === location.length - 1) {
+                if(i === 0) {
                     shipPiece.classList.add('ship-end');
+                    shipPiece.dataset.startPiece = true;
+                }
+                else if (i === location.length - 1){
+                    shipPiece.classList.add('ship-end');
+                    shipPiece.dataset.endPiece = true;
                 }
                 else {
                     shipPiece.classList.add('ship-body');
                 }
 
                 if(owner === 'computer') {
-                    //shipPiece.classList.add('computer-ship');
+                    shipPiece.dataset.locked = true;
+                    shipPiece.dataset.owner = 'computer';
+                    shipPiece.classList.add('computer-ship');
+                }
+                else {
+                    shipPiece.dataset.locked = false;
+                    shipPiece.dataset.owner = 'human';
                 }
 
                 //Parse out the X and Y coordinate of this particular ship from the provided map
@@ -43,6 +53,7 @@ export class UserInterface {
         }
     }
 
+    //Returns the layout to a default position
     resetLayout() {
         //Remove all objects from player board
         document.querySelectorAll('[data-owner="human"]').forEach(parentDiv => {
@@ -83,13 +94,37 @@ export class UserInterface {
         status.textContent = message;
     }
 
+    //Executed when a ship is starting to be dragged
+    startDrag(ship) {
+
+    }
+
+    //Executed while a ship is actively being moved 
+    onMove() {
+
+    }
+
+    //Executed when a ship is finished being dragged
+    endDrag() {
+
+    }
+
+    //Highlights drag placement to help indicate valid / invalid ship placements
+    highlightDrag() {
+
+    }
+
+    //Executed when a ship is attempting to be rotated 90 degrees
+    rotateShip() {
+
+    }
+
     //Apply's a hit or miss marker on a coordinate
     applyMarker(coord, result, owner) {
         //Parse out the X and Y coordinates for finding it on the board
         const [x, y] = coord;
         const cell = document.querySelector(`[data-owner="${owner}"][data-x="${x}"][data-y="${y}"]`);
         const img = document.createElement('img');
-        //img.classList.add('marker-icon');
         //The attack was a hit
         if(result === 'hit') {
             img.src = hitMarker;
