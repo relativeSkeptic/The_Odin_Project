@@ -70,10 +70,10 @@ export class UserInterface {
         });
     }
 
-    //Reveals a computer ship once it has been sunk
+    // Reveals a computer ship once it has been sunk
     revealShip(shipName) {
-        const text = '.computer_' + shipName;
-        const ships = document.querySelectorAll(text);
+        const selector = `[data-owner="computer"][data-ship-name="${shipName}"]`;
+        const ships = document.querySelectorAll(selector);
 
         ships.forEach((shipElement) => {
             shipElement.classList.remove('computer-ship');

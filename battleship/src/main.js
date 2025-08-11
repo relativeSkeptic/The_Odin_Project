@@ -11,8 +11,11 @@ let whosTurn = 'human';
 let startFlag = false;
 
 //Buttons
-startButton = document.getElementById('startButton').addEventListener('click', (startLogic));
-resetButton = document.getElementById('resetButton').addEventListener('click', (resetLogic));
+let startButton = document.getElementById('startButton');
+startButton.addEventListener('click', startLogic);
+
+let resetButton = document.getElementById('resetButton');
+resetButton.addEventListener('click', resetLogic);
 
 //Drag and drop API
 document.querySelectorAll('.human-ship').forEach(ship => {
@@ -35,8 +38,8 @@ function startLogic() {
         cell.addEventListener('click', handleComputerCellClick);
     });
 
-    Elements.startButton.removeEventListener('click', startLogic);
-    Elements.startButton.classList.add('deactivate-game-button');
+    startButton.removeEventListener('click', startLogic);
+    startButton.classList.add('deactivate-game-button');
 }
 
 //Reset button logic
@@ -47,8 +50,8 @@ function resetLogic() {
     UI.placeShips(human.gameboard.shipsToCoords);
     UI.placeShips(computer.gameboard.shipsToCoords, 'computer');
     startFlag = false;
-    Elements.startButton.classList.remove('deactivate-game-button');
-    Elements.startButton.addEventListener('click', (startLogic));
+    startButton.classList.remove('deactivate-game-button');
+    startButton.addEventListener('click', (startLogic));
 }
 
 //Logic executed to take a single turn
@@ -101,12 +104,14 @@ function takeTurn(player, cell = null) {
 
     case "sunk":
         UI.applyMarker(attack.coord, 'hit', whosBoard);
+        console.log(attack.ship.name);
         UI.revealShip(attack.ship.name);
         if(attack.hasWon === true) {
             endGame();
         }
         else {
             UI.updateMessageBoard(attack.message);
+            UI.revealShip(attack.ship.name);
             switchTurn();
         }
         break;
