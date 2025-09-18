@@ -2,9 +2,12 @@ import hitMarker from '../icons/red-x.svg';
 import missMarker from '../icons/circle.svg';
 
 export class UserInterface {
-    constructor(playerMap) {
+    #playerShips;
+
+    constructor(ships) {
+        this.#playerShips = ships;
         this.#generateBoards();
-        this.placeShips(playerMap);
+        this.placeShips(ships);
     }
 
     //Allows the placement of ships with a provided map
@@ -16,7 +19,7 @@ export class UserInterface {
                 //Create a new div that will house the ship object
                 let shipPiece = document.createElement('div');
 
-                shipPiece.dataset.shipName = ship.name;
+                shipPiece.dataset.shipName = ship;
 
                 //Add the appropriate styling to the ship
                 if(i === 0) {
@@ -25,19 +28,17 @@ export class UserInterface {
                 }
                 else if (i === location.length - 1){
                     shipPiece.classList.add('ship-end');
-                    shipPiece.dataset.endPiece = true;
                 }
                 else {
                     shipPiece.classList.add('ship-body');
                 }
 
                 if(owner === 'computer') {
-                    shipPiece.dataset.locked = true;
                     shipPiece.dataset.owner = 'computer';
                     shipPiece.classList.add('computer-ship');
                 }
                 else {
-                    shipPiece.dataset.locked = false;
+                    shipPiece.dataset.isDraggable = 'true';
                     shipPiece.dataset.owner = 'human';
                 }
 
@@ -49,8 +50,45 @@ export class UserInterface {
 
                 //Append the new ship piece to the extracted coordinate
                 coordPlacement.append(shipPiece);
+
+                //Update the coordinate to show that the square is occupied 
+                if(owner === 'human') {
+                    coordPlacement.dataset.isOccupied = true;
+                }
             }
         }
+    }
+
+    //Moves a ship when dragged
+    moveShip(shipName) {
+        //Get the coordinates of the ship that is being moved
+        const shipCoords = this.#playerShips(shipName);
+        
+        console.log(shipCoords);
+    }
+
+    //Rotates a ship when double clicked
+    rotateShip(ship) {
+
+    }
+
+    //Checks if the provided coordinates are occupied
+    checkShip(coordSet) {
+        //Loop through the coordinate set that was provided
+        for (coord in coordSet) {
+            //Parse out the x and y coordinates
+            const [x, y] = coord;
+
+            //Find the specific grid based on the provided x and y coordinates
+            const grid = document.querySelector(`[data-owner="human"][data-x="${x}"][data-y="${y}"]`);
+
+            //Check to see if the grid is occupied already or not
+            if (grid.dataset.isOccupied === true) {
+                return true;
+            }
+        }
+        //If none of the provided grids are occupied the ship can be relocated here
+        return false;
     }
 
     //Returns the layout to a default position
@@ -92,31 +130,6 @@ export class UserInterface {
     updateMessageBoard(message) {
         const status = document.getElementById('status');
         status.textContent = message;
-    }
-
-    //Executed when a ship is starting to be dragged
-    startDrag(ship) {
-
-    }
-
-    //Executed while a ship is actively being moved 
-    onMove() {
-
-    }
-
-    //Executed when a ship is finished being dragged
-    endDrag() {
-
-    }
-
-    //Highlights drag placement to help indicate valid / invalid ship placements
-    highlightDrag() {
-
-    }
-
-    //Executed when a ship is attempting to be rotated 90 degrees
-    rotateShip() {
-
     }
 
     //Apply's a hit or miss marker on a coordinate
@@ -165,6 +178,9 @@ export class UserInterface {
                 cell.dataset.x = x;
                 cell.dataset.y = y;
                 cell.dataset.owner = boardOwner;
+                if(boardOwner === 'human') {
+                    cell.dataset.isOccupied = false;
+                }
                 cell.className = 'board-cell board-cell:hover';
                 container.appendChild(cell);
             }

@@ -160,7 +160,7 @@ export class Gameboard {
         }
 
         //The ships length is the key and its coordinates are the value
-        this.#shipToCoords.set(ship, coordsArray);
+        this.#shipToCoords.set(ship.name, coordsArray);
 
         //Adding all of the referenced ships to just a Set for easy access later
         this.#ships.add(ship);

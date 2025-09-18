@@ -124,7 +124,7 @@ function takeTurn(player, cell = null) {
     //If it is now the computers turn, have it take its turn with a small delay
     if(whosTurn === 'computer') {
         setTimeout(() => {takeTurn('computer');
-        }, 1000);
+        }, 100);
     }
 }
 
