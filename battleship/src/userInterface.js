@@ -19,12 +19,12 @@ export class UserInterface {
                 //Create a new div that will house the ship object
                 let shipPiece = document.createElement('div');
 
+                //Set the ship name
                 shipPiece.dataset.shipName = ship;
 
                 //Add the appropriate styling to the ship
                 if(i === 0) {
                     shipPiece.classList.add('ship-end');
-                    shipPiece.dataset.startPiece = true;
                 }
                 else if (i === location.length - 1){
                     shipPiece.classList.add('ship-end');
@@ -39,6 +39,7 @@ export class UserInterface {
                 }
                 else {
                     shipPiece.dataset.isDraggable = 'true';
+                    shipPiece.dataset.type = 'ship';
                     shipPiece.dataset.owner = 'human';
                 }
 
@@ -60,11 +61,8 @@ export class UserInterface {
     }
 
     //Moves a ship when dragged
-    moveShip(shipName) {
-        //Get the coordinates of the ship that is being moved
-        const shipCoords = this.#playerShips(shipName);
-        
-        console.log(shipCoords);
+    dragShip(ship) {
+        console.log(ship);
     }
 
     //Rotates a ship when double clicked
