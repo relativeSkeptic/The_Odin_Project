@@ -17,14 +17,6 @@ startButton.addEventListener('click', startLogic);
 let resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', resetLogic);
 
-//Drag and drop API
-document.querySelectorAll(`[data-owner="human"][data-type="ship"]`).forEach(ship => {
-    //TODO: Need to figure out how to remove the anonymous function in order to be able to remove the eventlistener
-    ship.addEventListener('drag', () => {
-        UI.dragShip(ship);
-    });
-});
-
 //Start button logic
 function startLogic() {
     startFlag = true; 
@@ -43,11 +35,6 @@ function startLogic() {
 
     startButton.removeEventListener('click', startLogic);
     startButton.classList.add('deactivate-game-button');
-
-    //Set human ships to non-draggable
-    document.querySelectorAll(`[data-owner="human"][data-type="ship"]`).forEach(ship => {
-        ship.dataset.isDraggable = false;
-    });
 }
 
 //Reset button logic
@@ -65,11 +52,6 @@ function resetLogic() {
     startFlag = false;
     startButton.classList.remove('deactivate-game-button');
     startButton.addEventListener('click', (startLogic));
-
-    //Set human ships to be draggable
-    document.querySelectorAll(`[data-owner="human"][data-type="ship"]`).forEach(ship => {
-        ship.dataset.isDraggable = true;
-    });
 }
 
 //Logic executed to take a single turn

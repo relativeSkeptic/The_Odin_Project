@@ -38,8 +38,6 @@ export class UserInterface {
                     shipPiece.classList.add('computer-ship');
                 }
                 else {
-                    shipPiece.dataset.isDraggable = 'true';
-                    shipPiece.dataset.type = 'ship';
                     shipPiece.dataset.owner = 'human';
                 }
 
@@ -51,23 +49,8 @@ export class UserInterface {
 
                 //Append the new ship piece to the extracted coordinate
                 coordPlacement.append(shipPiece);
-
-                //Update the coordinate to show that the square is occupied 
-                if(owner === 'human') {
-                    coordPlacement.dataset.isOccupied = true;
-                }
             }
         }
-    }
-
-    //Moves a ship when dragged
-    dragShip(ship) {
-        console.log(ship);
-    }
-
-    //Rotates a ship when double clicked
-    rotateShip(ship) {
-
     }
 
     //Checks if the provided coordinates are occupied

@@ -1,0 +1,13 @@
+{
+  "name": "rubiks_cube",
+  "version": "1.0.0",
+  "main": "webpackconfig.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
