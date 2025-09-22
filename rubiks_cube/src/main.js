@@ -1,19 +1,9 @@
 import "./styles.css";
 
 //Current rotation in degrees
-let currentRotation = 0;
+let xAxis = 0;
+let yAxis = 0;
+let zAxis = 0;
 
-//Obtain a list of all squares
-const squares = document.querySelectorAll('.square');
-
-function rotateSquare() {
-    currentRotation += 1;
-    for (let square of squares) {
-        square.style.transform = `rotate(${currentRotation}deg)`;
-    }
-    if (currentRotation === 360) {
-        currentRotation = 0;
-    }
-}
-
-let interval = setInterval(rotateSquare, 1);
+//Get reference to square
+const square = document.getElementById('square');

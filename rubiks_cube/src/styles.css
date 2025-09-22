@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.square {
-  width: 50%;
-  height: 75%;
-  border: 2px solid black;
+.squares {
+  width: 35%;
+  height: 70%;
   background-color: black;
 }
