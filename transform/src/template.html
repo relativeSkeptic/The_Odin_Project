@@ -1,46 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transformations</title>
   </head>
-  <body class="h-screen flex  flex-col m-0">
+  <body class="h-screen flex flex-col m-0">
     <header>
       <div class="flex gap-8 text-2xl bg-slate-700 p-4 text-white font-bold">
         <p class="">Transformations</p>
       </div>
     </header>
     <div id="hero" class="flex flex-1 bg-white">
-      <div class="flex flex-1 flex-col w-full h-full justify-center items-center gap-10">
+      <div
+        class="flex flex-1 flex-col w-full h-full justify-center items-center gap-10"
+      >
         <select name="transform" id="transform">
           <option value="rotate">Rotate</option>
           <option value="scale">Scale</option>
           <option value="skew">Skew</option>
           <option value="translate">Translate</option>
         </select>
-        <div class="w-1/2 h-1/2 place-items-center place-content-center">
-            <div id='square' class="squares"></div>
+        <div class="flex w-1/2 h-1/2 justify-center items-center">
+          <div
+            id="square"
+            class="squares flex justify-between flex-col items-start p-2 rounded-md"
+          >
+            <p class="box">MAXIMIZE</p>
+            <p class="box self-end">OVERTLY</p>
+          </div>
         </div>
         <div class="rotationContainer flex gap-20">
           <div id="xAxisRotation" class="flex flex-col items-center gap-2">
             <p>X-Axis</p>
-            <input type="range" min="1" max="100" value="0" class="slider" id="xAxisRotSlider">
-            <p class="degrees">0 degrees</p>
+            <input
+              type="range"
+              min="-360"
+              max="360"
+              value="0"
+              class="slider"
+              id="xAxisRotSlider"
+            />
+            <div class="flex gap-2">
+              <p id="xAxisRotDegree" class="degrees">0</p>
+              <p>degrees</p>
+            </div>
           </div>
           <div id="yAxisRotation" class="flex flex-col items-center gap-2">
             <p>Y-Axis</p>
-            <input type="range" min="1" max="100" value="0" class="slider" id="yAxisRotSlider">
-            <p class="degrees">0 degrees</p>
+            <input
+              type="range"
+              min="-360"
+              max="360"
+              value="0"
+              class="slider"
+              id="yAxisRotSlider"
+            />
+            <div class="flex gap-2">
+              <p id="yAxisRotDegree" class="degrees">0</p>
+              <p>degrees</p>
+            </div>
           </div>
           <div id="zAxisRotation" class="flex flex-col items-center gap-2">
             <p>Z-Axis</p>
-            <input type="range" min="1" max="100" value="0" class="slider" id="zAxisRotSlider">
-            <p class="degrees">0 degrees</p>
+            <input
+              type="range"
+              min="-360"
+              max="360"
+              value="0"
+              class="slider"
+              id="zAxisRotSlider"
+            />
+            <div class="flex gap-2">
+              <p id="zAxisRotDegree" class="degrees">0</p>
+              <p>degrees</p>
+            </div>
           </div>
           <div id="randomizeRotation" class="flex flex-col items-center gap-3">
             <p>Randomize Rotation?</p>
-            <input type="checkbox" id="randomizeRotation">
+            <input type="checkbox" id="randomizeRotation" />
           </div>
         </div>
       </div>
